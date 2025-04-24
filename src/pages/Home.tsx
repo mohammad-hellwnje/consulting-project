@@ -5,7 +5,7 @@ export default function Home() {
     <>
       {/* For SEO  */}
       <Helmet>
-        <title>الرئيسية - الاستشارية التربوية</title>
+        <title>Reda Muhtaseb</title>
         <meta name="description" content="منصة استشارية تربوية تقدم ورشات، فعاليات، دورات واستشارات للسيدات في مجالات التربية، الأمومة، والعلاقات." />
         <meta name="keywords" content="تربية, استشارات, ورشات, أمومة, كورسات, فعاليات, نساء, الوطن العربي" />
         <meta property="og:title" content="الاستشارية التربوية" />
