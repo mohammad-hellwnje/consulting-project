@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import logo from "../../img/just-test/LOGO (1).png";
 import { NavData } from "../../Data/NavData";
-import SideBar from "../SideBar/SideBar"; // تأكد من المسار حسب المشروع
+import SideBar from "../SideBar/SideBar";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,7 +32,6 @@ export default function Navbar() {
           <img src={logo} alt="logo" className="w-[100px]" />
         </Link>
 
-        {/* روابط سطح المكتب */}
         <ul className="hidden flex-row-reverse md:flex items-center gap-8">
           {NavData.map((item, index) => (
             <li key={index}>
@@ -47,7 +46,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* الدخول/التسجيل */}
         <div className="hidden md:flex items-center gap-2 text-sm">
           <NavLink to="/">تسجيل الدخول</NavLink>
          
