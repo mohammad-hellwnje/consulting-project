@@ -5,23 +5,19 @@ export const NavData = [
   },
   {
     name: "من نحن",
-    path: "/careers",
-  },
-  {
-    name: "كيف نعمل",
     path: "/about",
   },
   {
-    name: "  خدماتنا",
-    path: "/security",
+    name: "خدماتنا",
+    path: "/services",
   },
   {
-    name: "الأسئلة الشائعة",
-    path: "/security",
+    name: "بودكاست",
+    path: "/",
   },
 
   {
     name: "تواصل معي",
-    path: "/security",
+    path: "/contact",
   },
 ];
