@@ -1,4 +1,10 @@
 import { Helmet } from 'react-helmet';
+<<<<<<< Updated upstream
+=======
+import ServicesSection from '../components/ServicesSection/ServicesSection';
+import ContactSection from '../components/ContactSection/ContactSection';
+
+>>>>>>> Stashed changes
 
 export default function Home() {
   return (
@@ -14,9 +20,18 @@ export default function Home() {
         <meta property="og:url" content="https://yourdomain.com/" /> */}
       </Helmet>
       {/* end */}
+<<<<<<< Updated upstream
         <div>
             Home
         </div>
+=======
+      <div>
+       
+        <ServicesSection />
+        <ContactSection />
+
+      </div>
+>>>>>>> Stashed changes
     </>
 
   )
