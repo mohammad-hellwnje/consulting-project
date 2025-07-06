@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --color-btnColor: #4B2C53;
+  --color-bgHomeHeroImage: #EBEBEB;
+  --color-textbtnColor:#B38AC0;
+  --bg-hero-image: url('/src/assets/image/BgHomeHero.png');
+}
+.bg-hero {
+  background-image: var(--bg-hero-image);
+}
+
