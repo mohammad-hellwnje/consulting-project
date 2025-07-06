@@ -1,15 +1,33 @@
+// Navbar.jsx
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa6";
 
-export default function NavBar() {
+import logo from "../../img/general/LOGO (1).png";
+import { NavData } from "../../Data/NavData";
+import SideBar from "../SideBar/SideBar";
+
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolling(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-<<<<<<< Updated upstream
     <div>
       
     </div>
   )
-=======
     <>
       <nav
-        className={`bg-[#CB88BB12] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
+        className={`bg-[#7E399457] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
   ${
     scrolling
       ? "w-full top-0 left-0 rounded-none"
@@ -75,5 +93,4 @@ export default function NavBar() {
       <SideBar menuOpen={menuOpen} closeMenu={closeMenu} />
     </>
   );
->>>>>>> Stashed changes
 }
