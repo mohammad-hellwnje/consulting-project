@@ -21,6 +21,10 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
+    <div>
+      
+    </div>
+  )
     <>
       <nav
         className={`bg-[#FFFFFF33] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
@@ -28,7 +32,7 @@ export default function Navbar() {
     scrolling
       ? "w-full top-0 left-0 rounded-none"
       : "w-[88.2815%] top-6 left-[5.85925%] rounded-[21px]"
-  }`}
+        className={`bg-[#7E399457] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
       >
         {/* الشعار + الروابط */}
         <div className="flex flex-row-reverse items-center">
@@ -37,9 +41,9 @@ export default function Navbar() {
           </Link>
 
           {/* روابط التنقل — تظهر فقط في الشاشات الكبيرة */}
-          <ul className="hidden lg:flex  flex-row-reverse items-center   2xl:font-semibold text-[16px]  leading-[120%]">
+          <ul className="hidden lg:flex  flex-row-reverse items-center 2xl:gap-8  2xl:font-semibold 2xltext-[16px] text-[12px] leading-[120%]">
             {NavData.map((item, index) => (
-              <li key={index} className="flex items-center  text-[16px] ">
+              <li key={index} className="flex items-center gap-1">
                 <NavLink
                   to={item.path}
                   end
@@ -69,7 +73,7 @@ export default function Navbar() {
           </NavLink>
           <NavLink
             to="/"
-            className="font-bold text-[16px]  leading-[100%] text-white border-[2px] rounded-[4px] py-3  me-8 w-[38.820638821%] h-[42px] text-center"
+            className="font-bold 2xl:text-[16px] text-[10px] leading-[100%] text-white border-[2px] rounded-[4px] py-3 xl:px-[34px] px-1.5 me-8"
           >
             إنشاء حساب
           </NavLink>

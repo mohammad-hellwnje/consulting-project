@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet';
+import ServicesSection from '../components/ServicesSection/ServicesSection';
+import ContactSection from '../components/ContactSection/ContactSection';
 
 export default function Home() {
   return (
@@ -23,7 +25,12 @@ export default function Home() {
         <meta property="og:url" content="https://yourdomain.com/" /> */}
       </Helmet>
       {/* end */}
-      <div className="bg-[#3B2241] h-[1000px]">Home</div>
+      <div>
+       
+        <ServicesSection />
+        <ContactSection />
+
+      </div>
     </>
   );
 }

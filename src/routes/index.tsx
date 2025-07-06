@@ -43,6 +43,7 @@ const router = createBrowserRouter([
         path: "*", /* في حالة لم يتطابق المسار مع أي من المسارات المحددة */
         element: withSuspense(NotFound),
     },
+    
 ]);
 
 export default router;

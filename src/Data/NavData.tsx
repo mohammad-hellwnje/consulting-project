@@ -23,3 +23,4 @@ export const NavData = [
     path: "/contact",
   },
 ];
+
