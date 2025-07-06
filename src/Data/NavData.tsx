@@ -1,6 +1,5 @@
 import { FaAngleDown } from "react-icons/fa6";
 
-
 export const NavData = [
   {
     name: "الرئيسية",
