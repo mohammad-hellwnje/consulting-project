@@ -6,6 +6,7 @@ const About = lazy(() => import("../pages/About"));
 const Contact = lazy(() => import("../pages/Contact"));
 const Services = lazy(() => import("../pages/Services"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 
 /* هي الدالة تغلف المكونات التي  تم تحميلها بشكل كسول */
 const withSuspense = (Component: React.LazyExoticComponent<() => JSX.Element>) => (
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         path: "*", /* في حالة لم يتطابق المسار مع أي من المسارات المحددة */
         element: withSuspense(NotFound),
     },
+    {
+        path : '/auth/:formType',
+        element : withSuspense(AuthLayout)
+    }
 ]);
 
 export default router;
