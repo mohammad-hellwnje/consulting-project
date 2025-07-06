@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import ServicesSection from '../components/ServicesSection/ServicesSection';
-
+import ContactSection from '../components/ContactSection/ContactSection';
 
 export default function Home() {
   return (
@@ -28,8 +28,10 @@ export default function Home() {
       <div>
        
         <ServicesSection />
+        <ContactSection />
 
       </div>
+    </>
     </>
   );
 }

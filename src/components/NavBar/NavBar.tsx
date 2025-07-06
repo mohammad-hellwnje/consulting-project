@@ -21,6 +21,10 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
+    <div>
+      
+    </div>
+  )
     <>
       <nav
         className={`bg-[#7E399457] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
