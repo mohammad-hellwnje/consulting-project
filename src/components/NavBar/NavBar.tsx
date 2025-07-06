@@ -1,6 +1,8 @@
 // Navbar.jsx
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import  { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 
@@ -62,7 +64,6 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-
         {/* أزرار تسجيل الدخول — تظهر فقط في الشاشات الكبيرة */}
         <div className="hidden lg:flex flex-row-reverse items-center  w-[25%]">
           <NavLink

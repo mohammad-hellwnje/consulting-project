@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +25,14 @@
     <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
      <!-- مهم لجوجل : هذا هو الرابط الأصلي والرئيسي لهذه الصفحة، تجاهل أي نسخ أخرى بنفس المحتوى-->
     <link rel="canonical" href="https://yourwebsite.com" />
+    <link rel="preload" href="/fonts/GE_SS_Two.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+      @font-face {
+        font-family: 'GE SS Two';
+        src: url('/fonts/GE_SS_Two.woff2') format('woff2');
+        font-display: swap;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

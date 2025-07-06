@@ -10,9 +10,17 @@ export const NavData = [
     path: "/about",
   },
   {
+    name: "كيف نعمل",
+    path: "/about",
+  },
+  {
+    name: "الأسئلة الشائعة",
+    path: "/about",
+  },
+  {
     name: "خدماتنا",
     path: "/services",
-    icon: <FaAngleDown />, // أضف الأيقونة هنا كمفتاح جديد
+    icon: <FaAngleDown />,
   },
   {
     name: "بودكاست",
