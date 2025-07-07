@@ -1,8 +1,6 @@
 // Navbar.jsx
-import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import  { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 
@@ -23,19 +21,11 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div>
-      
-    </div>
-  )
     <>
       <nav
-        className={`bg-[#FFFFFF33] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
-  ${
-    scrolling
+        className={`bg-[#FFFFFF33] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]${scrolling
       ? "w-full top-0 left-0 rounded-none"
-      : "w-[88.2815%] top-6 left-[5.85925%] rounded-[21px]"
-        className={`bg-[#7E399457] shadow-[0px_10px_49px_-11px_rgba(126,57,148,0.34)] flex flex-row-reverse items-center justify-between h-[100px] fixed z-[1000] transition-all duration-500 px-8 py-[29px]
-      >
+      : "w-[88.2815%] top-6 left-[5.85925%] rounded-[21px]"}`}>
         {/* الشعار + الروابط */}
         <div className="flex flex-row-reverse items-center">
           <Link to="/">
