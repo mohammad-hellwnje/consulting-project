@@ -11,7 +11,7 @@ const HomeHero: React.FC<HomeHeroProps> = ({
 }) => {
   return (
     <section
-      className="hero bg-hero bg-center border-b-[4px] bg-no-repeat pr-[44.86px] pt-[129px] flex justify-end gap-[125px] relative "
+      className="hero w-dvh overflow-hidden bg-hero bg-center  bg-no-repeat  flex justify-end  relative "
     > 
       <div className="absolute top-0 right-0 w-[186px] h-[150px] bg-[#CB88BB]/[0.13] filter blur-[100px] " />
       <div className="absolute bottom-0 left-0 w-[186px] h-[150px] bg-[#CB88BB]/[0.13] filter blur-[100px] " />

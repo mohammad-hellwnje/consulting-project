@@ -38,8 +38,8 @@ export default function Home() {
         <meta property="og:url" content="https://yourdomain.com/" /> */}
       </Helmet>
       {/* end */}
-      <div>
-        <HomeHero
+      <div className='  overflow-hidden'>
+{/*         <HomeHero
           title="انا هنا لأرافقكِ في رحلتكِ نحو وعي تربوي ونفسي أعمق، حيث أقدم لكِ الدعم العلمي والعملي من خلال استشارات متخصصة وكورسات تركز على فهم أعمق لاحتياجاتكِ التربوية والنفسية. معًا، "
           description="سنسلك خطوات مدروسة لتحقيق التوازن والنجاح في حياتكِ اليومي"
           primaryButton="احجزي استشارة"
@@ -59,8 +59,8 @@ export default function Home() {
               iconSrc: iconCourses,
             },
           ]}
-        />
-        <HomeAbout
+        /> */}
+{/*         <HomeAbout
           imageUrl={womanimage2}
           titleImage={titleImage}
           heading="من هي"
@@ -69,15 +69,12 @@ export default function Home() {
             { iconUrl: AboutIcon2, label: "خبرات ومبادرات" },
           ]}
         />
-        <HowWork steps={howWorkSteps} />
+        <HowWork steps={howWorkSteps} /> */}
 
         {/* Home */}
+{/*         <ServicesSection />
+        <ContactSection /> */}
       </div>
     </>       
-        <ServicesSection />
-        <ContactSection />
-
-      </div>
-    </>
   );
 }
