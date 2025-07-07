@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @theme {
   --color-btnColor: #4B2C53;
   --color-bgHomeHeroImage: #EBEBEB;
@@ -9,4 +8,7 @@
 .bg-hero {
   background-image: var(--bg-hero-image);
 }
-
+* {
+    box-sizing: border-box;
+    
+}

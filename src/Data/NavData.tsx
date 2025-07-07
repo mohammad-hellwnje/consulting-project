@@ -1,3 +1,5 @@
+import { FaAngleDown } from "react-icons/fa6";
+
 export const NavData = [
   {
     name: "الرئيسية",
@@ -5,23 +7,28 @@ export const NavData = [
   },
   {
     name: "من نحن",
-    path: "/careers",
+    path: "/about",
   },
   {
     name: "كيف نعمل",
     path: "/about",
   },
   {
-    name: "  خدماتنا",
-    path: "/security",
+    name: "الأسئلة الشائعة",
+    path: "/about",
   },
   {
-    name: "الأسئلة الشائعة",
-    path: "/security",
+    name: "خدماتنا",
+    path: "/services",
+    icon: <FaAngleDown />,
   },
-
+  {
+    name: "بودكاست",
+    path: "/",
+  },
   {
     name: "تواصل معي",
-    path: "/security",
+    path: "/contact",
   },
 ];
+

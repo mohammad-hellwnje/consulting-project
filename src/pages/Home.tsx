@@ -8,6 +8,8 @@ import iconConsulting from './../assets/image/consultingicon.png';
 import titleImage from './../assets/image/titleImage.png';
 import AboutIcon from './../assets/image/qualificationsicon.png'
 import AboutIcon2 from './../assets/image/pen-icon.png'
+import ServicesSection from '../components/ServicesSection/ServicesSection';
+import ContactSection from '../components/ContactSection/ContactSection';
 
 import HomeAbout from '../components/HomeAbout/HomeAbout';
 import HowWork from '../components/HowWork/HowWork';
@@ -18,10 +20,20 @@ export default function Home() {
       {/* For SEO  */}
       <Helmet>
         <title>Reda Muhtaseb</title>
-        <meta name="description" content="منصة استشارية تربوية تقدم ورشات، فعاليات، دورات واستشارات للسيدات في مجالات التربية، الأمومة، والعلاقات." />
-        <meta name="keywords" content="تربية, استشارات, ورشات, أمومة, كورسات, فعاليات, نساء, الوطن العربي" />
+        <meta
+          name="description"
+          content="منصة استشارية تربوية تقدم ورشات، فعاليات، دورات واستشارات للسيدات في مجالات التربية، الأمومة، والعلاقات."
+        />
+        <meta
+          name="keywords"
+          content="تربية, استشارات, ورشات, أمومة, كورسات, فعاليات, نساء, الوطن العربي"
+        />
         <meta property="og:title" content="الاستشارية التربوية" />
         <meta property="og:description" content="ورشات ودورات واستشارات نسائية متخصصة في التربية والأمومة." />
+        <meta
+          property="og:description"
+          content="ورشات ودورات واستشارات نسائية متخصصة في التربية والأمومة."
+        />
         {/*  <meta property="og:image" content="/images/home-cover.jpg" />
         <meta property="og:url" content="https://yourdomain.com/" /> */}
       </Helmet>
@@ -61,7 +73,11 @@ export default function Home() {
 
         {/* Home */}
       </div>
-    </>
+    </>       
+        <ServicesSection />
+        <ContactSection />
 
-  )
+      </div>
+    </>
+  );
 }
