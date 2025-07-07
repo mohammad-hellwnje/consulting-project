@@ -4,11 +4,17 @@
   --color-bgHomeHeroImage: #EBEBEB;
   --color-textbtnColor:#B38AC0;
   --bg-hero-image: url('/src/assets/image/BgHomeHero.png');
+  --bg-main-color: #3B2241;
 }
 .bg-hero {
   background-image: var(--bg-hero-image);
 }
 * {
     box-sizing: border-box;
-    
+    direction: rtl;
+}
+body
+{
+    background-color: var(--bg-main-color);
+
 }

@@ -9,14 +9,7 @@ export const NavData = [
     name: "من نحن",
     path: "/about",
   },
-  {
-    name: "كيف نعمل",
-    path: "/about",
-  },
-  {
-    name: "الأسئلة الشائعة",
-    path: "/about",
-  },
+
   {
     name: "خدماتنا",
     path: "/services",
@@ -24,7 +17,7 @@ export const NavData = [
   },
   {
     name: "بودكاست",
-    path: "/",
+    path: "/podacst",
   },
   {
     name: "تواصل معي",
