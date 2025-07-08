@@ -3,6 +3,7 @@
   --color-btnColor: #4B2C53;
   --color-bgHomeHeroImage: #EBEBEB;
   --color-textbtnColor:#B38AC0;
+  --color-authbtnActive: #CB88BB40;
   --bg-hero-image: url('/src/assets/image/BgHomeHero.png');
   --bg-main-color: #3B2241;
 }
