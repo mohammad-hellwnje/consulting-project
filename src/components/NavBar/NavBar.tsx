@@ -1,10 +1,10 @@
 // Navbar.jsx
-import { NavLink } from "react-router-dom";
 import  { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import SideBar from "../SideBar/SideBar";
 import Logo from "../ui/Logo/Logo";
 import LinkUl from "./LabScreen/LinkUl";
+import AuthBtn from "../ui/Button/AuthBtn";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,18 +33,8 @@ export default function Navbar() {
         </div>
         {/* أزرار تسجيل الدخول — تظهر فقط في الشاشات الكبيرة */}
         <div className="hidden lg:flex  items-center gap-8">
-          <NavLink
-            to="/"
-            className="font-bold text-[16px] w-[158px] leading-[100%] text-white bg-[#CB88BB40] rounded-[4px] py-3 h-[42px] text-center"
-          >
-            تسجيل الدخول
-          </NavLink>
-          <NavLink
-            to="/"
-            className="font-bold w-[158px] 2xl:text-[16px] text-[10px] leading-[100%] text-white text-center border-[2px] rounded-[4px] py-3 xl:px-[34px]  "
-          >
-            إنشاء حساب
-          </NavLink>
+           <AuthBtn text="تسجيل الدخول" path="/auth/login" forceActive={true} />
+           <AuthBtn text="إنشاء حساب" path="/auth/signup" />
         </div>
 
         {/* أيقونة القائمة الجانبية — تظهر فقط في الموبايل */}
