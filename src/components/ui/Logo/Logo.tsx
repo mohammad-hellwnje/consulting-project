@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../../img/general/LOGO (1).png";
+import logo from "../../../assets/LOGO (1).png";
 
 export default function Logo() {
   return (

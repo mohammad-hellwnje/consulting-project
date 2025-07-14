@@ -1,7 +1,7 @@
 import "./ServicesCard.css"
 import mandella1 from "../../../src/img/service/mandella.png";
 import mandella2 from "../../../src/img/service/mandella2.png";
-import Button from "../Button/Button";
+import Button from "../ui/Button/Button";
 
 
 type ServiceItem = {

@@ -1,7 +1,7 @@
-import Button2 from "../Button2/Button2";
 import CustomDropdown from "../CustomDropdown/CustomDropdown";
 import whatsup from "../../img/contact/logos_whatsapp.png"
 import mandellaForm from "../../img/contact/mandellaForm.png";
+import Button from "../ui/Button/Button";
 
 export default function ContactForm() {
   return (
@@ -69,7 +69,7 @@ export default function ContactForm() {
         <div className="flex justify-between">
           {/* زر الإرسال */}
 
-          <Button2 text="ارسال" className=" mt-2" />
+          <Button text="ارسال" className=" mt-2" />
 
           {/* زر واتساب */}
           <a

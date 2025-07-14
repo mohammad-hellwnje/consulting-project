@@ -2,23 +2,6 @@ import ContactForm from "../ContactForm/ContactForm";
 import dicore from "../../img/contact/Ellipse.png"
 import backvideo from "../../img/contact/video_2025-06-22_21-46-12.mp4"
 
-// export default function ContactSection() {
-//   return (
-//     <div className="bg-[#4E2E56DB] relative">
-//       <video
-//         autoPlay
-//         muted
-//         loop
-//         playsInline
-//         className="absolute top-0 left-0 w-full h-full object-cover"
-//       >
-//         <source src={backvideo} type="video/mp4" />
-//       </video>
-
-//       <ContactForm />
-//     </div>
-//   );
-// }
 export default function ContactSection() {
   return (
     <div className="relative w-full h-[799px] overflow-hidden">

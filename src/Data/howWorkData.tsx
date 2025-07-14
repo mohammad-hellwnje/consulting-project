@@ -6,22 +6,23 @@ import payicon from './../assets/image/pay.png'
 export const howWorkSteps: Step[] = [
   {
     icon: laptop,
-    title: 'إنشاء الآلة',
-    description: 'ابدأ المشروع أو أضف منتجك',
+    title: 'ابدأ الآن',
+    description: ' تصفح المحتوى أو احجز جلستك',
   },
-  {
-    icon: message,
-    title: 'تفعيل الحساب بعد إنهاء الدفع',
-    description: 'إن لم يتم تفعيل آلي، سيتم تفعيله يدوياً خلال دقائق',
-  },
-  {
+    {
     icon:search,
-    title: 'اختيار الباقة المناسبة',
-    description: 'يمكنك الاختيار بين الاشتراكات أو الدفع لكل آلة',
+    title: 'اختيار الخدمة المناسبة',
+    description: ' تصفحي الكورسات أو الاستشارات واختاري الأنسب لإلك',
   },
-  {
+    {
     icon: payicon,
     title: 'اختيار وسيلة الدفع',
     description: 'بطاقة الائتمان، مدى، أو تحويل بنكي يدوي',
   },
+  {
+    icon: message,
+    title: 'تفعيل الحساب بعد لاتمام الدفع',
+    description: 'سجل دخول  ليتم اتمام عملية الدفع  اونلاين ', 
+  },
+
 ];
