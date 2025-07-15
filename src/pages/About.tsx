@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import AboutHero from "../components/AboutHero/AboutHero";
 
 export default function About() {
   return (
@@ -13,7 +14,7 @@ export default function About() {
         <meta property="og:url" content="https://yourdomain.com/about" /> */}
       </Helmet>
       <div>
-        About
+        <AboutHero/>
       </div>
     </>
 
