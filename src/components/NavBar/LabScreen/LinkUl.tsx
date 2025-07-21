@@ -10,7 +10,7 @@ export default function LinkUl() {
             <NavLink to={item.path} end className={({ isActive }) => `flex h-[42px] items-center justify-center rounded-sm transition ${
                 isActive
                 ? "bg-[#F5F5F5] 2xl:w-[158px] w-[114px] text-[#7E3994]  "
-                : "text-white 2xl:w-[120px] hover:bg-[#F5F5F5] hover:text-[#7E3994] "}`}>
+                : "text-white 2xl:w-[120px] hover:w-[114px] transition-all duration-200  hover:bg-[#F5F5F5] hover:text-[#7E3994] "}`}>
                     {item.name}
                 {index === 2 && <FaAngleDown className="mt-1 mx-1" />}
             </NavLink>
