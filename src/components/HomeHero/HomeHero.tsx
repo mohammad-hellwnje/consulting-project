@@ -7,8 +7,8 @@ import HeroTitle from '../ui/Titles/HeroTitle'
 export default function HomeHero() {
   return (
     <section className="h-screen w-full 2xl:px-[115px] lg:px-[100px] justify-start  items-end bg-top  bg-no-repeat lg:gap-15 2xl:gap-40  flex  "> 
-      <div className='w-[32%]  h-full flex items-end justify-end'>
-        <img  src={woman} className='2xl:h-[700px] h-[620px]  w-full' alt="رضا محتسب" />
+      <div className='w-[32%]  h-[75%] flex items-end justify-end'>
+        <img  src={woman} className='2xl:h-[700px] h-full w-full' alt="رضا محتسب" />
       </div>
       <div className='2xl:w-[61%]  justify-end lg:w-[70%] flex flex-col  h-full'>
         <HeroTitle/>
