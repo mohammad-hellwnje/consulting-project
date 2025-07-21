@@ -1,16 +1,16 @@
 import React from 'react';
 import { Step } from '../../types/howWork';
 import Line from './../../assets/image/Line.png'
+import SectionTitle from '../ui/Titles/SectionTitle';
 type HowWorkProps = {
   steps: Step[];
 };
 
 const HowWork: React.FC<HowWorkProps> = ({ steps }) => {
   return (
-    <div className="bg-[#3B2241]  text-white">
-      <h2 className="text-center text-2xl font-bold pt-[105px] mb-[186px]">كيف تعمل المنصة</h2>
-
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-[144px] pb-[244px]">
+    <div className="bg-[#3B2241] px-[115px] py-[100px]  text-white">
+      <SectionTitle text='كيف تعمل المنصة' className='pt-[105px] mb-[186px]'/>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 ">
         {steps.map((step, index) => (
           <div key={index} className="flex items-center">
             <div className="flex flex-col items-center">
@@ -18,8 +18,6 @@ const HowWork: React.FC<HowWorkProps> = ({ steps }) => {
               <h3 className="text-l mb-4">{step.title}</h3>
               <p className="text-sm text-center">{step.description}</p>
             </div>
-
-         
             {index < steps.length - 1 && (
               <div className="hidden md:block mx-4">
                 <img 

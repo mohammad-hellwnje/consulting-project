@@ -1,6 +1,3 @@
-import PhoneInput from "react-phone-number-input";
-import type { Country } from "react-phone-number-input";
-import "react-phone-number-input/style.css";
 
 export interface InputProps {
   type: string;
@@ -9,7 +6,6 @@ export interface InputProps {
   required: boolean;
   value?: string;
   onChange: (value: string | undefined) => void;
-  defaultCountry?: Country;  // استخدام النوع الصحيح Country
 }
 
 export default function Input({
@@ -19,12 +15,11 @@ export default function Input({
   required,
   value,
   onChange,
-  defaultCountry = "SY" as Country,  // تغيير القيمة الافتراضية إلى SY لسوريا
 }: InputProps) {
   if (type === "tel") {
     return (
       <div className="w-[465px] border px-4 py-2 rounded-sm">
-        <PhoneInput
+{/*         <PhoneInput
           name={name}
           value={value}
           onChange={onChange}
@@ -32,7 +27,7 @@ export default function Input({
           required={required}
           defaultCountry={defaultCountry}
           international
-        />
+        /> */}
       </div>
     );
   }

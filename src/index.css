@@ -4,7 +4,7 @@
   --color-bgHomeHeroImage: #EBEBEB;
   --color-textbtnColor:#B38AC0;
   --color-authbtnActive: #CB88BB40;
-  --bg-hero-image: url('/src/assets/image/BgHomeHero.png');
+  --bg-hero-image: url("/assets/hero-image.svg");
   --bg-main-color: #3B2241;
 }
 .bg-hero {
@@ -14,8 +14,9 @@
     box-sizing: border-box;
     direction: rtl;
 }
-body
-{
-    background-color: var(--bg-main-color);
-
+body {
+  background-color: var(--bg-main-color);
+  background-image: var(--bg-hero-image);
+  background-position: top center;
+  background-repeat: no-repeat;
 }

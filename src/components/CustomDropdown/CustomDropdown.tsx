@@ -2,14 +2,13 @@ import { useState, useRef, useEffect } from "react";
 
 export default function CustomDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("اختر");
+  const [selected, setSelected] = useState("ما هي الخدمة التي تحتاجها؟ . *");
   const options = ["استشارة", "كورس ", "ورشة ", "بودكاست ", "غير ذلك "];
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // إغلاق القائمة عند النقر خارجها
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -24,9 +23,9 @@ export default function CustomDropdown() {
       {/* العنصر الرئيسي */}
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-white h-[72px]  rounded-md px-3 py-2 flex items-start  cursor-pointer"
+        className=" border border-white h-[56px] text-white px-5 py-[15px] flex items-start justify-between cursor-pointer"
       >
-        <span className="text-sm text-[#19213D99]">{selected}</span>
+        <span className="text-base ">{selected}</span>
 
         {/* السهم */}
         <svg
