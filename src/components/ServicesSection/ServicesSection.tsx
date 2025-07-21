@@ -1,7 +1,7 @@
 import { ServiceData } from "../../Data/ServiceData";
-import background from "../../img/service/background.png";
-import mandellaTop from "../../img/service/mandellaTop.png";
-import mandellaBottom from "../../img/service/mandellaBottom.png";
+import background from "../../img/service/background.webp";
+import mandellaTop from "../../img/service/mandellaTop.webp";
+import mandellaBottom from "../../img/service/mandellaBottom.webp";
 import ServicesCard from "../ServicesCard/ServicesCard";
 import SectionTitle from "../ui/Titles/SectionTitle";
 

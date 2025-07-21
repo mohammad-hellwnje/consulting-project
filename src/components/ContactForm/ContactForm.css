@@ -1,0 +1,19 @@
+.react-international-phone-country-selector
+{
+    display: none;
+}
+.react-international-phone-input-container
+{
+    height: 56px !important;
+    width: 80px ;
+}
+.react-international-phone-input-container input 
+{
+    border-radius: 0 !important;
+    font-size: 16px !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    font-weight: 500 !important;
+    direction: ltr !important;
+    
+}

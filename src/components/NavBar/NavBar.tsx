@@ -24,7 +24,7 @@ export default function Navbar() {
   className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 
     ${scrolling ? "rounded-none" : "mt-6"}`}>
   
-  <div className={`mx-auto max-w-[88.020833%] px-8 py-3 bg-white/20 shadow-sm flex items-center justify-between rounded-[21px]`}>
+  <div className={`mx-auto 2xl:max-w-[88.020833%] max-w-[85.51388%] px-8 py-3 bg-white/20 shadow-sm flex items-center justify-between rounded-[21px]`}>
     {/* الشعار + الروابط */}
     <div className="flex gap-4.5 items-center">
       <Logo />

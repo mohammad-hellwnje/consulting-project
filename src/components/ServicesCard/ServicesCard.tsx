@@ -1,6 +1,6 @@
 import "./ServicesCard.css"
-import mandella1 from "../../../src/img/service/mandella.png";
-import mandella2 from "../../../src/img/service/mandella2.png";
+import mandella1 from "../../../src/img/service/mandella.webp";
+import mandella2 from "../../../src/img/service/mandella2.webp";
 import Button from "../ui/Button/Button";
 
 

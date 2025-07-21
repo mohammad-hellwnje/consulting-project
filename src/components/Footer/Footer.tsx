@@ -9,8 +9,8 @@ export default function Footer() {
         {footerData.map((link , i) => (
           <div className=" flex flex-col " key={i}>
              <h2 className=" text-[32px] mb-7 font-bold">{link.h2}</h2>
-             {link.link.map((links) => 
-             ( <Link className=" mb-5.5 text-base"  to={links.href}> {links.label} </Link>))}
+             {link.link.map((links , index) => 
+             ( <Link key={index} className=" mb-5.5 text-base"  to={links.href}> {links.label} </Link>))}
           </div>
         ))}
       </div>

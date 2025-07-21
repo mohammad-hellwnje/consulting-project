@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import { NavData } from "../../Data/NavData";
 
-export default function SideBar({ menuOpen, closeMenu }) {
+export default function SideBar({ menuOpen, closeMenu } : {menuOpen: boolean; closeMenu: () => void;}) {
   return (
     <div
       className={` fixed top-0 left-0 h-screen w-screen z-[1001] transition-all duration-300 ease-in-out 

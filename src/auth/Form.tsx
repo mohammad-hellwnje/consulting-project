@@ -1,6 +1,4 @@
 import { NavLink, useParams } from "react-router-dom";
-import React, { useState } from "react";
-import Input from "../ui/Input";
 import Label from "../ui/Label";
 
 export interface formProps
@@ -19,18 +17,19 @@ export interface input
     name: string;
     placeholder: string;
     required: boolean;
-    value : string;
+    value?: string;
+    onClick?: () => void;
 }
 export default function Form({title , paragraph , form , button , LinkB , link } : formProps) {
   const {formType} = useParams();
-  const [formValues, setFormValues] = useState<Record<string, string>>({});
+/*   const [formValues, setFormValues] = useState<Record<string, string>>({});
 
   const handleInputChange = (name: string) => (value: string | undefined) => {
     setFormValues(prev => ({
       ...prev,
       [name]: value || ''
     }));
-  };
+  }; */
 
   return (
     <div>
@@ -42,7 +41,7 @@ export default function Form({title , paragraph , form , button , LinkB , link }
         {form.map((e,i) => (
             <div className=" space-y-1.5 mb-5" key={i}>
                 <Label label={e.label}/>
-                <Input 
+{/*                 <Input 
                   onChange={handleInputChange(e.name)} 
                   value={formValues[e.name] || e.value} 
                   name={e.name} 
@@ -50,7 +49,7 @@ export default function Form({title , paragraph , form , button , LinkB , link }
                   placeholder={e.placeholder} 
                   required={e.required}
                   defaultCountry="SY" 
-                />
+                /> */}
             </div>
         ))}
         {formType == 'login' ?
