@@ -1,13 +1,7 @@
 @import "tailwindcss";
-@import url(https://db.onlinewebfonts.com/c/125063e353c1f65c55ba1e3811969217?family=GE+SS+Two+Medium);
 @font-face {
-    font-family: "GE SS Two Medium";
-    src: url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.eot");
-    src: url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.svg#GE SS Two Medium")format("svg");
+  font-family: GE_SS_Two_Light;
+  src: url('/fonts/GE_SS_Two_Light.otf');
 }
 @theme {
   --color-btnColor: #4B2C53;
@@ -20,7 +14,7 @@
   --breakpoint-5xl: 3840px !important;  /* 1440px */
   --breakpoint-4xl: 2560px !important;  /* 1440px */
   --breakpoint-3xl: 1920px !important;  /* 1440px */
-  
+
   --breakpoint-laptop: 80rem;   /* 1280px */
 
 }
@@ -65,6 +59,6 @@ body {
   background-image: var(--bg-hero-image);
   background-position: top center;
   background-repeat: no-repeat;
-  font-family: "GE SS Two Medium", sans-serif;
+  font-family: "GE_SS_Two_Light", sans-serif;
 
 }
