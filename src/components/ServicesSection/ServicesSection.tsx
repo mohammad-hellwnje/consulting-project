@@ -7,7 +7,7 @@ import SectionTitle from "../ui/Titles/SectionTitle";
 
 export default function ServicesSection() {
   return (
-    <div className="bg-[#3B2241] relative h-[1900px] px-[115px] py-[100px]  w-full overflow-x-hidden">
+    <div className="bg-[#3B2241] relative h-[1900px] padding-global w-full overflow-x-hidden">
       <SectionTitle text="خدماتنا" className=" mb-[100px] text-white"/>
       <div className=" w-[62px] h-[1244px]  rounded-t-[8px]  border-t-2 border-r-2 border-l-0 border-b-0 border-white relative top-[485px] right-[-48.5%] ">
         <div className="w-[40px] h-0.5 bg-white  absolute right-[-40px] top-[262px]"></div>

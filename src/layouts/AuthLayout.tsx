@@ -1,30 +1,46 @@
-import image from '../assets/authImage/image 9.png'
-import image3 from '../assets/authImage/image 8.png'
-import Form from '../auth/Form'
-import { NavLink, useParams } from 'react-router-dom'
-import { useState } from 'react';
-import { formDataLogin, formDataSignup } from '../Data/formData';
+import { useParams } from 'react-router-dom'
+import image1 from '../assets/authImage/main.svg'
+import LoginForm from '../auth/LoginForm'
+import SignupForm from '../auth/SignupForm'
+import InUpBtn from '../components/ui/Button/InUpBtn'
+import { loginFormData, signupFormData } from '../Data/formData'
+
 export default function AuthLayout() {
-  const {formType} = useParams();
-  
-  const [isActive,setActieve] = useState(formType);
+  const { formType } = useParams();
 
   return (
-    <section className="min-h-screen flex justify-center items-center overflow-hidden relative">
-      <img src={image} alt="mandela" className='absolute top-0 left-0' />
-      <div className=' w-1/4 h-full absolute top-0 flex flex-col items-end right-0 z-10 bg-[#CB88BB]/7'>
-        <NavLink onClick={() => setActieve('login') } to={'/auth/login'} className={ `${isActive == 'login'? 'bg-white' :''}   flex justify-center items-center mt-16 mb-5 rounded-r-full  w-[134px] p-5 h-[70px]`} >
-          <p>تسجيل الدخول</p>
-        </NavLink>
-        <NavLink onClick={() => setActieve('signup')} to={'/auth/signup'} className={` ${isActive == 'signup' ? 'bg-white' :''} flex justify-center items-center  mb-5 rounded-r-full  w-[134px] p-5 h-[70px]`}>
-          <p>إنشاء حساب </p>
-        </NavLink>
+    <section className="relative overflow-hidden flex justify-between bg-white w-full min-h-screen">
+      <div className="hidden sm:flex flex-col items-end pt-15.5 min-h-full w-[40%] bg-[#3B2241]">
+        <InUpBtn text='إنشاء حساب' path='/auth/signup'/>
+        <InUpBtn text='تسجيل دخول' path='/auth/login'/>
       </div>
-      <img src={image3} alt="mandela" className='absolute h-full right-0 top-0' />
-      {formType == 'login' ? 
-       (<Form link={formDataLogin[0].link} LinkB={formDataLogin[0].LinkB} button={formDataLogin[0].button} title={formDataLogin[0].title} paragraph={formDataLogin[0].paragraph} form={formDataLogin[0].form}/>) :
-       (<Form link={formDataSignup[0].link} LinkB={formDataSignup[0].LinkB} button={formDataSignup[0].button} title={formDataSignup[0].title} paragraph={formDataSignup[0].paragraph} form={formDataSignup[0].form}/>) }
-     
+      <img src={image1} alt="mandela" className='hidden sm:block absolute lg:max-h-screen md:max-h-screen sm:max-h-[370px] 2xl:-right-[29%] xl:-right-[40%] lg:-right-[27%] md:-right-[35%] sm:-right-30 md:top-12 sm:top-1/2' />
+      <img src={image1} alt="mandela" className='absolute 2xl:w-[300px] w-[200px] lg:-top-24 -top-32 2xl:-top-36 left-0' />
+      <img src={image1} alt="mandela" className='absolute sm:hidden 2xl:w-[300px] w-[200px] -bottom-32 right-0' />
+
+      <div className="2xl:px-[182px] z-20 lg:px-[9.722222%] sm:px-9 px-[10%] py-[35px] flex items-center sm:w-[60%] w-full min-h-full">
+        {formType === 'login' ? (
+          <LoginForm
+            key="login-form" // إضافة key لإجبار إعادة التحديث
+            title={loginFormData.title}
+            paragraph={loginFormData.paragraph}
+            form={loginFormData.form}
+            LinkB={loginFormData.LinkB}
+            button={loginFormData.button}
+            link={loginFormData.link}
+          />
+        ) :  (
+          <SignupForm
+            key="signup-form" // إضافة key لإجبار إعادة التحديث
+            title={signupFormData.title}
+            paragraph={signupFormData.paragraph}
+            form={signupFormData.form}
+            LinkB={signupFormData.LinkB}
+            button={signupFormData.button}
+            link={signupFormData.link}
+          />
+        )}
+      </div>
     </section>
   )
 }

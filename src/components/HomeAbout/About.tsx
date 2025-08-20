@@ -1,21 +1,30 @@
 import circle from '../../assets/circle-1.svg'
 import HeroButton from "../ui/Button/HeroButton";
 import vector from '../../assets/Vector.svg'
+import AboutText from '../ui/Text/About/AboutText';
 export default function About() {
   return (
-      <div>
-         <h1 className='mb-2 leading-[220%]  text-white text-4xl w-10/12'>رضا محتسب هي أخصائية اجتماعية ونفسية متخصصة بالمجال التربوي و العلاج المعرفي السلوكي</h1>
-         <div className=" flex  items-center gap-2">
-          <div className=" relative text-center w-max min-w-[140px]" >
-              <h1 className='leading-[220%] mx-6 text-white text-4xl '>تقدم</h1>
-              <img src={circle} alt="circle" className="absolute w-full top-0 right-0" />
+      <div className=' md:text-right text-center '>      
+         <div className=' md:block hidden'>
+             <AboutText  text='رضا محتسب هي أخصائية اجتماعية ونفسية متخصصة بالمجال التربوي و العلاج المعرفي السلوكي'/>
           </div>
-          <h1 className='mb-2 leading-[220%]  text-white text-4xl w-10/12'>استشارات اجتماعية نفسية تربوية أسرية (اونلاين و مباشر)</h1>
+          <div className=' md:hidden block'>
+            <AboutText text='رضا محتسب هي أخصائية اجتماعية ونفسية متخصصة بالمجال التربوي و العلاج المعرفي السلوكي تقدم استشارات اجتماعية نفسية تربوية أسرية (اونلاين و مباشر)'/>
+            </div>    
+         <div className=" hidden   md:flex items-center gap-3">
+          <div className=" relative  w-max 2xl:min-w-[140px]" >
+              <h1 className='md:leading-[220%] leading-7 mx-6 text-white xl:text-[28px] lg:text-[24px] md:text-xl text-sm 2xl:text-4xl  '>تقدم</h1>
+              <img src={circle} alt="circle" className="absolute w-full xl:top-0 -top-2.5 right-0" />
+          </div>
+          <AboutText text='استشارات اجتماعية نفسية تربوية أسرية'/>
          </div>
-        <h1 className='mb-4 leading-[220%]  text-white/80 text-[32px] font-semibold w-10/12'>لتاريخ 15/5/2025 تم عمل 40 فنجان بمختلف الأماكن والبلدان : في سوريا : دمشق , الأردن عمان .</h1>
-        <div>
-          <HeroButton text="المزيد " icon={vector} />
+
+        <h1 className='mb-4 md:block hidden leading-[220%] text-white/80 2xl:text-[32px] lg:text-base text-sm xl:text-[22px] lg:w-10/12'>متخصصة في العلاج المعرفي السلوكي (CBT) وعلاج الإدمانات، ومعتمدة من فريق واعي في علاج إدمان الإباحية.
+          رسالتي هي أن أكون معكِ خطوة بخطوة نحو وعي، تعافٍ، وقوة تنبع من الداخل.</h1>
+        <div className=' mt-4 md:justify-start items-center flex justify-center w-f'>
+          <HeroButton path='/about' text="المزيد " icon={vector} />
         </div>
       </div>
   )
 }
+ 

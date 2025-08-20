@@ -17,3 +17,7 @@
     direction: ltr !important;
     
 }
+.react-international-phone-flag-emoji react-international-phone-country-selector-dropdown__list-item-flag-emoji
+{
+    display: none !important;
+}

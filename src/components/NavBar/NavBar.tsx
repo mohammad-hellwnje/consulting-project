@@ -21,26 +21,29 @@ export default function Navbar() {
   return (
     <>
 <nav
-  className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 
-    ${scrolling ? "rounded-none" : "mt-6"}`}>
+  className={`fixed  top-0 left-0 w-full z-[1000] transition-all duration-500 
+    ${scrolling ? "rounded-none" : "lg:mt-6 mt-3"}`}>
   
-  <div className={`mx-auto 2xl:max-w-[88.020833%] max-w-[85.51388%] px-8 py-3 bg-white/20 shadow-sm flex items-center justify-between rounded-[21px]`}>
+  <div className={`margin-global 
+    2xl:py-6 2xl:px-9  
+    xl:px-8 lg:px-7 
+    px-5 py-3 ${scrolling ? ' bg-[#3B2241]' : ' bg-white/20'} shadow-sm flex items-center justify-between rounded-[21px]`}>
     {/* الشعار + الروابط */}
     <div className="flex gap-4.5 items-center">
       <Logo />
+      <div className=" hidden lg:flex">
       <LinkUl />
+      </div>
     </div>
-
     {/* أزرار تسجيل الدخول */}
-    <div className="hidden lg:flex items-center gap-8">
+    <div className="hidden lg:flex items-center xl:gap-8 lg:gap-4">
       <AuthBtn text="تسجيل الدخول" path="/auth/login" forceActive={true} />
       <AuthBtn text="إنشاء حساب" path="/auth/signup" />
     </div>
-
     {/* أيقونة الموبايل */}
     <div className="lg:hidden">
       <FaBars
-        className="text-2xl text-white cursor-pointer"
+        className="text-xl text-white cursor-pointer"
         onClick={() => setMenuOpen(true)}
       />
     </div>

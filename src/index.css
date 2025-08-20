@@ -1,4 +1,14 @@
 @import "tailwindcss";
+@import url(https://db.onlinewebfonts.com/c/125063e353c1f65c55ba1e3811969217?family=GE+SS+Two+Medium);
+@font-face {
+    font-family: "GE SS Two Medium";
+    src: url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.eot");
+    src: url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/125063e353c1f65c55ba1e3811969217.svg#GE SS Two Medium")format("svg");
+}
 @theme {
   --color-btnColor: #4B2C53;
   --color-bgHomeHeroImage: #EBEBEB;
@@ -6,9 +16,45 @@
   --color-authbtnActive: #CB88BB40;
   --bg-hero-image: url("/assets/hero-image.svg");
   --bg-main-color: #3B2241;
+  --breakpoint-xl: 90rem !important;  /* 1440px */
+  --breakpoint-5xl: 3840px !important;  /* 1440px */
+  --breakpoint-4xl: 2560px !important;  /* 1440px */
+  --breakpoint-3xl: 1920px !important;  /* 1440px */
+  
+  --breakpoint-laptop: 80rem;   /* 1280px */
+
 }
-.bg-hero {
-  background-image: var(--bg-hero-image);
+.btn-primary {
+  @apply 
+    flex 
+    justify-center 
+    items-center
+    text-center
+    2xl:text-2xl xl:text-lg lg:text-base md:text-sm text-xs
+    font-normal  
+    xl:px-8 lg:px-5 lg:py-3 md:p-2.5 p-1.5
+    rounded-sm ;
+}
+.padding-global
+{
+  @apply
+  2xl:px-[6.553%] 
+  xl:px-[7.93%]
+  md:px-[7.3%]
+  px-7
+}
+.margin-global
+{
+  @apply 
+  2xl:mx-[6.553%]
+  xl:mx-[7.93%] 
+  md:mx-[7.3%] 
+  mx-7
+}
+.reset
+{
+  background-image: url(../src/assets/authImage/reset-1.svg);
+  background-size: cover;
 }
 * {
     box-sizing: border-box;
@@ -19,4 +65,6 @@ body {
   background-image: var(--bg-hero-image);
   background-position: top center;
   background-repeat: no-repeat;
+  font-family: "GE SS Two Medium", sans-serif;
+
 }

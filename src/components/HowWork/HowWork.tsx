@@ -8,8 +8,8 @@ type HowWorkProps = {
 
 const HowWork: React.FC<HowWorkProps> = ({ steps }) => {
   return (
-    <div className="bg-[#3B2241] px-[115px] py-[100px]  text-white">
-      <SectionTitle text='كيف تعمل المنصة' className='pt-[105px] mb-[186px]'/>
+    <div className="bg-[#3B2241] padding-global text-white">
+      <SectionTitle text='كيف تعمل المنصة' className=' mb-[186px]'/>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 ">
         {steps.map((step, index) => (
           <div key={index} className="flex items-center">

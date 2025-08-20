@@ -1,3 +1,4 @@
+import Button from '../ui/Button/Button';
 import bannericon from './../../assets/image/bannericon.png'
 type BannerProps = {
   message: string;
@@ -11,20 +12,16 @@ const Banner: React.FC<BannerProps> = ({
   buttonSecondaryText,
 }) => {
   return (
-    <div className="bg-[#6D54717D] w-[88%]  h-[178px] rounded-[20px] py-9  px-16 flex justify-between items-center text-white">
-      <div className="flex items-center gap-[27px]">
-        <div className="bg-white rounded-full w-[90px] h-[90px] flex items-center justify-center">
-            <img src={bannericon} alt="icon" />
+    <div className="bg-[#6D54717D] margin-global  2xl:h-[178px] md:rounded-[20px] rounded-2xl xl:py-8 2xl:py-9  xl:px-16 lg:py-5 p-3.5 lg:px-10 flex justify-between items-center text-white">
+      <div className="flex items-center xl:gap-[27px] gap-4">
+        <div className="bg-white rounded-full 2xl:w-[90px] xl:w-[80px] xl:h-[80px] lg:w-15  lg:h-15 md:w-10 w-8 h-8 md:h-10  2xl:h-[90px] flex items-center justify-center">
+            <img src={bannericon} className=' xl:w-auto lg:w-10 md:w-7 w-5' alt="icon" />
         </div>
-        <p className=" text-xl font-bold">{message}</p>
+        <p className=" xl:text-xl lg:text-base md:text-sm text-xs font-medium">{message}</p>
       </div>
-      <div className="flex gap-[48px]">
-        <button className="bg-white text-[#44294B] font-normal text-base h-[48px] px-[29px] rounded-sm ">
-          {buttonPrimaryText}
-        </button>
-        <button className="bg-[#44294B] h-[48px] px-[29px] text-lg font-medium rounded-sm">
-          {buttonSecondaryText}
-        </button>
+      <div className="flex xl:gap-9 lg:gap-4 gap-2.5">
+        <Button path='/services' text={buttonPrimaryText}className=' !md:block  !hidden bg-white text-[#4B2C53]'/>
+        <Button path='/services' text={buttonSecondaryText} className='  text-white bg-[#4B2C53]'/>
       </div>
     </div>
   );

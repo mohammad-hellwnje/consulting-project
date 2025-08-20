@@ -3,7 +3,7 @@ import backvideo from "../../img/contact/video_2025-06-22_21-46-12.mp4"
 
 export default function ContactSection() {
   return (
-    <div className="relative px-[115px] w-full p-[100px] overflow-hidden">
+    <div className="relative padding-global py-[100px] w-full overflow-hidden">
       {/* الفيديو */}
       <video
         autoPlay

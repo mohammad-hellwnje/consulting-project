@@ -1,6 +1,11 @@
 export interface ButtonProps {
     text: string;
     className?: string;
-    onClick?: () => void;
+    path: string ;
     icon?: string;
+}
+export interface AuthBtnProps {
+    text: string;
+    path: string;
+    forceActive?: boolean;
 }

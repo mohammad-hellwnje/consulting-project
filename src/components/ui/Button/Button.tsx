@@ -1,9 +1,11 @@
+import { NavLink } from "react-router-dom";
 import { ButtonProps } from "../../../types/types";
 
-export default function Button({text , className , onClick }: ButtonProps) {
+export default function Button({text , className , path }: ButtonProps) {
   return (
-    <button onClick={onClick} className={`  flex justify-center items-center text-center leading-[100%] 2xl:text-xl text-base 2xl:font-bold font-semibold h-[42px] p-2 lg:min-w-[154px] 2xl:min-w-[158px] rounded-sm   ${className}`}>
+    <NavLink to={path} className={` btn-primary
+    lg:min-w-[154px] xl:text-base text-sm  lg:font-medium    ${className}`}>
       {text}
-    </button>
+    </NavLink>
   )
 }

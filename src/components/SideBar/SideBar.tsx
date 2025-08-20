@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
-import { NavData } from "../../Data/NavData";
+import LinkUl from "../NavBar/LabScreen/LinkUl";
+import AuthBtn from "../ui/Button/AuthBtn";
 
 export default function SideBar({ menuOpen, closeMenu } : {menuOpen: boolean; closeMenu: () => void;}) {
   return (
@@ -18,30 +18,11 @@ export default function SideBar({ menuOpen, closeMenu } : {menuOpen: boolean; cl
       </div>
 
       {/* القائمة كاملة */}
-      <ul className="flex flex-col items-center justify-center h-[85%] gap-4 text-2xl font-medium px-6">
-        {[
-          ...NavData,
-          { path: "/", name: "تسجيل الدخول" },
-          { path: "/", name: "إنشاء حساب" },
-        ].map((item, index) => (
-          <li key={index} className="w-full">
-            <NavLink
-              to={item.path}
-              end
-              className={({ isActive }) =>
-                `block w-full text-center py-2 rounded-lg transition-all duration-200 ${
-                  isActive
-                    ? "bg-[#3B2241] text-white shadow-md"
-                    : "text-black hover:bg-purple-100 hover:text-[#3B2241]"
-                }`
-              }
-              onClick={closeMenu}
-            >
-              {item.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+      <LinkUl/>
+          <div className=" my-5 gap-3 flex-col flex items-center xl:gap-8 lg:gap-4">
+            <AuthBtn text="تسجيل الدخول" path="/auth/login" forceActive={true} />
+            <AuthBtn text="إنشاء حساب" path="/auth/signup" />
+          </div>
     </div>
   );
 }

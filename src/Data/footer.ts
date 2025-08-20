@@ -6,12 +6,12 @@ export const footerData =
             {
                 icon : '',
                 label: 'البريد الالكتروني',
-                href: 'mailto:info@yourdomain.com'
+                href: 'mailto:reda200709@gmail.com'
             },
             {
                 icon : '' ,
-                label: '00963964888',
-                href: 'tel:000963964888'
+                label: '00963967538324',
+                href: 'tel:00963967538324'
             },
             {
                 icon:'',
