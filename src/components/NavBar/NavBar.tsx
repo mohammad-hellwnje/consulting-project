@@ -29,7 +29,7 @@ export default function Navbar() {
     xl:px-8 lg:px-7 
     px-5 py-3 ${scrolling ? ' bg-[#3B2241]' : ' bg-white/20'} shadow-sm flex items-center justify-between rounded-[21px]`}>
     {/* الشعار + الروابط */}
-    <div className="flex gap-4.5 items-center">
+    <div className="flex  laptop:gap-4.5 gap-2.5 items-center">
       <Logo />
       <div className=" hidden lg:flex">
       <LinkUl />

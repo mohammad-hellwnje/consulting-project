@@ -2,11 +2,11 @@
 export default function HeroTitle() {
   return (
     <h1 className='
-    xl:mb-5 lg:mb-8  md:mb-6 mb-3
+    xl:mb-5 lg:mb-5  md:mb-6 mb-3
     md:whitespace-pre-wrap 
-    xl:leading-[165%] lg:leading-12 md:leading-10 leading-8
+    lg:leading-[165%] md:leading-10 leading-8
     lg:font-normal  2xl:font-medium
-    xl:text-[34px]  lg:text-3xl md:text-2xl text-lg 2xl:text-[42px] 
+    xl:text-[34px] laptop:text-3xl  lg:text-2xl md:text-2xl text-lg 2xl:text-[42px] 
    text-white 
      '>
     {`أنا هنا لأرافقكِ في رحلتك نحو وعي أعمق…
