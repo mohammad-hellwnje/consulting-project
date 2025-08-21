@@ -9,19 +9,22 @@ export default function ResetPassword() {
 
       {/* المحتوى فوق الطبقة */}
       <form className="relative z-10">
-                <div className="text-[#4E2E56] 2xl:mb-9.5 sm:mb-6 mb-5">
+        <div className="text-[#4E2E56] 2xl:mb-9.5 sm:mb-6 mb-5">
           <h2 className="font-light leading-[85px] mb-3 sm:text-[68px] text-3xl">تعيين كلمة مرور جديدة </h2>
           <p className="font-normal sm:leading-11.5 sm:text-[24px]  text-base">
             ادخل كلمة المرور الجديدة لإتمام العملية  بنجاح
           </p>
         </div>
-                <Label label="البريد الالكتروني" />
-                <Input
-                  name="email"
-                  type="email"
-                  className="!bg-transparent"
-                  placeholder="example@email.com"
-                />
+        <Label label="البريد الالكتروني" />
+        <Input  name="email" type="email" className="!bg-transparent" placeholder="example@email.com"/>
+        <Label label="كلمة المرور الجديدة"/>
+        <Input name="password" type="password" className="!bg-transparent" placeholder="ادخل كلمة المرور الجديدة"/>
+        <Label label="تأكيد كلمة المرور الجديدة"/>
+        <Input name="password" type="password" className="!bg-transparent" placeholder="ادخل كلمة المرور الجديدة"/>
+
+        <button className="mt-4 text-white bg-[#3B2241] rounded-3xl w-[236px] h-[63px] text-xl font-medium text-center">
+          ارسال
+        </button>
       </form>
     </section>
   );

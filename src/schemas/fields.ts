@@ -5,6 +5,10 @@ export const passwordField = z.string().min(6, "كلمة المرور يجب أ�
 export const nameField = z.string().min(2, "الاسم يجب أن لا يقل عن حرفين");
 export const messageField = z.string().min(10, "الرسالة يجب ألا تقل عن 10 حروف");
 
+// ✅ Schema for forget password
+export const forgetPasswordSchema = z.object({
+  email: z.string().email("البريد الإلكتروني غير صالح"),
+});
 export const signupSchema = z.object({
   fullName: z.string().min(3, "الاسم يجب أن يحتوي على 3 أحرف على الأقل"),
   email: z.string().email("البريد الإلكتروني غير صالح"),

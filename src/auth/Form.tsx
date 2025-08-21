@@ -88,7 +88,7 @@ const onSubmit = (data: any) => {
 
         {formType === "login" ? (
           <NavLink
-            to={"/auth/resetPassword"}
+            to={"/resetPassword"}
             className="block xl:text-xl lg:text-base text-xs text-[#4E2E56] font-normal text-left"
           >
             {LinkB}
