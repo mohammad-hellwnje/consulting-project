@@ -19,8 +19,8 @@ const [openIndex, setOpenIndex] = useState<number | null>(items[0]?.id || null);
   };
 
   return (
-    <div className=" flex w-full gap-8">
-    <div className="w-1/2 flex-wrap flex-col flex  gap-8">
+    <div className=" flex lg:flex-row flex-col w-full gap-8">
+    <div className="lg:w-1/2 w-full flex-wrap flex-col flex  gap-8">
       {items.slice(0,2).map((item) => {
         const isOpen = openIndex === item.id;
 
@@ -43,7 +43,7 @@ const [openIndex, setOpenIndex] = useState<number | null>(items[0]?.id || null);
         );
       })}
     </div>
-    <div className="w-1/2 flex-wrap flex-col flex  gap-8">
+    <div className="lg:w-1/2 w-full flex-wrap flex-col flex  gap-8">
       {items.slice(2,5).map((item) => {
         const isOpen = openIndex === item.id;
 

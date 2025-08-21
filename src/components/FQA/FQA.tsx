@@ -30,7 +30,7 @@ const items = [
 
 export default function FQA() {
   return (
-    <section className=" flex flex-col gap-18.5 px-[115px] py-[100px]">
+    <section className=" flex flex-col gap-18.5 py-12.5 padding-global">
         <SectionTitle className=" text-white" text="الأسئلة الشائعة"/>
         <Accordion items={items}/>
     </section>

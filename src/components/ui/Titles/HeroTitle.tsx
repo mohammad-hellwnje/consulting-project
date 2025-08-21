@@ -3,7 +3,7 @@ export default function HeroTitle() {
   return (
     <h1 className='
     xl:mb-5 lg:mb-5  md:mb-6 mb-3
-    md:whitespace-pre-wrap 
+    md:whitespace-pre-wrap lg:text-start text-center
     lg:leading-[165%] md:leading-10 leading-8
     lg:font-normal  2xl:font-medium
     xl:text-[34px] laptop:text-3xl  lg:text-2xl md:text-2xl text-lg 2xl:text-[42px] 

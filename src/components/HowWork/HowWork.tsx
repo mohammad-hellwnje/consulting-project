@@ -2,28 +2,25 @@ import React from 'react';
 import { Step } from '../../types/howWork';
 import Line from './../../assets/image/Line.png'
 import SectionTitle from '../ui/Titles/SectionTitle';
+import Card from './Card';
 type HowWorkProps = {
   steps: Step[];
 };
 
 const HowWork: React.FC<HowWorkProps> = ({ steps }) => {
   return (
-    <div className="bg-[#3B2241] padding-global text-white">
-      <SectionTitle text='كيف تعمل المنصة' className=' mb-[186px]'/>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 ">
+    <div className="bg-[#3B2241] padding-global py-12.5 text-white">
+      <SectionTitle text='كيف تعمل المنصة' className=' mb-[56px]'/>
+      <div className="flex w-full flex-col md:flex-row items-center  gap-8 ">
         {steps.map((step, index) => (
-          <div key={index} className="flex items-center">
-            <div className="flex flex-col items-center">
-              <div className='w-[106px] h-[106px] rounded-[30px] bg-[#6D5471] flex items-center justify-center mb-6 '><img src={step.icon} alt={step.title} className="w-[57px] h-[52px] " /></div>
-              <h3 className="text-l mb-4">{step.title}</h3>
-              <p className="text-sm text-center">{step.description}</p>
-            </div>
+          <div key={index} className="flex items-center  md:w-1/2">
+            <Card stepIcon={step.icon} title={step.title} description={step.description}/>
             {index < steps.length - 1 && (
-              <div className="hidden md:block mx-4">
+              <div className="hidden lg:block  laptop:mx-4">
                 <img 
                   src={Line} 
                   alt="line" 
-                  className="h-[83px] w-[262px]"
+                  className="2xl:h-[83px]  xl:w-[120px] laptop:w-[120px] lg:w-[80px] 2xl:w-[262px]"
                 />
               </div>
             )}

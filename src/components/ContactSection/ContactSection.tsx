@@ -19,9 +19,9 @@ export default function ContactSection() {
       {/* طبقة الشفافية البنفسجية */}
       <div className="absolute top-0 left-0 w-full h-full bg-[#4d2e56]/70 z-10"></div>
       {/* المحتوى فوق الفيديو */}
-      <div className="relative gap-11.5 w-full z-20 flex  items-center  h-full  ">
+      <div className="relative gap-11.5 w-full z-20 flex lg:flex-row flex-col  items-center  h-full  ">
           <ContactForm />
-        <p className=" 2xl:text-[40px] text-white 2xl:w-[52.08%] w-1/2 leading-[1.4] text-right">
+        <p className=" 2xl:text-[40px] text-white 2xl:w-[52.08%] lg:w-1/2 w-full leading-[1.4] text-right">
           نحن هنا لمساعدتك في تحقيق أهداف عملك. سواء كان لديك أسئلة حول خدماتنا
           ، أو ترغب في استكشاف فرص التعاون ، أو تحتاج إلى إرشادات ، نود أن نسمع
           منك!

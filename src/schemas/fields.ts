@@ -6,20 +6,19 @@ export const nameField = z.string().min(2, "الاسم يجب أن لا يقل �
 export const messageField = z.string().min(10, "الرسالة يجب ألا تقل عن 10 حروف");
 
 export const signupSchema = z.object({
-  fullName: z.string(),
-  email: z.string(),
-  password: z.string(),
+  fullName: z.string().min(3, "الاسم يجب أن يحتوي على 3 أحرف على الأقل"),
+  email: z.string().email("البريد الإلكتروني غير صالح"),
+  password: z.string().min(6, "كلمة المرور يجب أن تكون 6 أحرف على الأقل"),
   confirmPassword: z.string(),
-  phoneNumber: z.string(),
-  termsAccepted: z.boolean().optional(),
+  phoneNumber: z.string().min(7, "رقم الهاتف غير صالح"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "كلمة المرور غير متطابقة",
+  path: ["confirmPassword"],
 });
 // ✅ تسجيل الدخول
 export const loginSchema = z.object({
-  email: z.string(),
-  password: z.string(),
-});
-export const forgetPasswordSchema = z.object({
-  email: emailField,
+  email: z.string().email("البريد الإلكتروني غير صالح"),
+  password: z.string().min(6, "كلمة المرور مطلوبة"),
 });
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type SignupFormData = z.infer<typeof signupSchema>;

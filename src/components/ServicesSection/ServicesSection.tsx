@@ -2,32 +2,21 @@ import { ServiceData } from "../../Data/ServiceData";
 import background from "../../img/service/background.webp";
 import mandellaTop from "../../img/service/mandellaTop.webp";
 import mandellaBottom from "../../img/service/mandellaBottom.webp";
-import ServicesCard from "../ServicesCard/ServicesCard";
 import SectionTitle from "../ui/Titles/SectionTitle";
-
+import ServicesCard from "../ui/Cards/ServicesCard";
 export default function ServicesSection() {
   return (
-    <div className="bg-[#3B2241] relative h-[1900px] padding-global w-full overflow-x-hidden">
-      <SectionTitle text="خدماتنا" className=" mb-[100px] text-white"/>
-      <div className=" w-[62px] h-[1244px]  rounded-t-[8px]  border-t-2 border-r-2 border-l-0 border-b-0 border-white relative top-[485px] right-[-48.5%] ">
-        <div className="w-[40px] h-0.5 bg-white  absolute right-[-40px] top-[262px]"></div>
-        <div className="w-0 h-0 border-t-[9.375px] border-b-[9.375px] border-l-[15px] border-t-transparent border-b-transparent border-white absolute right-[-48px] top-[254px]"></div>
-        <div className="w-[40px] h-[10px] rounded-tr-[300px] border-t-2 border-r-2 border-white absolute right-[-2px] top-[768px]"></div>
-        <div className="w-0 h-0 border-t-[9.375px] border-b-[9.375px] border-r-[15px] border-t-transparent border-b-transparent border-white absolute right-[30px] top-[760px]"></div>
-        <div className="w-[40px] h-[10px] rounded-bl-[300px] border-l-2 border-b-2 border-white absolute left-[60px] top-[968px]"></div>
-        <div className="w-0 h-0 border-t-[9.375px] border-b-[9.375px] border-l-[15px] border-t-transparent border-b-transparent border-white absolute right-[-48px] top-[968px]"></div>
-      </div>
-      <div className="absolute top-[240px] left-[5.9895833333%] w-[43.072916667%]">
-        <ServicesCard type="1" data={ServiceData[0]} larger={true} />
-      </div>
-      <div className="absolute w-[40.364583333%]  top-[466px] right-[5.5729166667%]">
-        <ServicesCard type="2" data={ServiceData[1]} larger={false} />
-      </div>
-      <div className="absolute top-[919px] left-[5.9895833333%] w-[43.072916667%]">
-        <ServicesCard type="2" data={ServiceData[2]} larger={true} />
-      </div>
-      <div className="absolute w-[40.364583333%] top-[1295px] right-[5.5729166667%]">
-        <ServicesCard type="1" data={ServiceData[3]} larger={false} />
+    <section className=" py-12.5 relative  padding-global w-full">
+      <SectionTitle text="خدماتنا" className=" mb-[56px] text-white"/>
+      <div className=" flex lg:flex-row-reverse flex-col gap-[5%] justify-between  w-full">
+          <div className="2xl:w-[50%] lg:gap-55 gap-10 items-start justify-start flex flex-col ">
+            <ServicesCard path="/services" description={ServiceData[0].desc} title={ServiceData[0].title} icon={ServiceData[0].icon} servImage={ServiceData[0].image} flexDer=" flex-row-reverse "/>
+            <ServicesCard path="/services" description={ServiceData[2].desc} title={ServiceData[2].title} icon={ServiceData[2].icon} servImage={ServiceData[2].image} flexDer=" flex-row-reverse "/>
+          </div>
+          <div className="2xl:w-[50%] lg:mt-56 mt-10 lg:gap-55 gap-10 items-start justify-start flex flex-col ">
+             <ServicesCard path="/services" description={ServiceData[1].desc} title={ServiceData[1].title} icon={ServiceData[1].icon} servImage={ServiceData[1].image} flexDer=" flex-row-reverse "/>
+             <ServicesCard path="/services" description={ServiceData[3].desc} title={ServiceData[3].title} icon={ServiceData[3].icon} servImage={ServiceData[3].image} flexDer=" flex-row-reverse "/>
+          </div>
       </div>
       <img
         src={background}
@@ -54,6 +43,6 @@ export default function ServicesSection() {
         alt=""
         className=" absolute bottom-[0px] left-[0px]   "
       />
-    </div>
+    </section>
   );
 }

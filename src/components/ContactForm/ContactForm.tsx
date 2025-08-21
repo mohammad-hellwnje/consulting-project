@@ -10,12 +10,8 @@ import { countries as allCountries } from "../../Data/countryData.ts";
 export default function ContactForm() {
   const [phone, setPhone] = useState('');
   const filteredCountries = useMemo(() => allCountries, [allCountries]);
-
-  console.log('Number of countries:', filteredCountries.length);
-  console.log('Filtered countries:', filteredCountries);
-
   return (
-    <div className="2xl:w-[40%] w-1/2 overflow-hidden bg-white/20 rounded-[40px] p-12.5  text-right   relative">
+    <div className="2xl:w-[40%] lg:w-1/2 w-full overflow-hidden bg-white/20 rounded-[40px] p-12.5  text-right   relative">
       <h2 className="text-5xl font-bold text-white mb-5">نموذج الاتصال</h2>
       <p className="text-2xl text-white/40  mb-6">
         املأ النموذج أدناه ، وسيعود فريقنا إليك على الفور{" "}

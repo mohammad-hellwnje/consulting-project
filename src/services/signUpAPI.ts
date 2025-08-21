@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://127.0.0.1:5173/api/';
 interface UserData
 {
     fullName : string;
@@ -12,7 +12,7 @@ interface UserData
 export const signup = async (userData :UserData) => {
     try {
         const response = await axios.post(`${API_URL}/auth/register`, userData);
-        return response.data.user;
+        return response.data;
     } catch (error : unknown) {
         if (error instanceof AxiosError) {
             throw error.response?.data || { message: "Signup failed" };
