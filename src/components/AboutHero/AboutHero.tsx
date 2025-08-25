@@ -38,7 +38,7 @@ export default function AboutHero() {
           className="absolute right-0 bottom-0 max-[376px]:hidden "
         />
       </div>
-      <div className="  max-[748px]:pl-0 max-[1024px]:flex max-[1024px]:flex-col  max-[1024px]:justify-center max-[1024px]:items-center max-[1024px]:mt-96">
+      <div className="  max-[748px]:pl-0 max-[1024px]:flex max-[1024px]:flex-col  max-[1024px]:justify-center max-[1024px]:items-center max-[1024px]:mt-7">
         <div className="flex flex-col max-[1024px]:hidden">
           <img
             src={RedaName}
