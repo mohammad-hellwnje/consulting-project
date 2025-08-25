@@ -7,9 +7,9 @@ export default function About() {
     <>
       <div>
         <AboutHero />
-        <Certificates/>
-        <DividerLine/>
-        <ExperienceSection/>
+        <Certificates />
+        <DividerLine />
+        <ExperienceSection />
       </div>
     </>
   );
