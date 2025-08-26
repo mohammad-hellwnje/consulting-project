@@ -14,10 +14,10 @@
   --breakpoint-5xl: 3840px !important;  /* 1440px */
   --breakpoint-4xl: 2560px !important;  /* 1440px */
   --breakpoint-3xl: 1920px !important;  /* 1440px */
-
   --breakpoint-laptop: 80rem;   /* 1280px */
 
 }
+
 .btn-primary {
   @apply 
     flex 

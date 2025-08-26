@@ -11,9 +11,9 @@ const HowWork: React.FC<HowWorkProps> = ({ steps }) => {
   return (
     <div className="bg-[#3B2241] padding-global py-12.5 text-white">
       <SectionTitle text='كيف تعمل المنصة' className=' mb-[56px]'/>
-      <div className="flex w-full flex-col md:flex-row items-center  gap-8 ">
+      <div className="flex w-full flex-col md:flex-row items-start  gap-5 ">
         {steps.map((step, index) => (
-          <div key={index} className="flex items-center  md:w-1/2">
+          <div key={index} className="flex items-center   ">
             <Card stepIcon={step.icon} title={step.title} description={step.description}/>
             {index < steps.length - 1 && (
               <div className="hidden lg:block  laptop:mx-4">

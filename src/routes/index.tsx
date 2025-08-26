@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { JSX, lazy, Suspense } from "react";
+const Consulting = lazy( () => import('../pages/ServicesPages/Consulting'))
+const Fnjan = lazy( () => import('../pages/ServicesPages/Fnjan'))
+const Workshops = lazy( () => import('../pages/ServicesPages/Workshops'))
+const Courses = lazy( () => import('../pages/ServicesPages/Courses'))
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
 const Contact = lazy(() => import("../pages/Contact"));
@@ -61,7 +65,24 @@ const router = createBrowserRouter([
     {
         path : '/reset-password',
         element : withSuspense(ResetPassword)
-    }
+    },
+    {
+        path : '/consulting',
+        element : withSuspense(Consulting)
+    },
+    {
+        path : '/fnjan-qhwa',
+        element : withSuspense(Fnjan)
+    },
+    {
+        path : '/workshops',
+        element : withSuspense(Workshops)
+    },
+    {
+        path : '/courses',
+        element : withSuspense(Courses)
+    },
+    
 ]);
 
 export default router;

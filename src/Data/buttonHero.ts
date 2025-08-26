@@ -6,14 +6,17 @@ export const buttonDtatHero =
 [
     {
         label: 'كورسات',
-        iconSrc: icon1
+        iconSrc: icon1,
+        path : '/courses'
     },
     {
         label: 'فنجان قوة',
-        iconSrc: icon2
+        iconSrc: icon2,
+        path : '/fnjan-qhwa'
     },
     {
-        label: 'استشارات',
-        iconSrc: icon3
+        label: 'ورشات',
+        iconSrc: icon3,
+        path : '/workshops'
     },
 ]

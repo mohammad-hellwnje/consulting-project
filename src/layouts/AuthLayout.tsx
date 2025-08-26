@@ -24,8 +24,6 @@ export default function AuthLayout() {
             title={item.title}
             paragraph={item.paragraph}
             form={item.form}
-            LinkB={item.LinkB}
-            button={item.button}
             link={item.link}
           />
         ))}

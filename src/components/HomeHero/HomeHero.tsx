@@ -20,13 +20,13 @@ export default function HomeHero() {
         <HeroTitle/>
         <HeroSubTitle/>
         <div className=' flex  items-center gap-8'>
-          <Button path='/services' text={'احجزي استشارة'} className='2xl:min-w-[312px] 2xl:h-[69px] text-white bg-[#4B2C53]'/>
+          <Button path='/consulting' text={'احجزي استشارة'} className='2xl:min-w-[312px] 2xl:h-[69px] text-white bg-[#4B2C53]'/>
           <Button path='/services' text={'ابدأ رحلتك معي الآن'} className='2xl:min-w-[312px] 2xl:h-[69px] bg-white text-[#4B2C53]'/>
         </div>
         <div className=' w-full flex lg:justify-end justify-end  laptop:gap-6.5 lg:gap-4 gap-5 2xl:gap-8
          lg:my-[7.5%] my-[4.5%] xl:my-[7.5%]]'>
           {buttonDtatHero.map((button) => (
-            <HeroButton path={'/'} key={button.label} text={button.label} icon={button.iconSrc} />
+            <HeroButton path={button.path} key={button.label} text={button.label} icon={button.iconSrc} />
           ))}
         </div>
       </div>

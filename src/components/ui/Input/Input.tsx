@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export interface InputProps {
@@ -12,7 +13,7 @@ export interface InputProps {
   required?: boolean;
   icon?: React.ReactNode;
   className?: string;
-  register?: any; // من react-hook-form
+  register?: UseFormRegisterReturn; // 👈 هذا بدل any// من react-hook-form
 }
 
 export default function Input({
