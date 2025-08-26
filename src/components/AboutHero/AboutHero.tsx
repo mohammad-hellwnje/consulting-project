@@ -20,11 +20,10 @@ export default function AboutHero() {
           src={person}
           alt="Reda Mohtaseb"
           className="
-    block z-10 w-[52.12418%] h-auto
-    mr-[27.45098%]               
-    max-[376px]:w-[61.6%] 
-    
-  "
+            block z-10 w-[52.12418%] h-auto
+            mr-[27.45098%]               
+            max-[376px]:w-[61.6%] 
+          "
         />
 
         <img
@@ -38,17 +37,17 @@ export default function AboutHero() {
           className="absolute right-0 bottom-0 max-[376px]:hidden "
         />
       </div>
-      <div className="  max-[748px]:pl-0 max-[1024px]:flex max-[1024px]:flex-col  max-[1024px]:justify-center max-[1024px]:items-center max-[1024px]:mt-7">
-        <div className="flex flex-col max-[1024px]:hidden">
+      <div className="max-[748px]:pl-0 max-[1024px]:flex max-[1024px]:flex-col  max-[1024px]:justify-center max-[1024px]:items-center max-[1024px]:mt-7">
+        <div className="flex flex-col items-center w-[70%] max-[1441px]:w-[55%] max-[1024px]:hidden">
           <img
             src={RedaName}
             alt="Reda Muhtaseb"
-            className="w-[21.458031%] mr-[17.1541596%] mt-[232px] max-[1441px]:mr-[4.606%] max-[1441px]:w-[22.77567%] "
+            className="w-[31%] mt-[232px] max-[1441px]:w-[50%] "
           />
-          <span className="font-normal text-[40px] text-[#FFFFFF87] mr-[21.3%] mb-[39px] max-[1441px]:mr-[15.35%]">
+          <span className="font-normal text-[40px] text-[#FFFFFF87] mb-[39px] ">
             مستشارة تربوية
           </span>
-          <span className="inline-block w-[625px] h-1 mr-[8.750899%] bg-white max-[1441px]:w-[52.28%] max-[1441px]:mr-0"></span>
+          <span className="inline-block w-full max-w-[625px] h-1 bg-white max-[1441px]:mr-0"></span>
         </div>
         <div className="w-[70%] max-[1441px]:w-[55%]  mt-[68px]  max-[1441px]:mt-[63px] max-[1024px]:w-[85%]  max-[748px]:mt-[50px]   leading-[156%]  font-normal text-[36px] text-white   ">
           <h3 className=" text-[64px]  mb-9 max-[1441px]:mb-[41px] max-[748px]:mb-[50px] max-[1024px]:text-center">
