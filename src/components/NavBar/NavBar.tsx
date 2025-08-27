@@ -1,14 +1,19 @@
 // Navbar.jsx
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 import Logo from "../ui/Logo/Logo";
 import LinkUl from "./LabScreen/LinkUl";
 import AuthBtn from "../ui/Button/AuthBtn";
+import { useCurrentUser, useLogout } from "../../hooks/useAuth";
+import UserMenu from "../ui/UserMenu/UserMenu";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const { data: user, isLoading } = useCurrentUser();
+  const { mutate: logout } = useLogout();
 
   useEffect(() => {
     const handleScroll = () => setScrolling(window.scrollY > 50);
@@ -17,6 +22,10 @@ export default function Navbar() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <>
@@ -35,10 +44,37 @@ export default function Navbar() {
       <LinkUl />
       </div>
     </div>
-    {/* أزرار تسجيل الدخول */}
+    {/* أزرار المستخدم */}
     <div className="hidden lg:flex items-center xl:gap-8 lg:gap-4">
-      <AuthBtn text="تسجيل الدخول" path="/auth/login" forceActive={true} />
-      <AuthBtn text="إنشاء حساب" path="/auth/signup" />
+      {!isLoading && user ? (
+        <div className="flex items-center gap-4">
+          {/* زر الداش بورد للأدمن */}
+          {user.role === 'admin' && (
+            <NavLink
+              to="/dashboard"
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              لوحة التحكم
+            </NavLink>
+          )}
+
+          {/* اسم المستخدم */}
+          <span className="text-white font-medium">مرحباً، {user.name}</span>
+
+          {/* زر تسجيل الخروج */}
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+          >
+            تسجيل الخروج
+          </button>
+        </div>
+      ) : (
+        <>
+          <AuthBtn text="تسجيل الدخول" path="/auth/login" forceActive={true} />
+          <AuthBtn text="إنشاء حساب" path="/auth/signup" />
+        </>
+      )}
     </div>
     {/* أيقونة الموبايل */}
     <div className="lg:hidden">

@@ -4,10 +4,10 @@ export const formDataSignup = [
     paragraph: "سجلي  بياناتك  لبدء  رحلتك  معنا",
     form: [
       {
-        label: "الاسم الثلاثي",
+        label: "الاسم الكامل",
         type: "text",
         name: "fullName",
-        placeholder: "ادخل الاسم الثلاثي",
+        placeholder: "ادخل الاسم الكامل",
         required: true,
         value: "fullName",
       },
