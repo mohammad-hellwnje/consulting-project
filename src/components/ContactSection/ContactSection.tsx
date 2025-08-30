@@ -3,7 +3,7 @@ import backvideo from "../../img/contact/video_2025-06-22_21-46-12.mp4"
 
 export default function ContactSection() {
   return (
-    <div className="relative padding-global py-[100px] w-full overflow-hidden">
+    <div className="relative padding-global py-[50px] w-full overflow-hidden">
       {/* الفيديو */}
       <video
         autoPlay
@@ -21,7 +21,7 @@ export default function ContactSection() {
       {/* المحتوى فوق الفيديو */}
       <div className="relative gap-11.5 w-full z-20 flex lg:flex-row flex-col  items-center  h-full  ">
           <ContactForm />
-        <p className=" 2xl:text-[40px] text-white 2xl:w-[52.08%] lg:w-1/2 w-full leading-[1.4] text-right">
+        <p className=" 2xl:text-[40px] text-white 2xl:w-[52.08%] text-2xl lg:w-1/2 w-full leading-[1.4] text-right">
           نحن هنا لمساعدتك في تحقيق أهداف عملك. سواء كان لديك أسئلة حول خدماتنا
           ، أو ترغب في استكشاف فرص التعاون ، أو تحتاج إلى إرشادات ، نود أن نسمع
           منك!

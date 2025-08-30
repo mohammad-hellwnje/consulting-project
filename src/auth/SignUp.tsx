@@ -18,7 +18,7 @@ interface Form {
 }
 
 type FormValues = {
-  fullName: string;
+  name: string;
   email: string;
   phoneNumber: string;
   password: string;
@@ -27,11 +27,10 @@ type FormValues = {
 };
 
 export default function SignUp({ form }: Form) {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const { mutate: signUpMutate, isPending } = useSignUp();
   const navigate = useNavigate();
 
-  const password = watch("password");
 
   const onSubmit = (data: FormValues) => {
     if (!data.privacy) {

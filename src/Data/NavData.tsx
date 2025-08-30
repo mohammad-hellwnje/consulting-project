@@ -12,7 +12,7 @@ export const NavData = [
 
   {
     name: "خدماتنا",
-    path: "/services",
+    path: "/#services",
     icon: <FaAngleDown />,
   },
   {

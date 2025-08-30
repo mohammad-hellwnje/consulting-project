@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { login, signUp, getCurrentUser, logout } from "../services/loginAPI";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { login, signUp, logout } from "../services/loginAPI";
 
 export function useLogin() {
   const queryClient = useQueryClient();
@@ -25,14 +25,6 @@ export function useSignUp() {
   });
 }
 
-export function useCurrentUser() {
-  return useQuery({
-    queryKey: ["me"],
-    queryFn: getCurrentUser,
-    retry: false,
-    staleTime: 1000 * 60 * 5, // 5 minutes
-  });
-}
 
 export function useLogout() {
   const queryClient = useQueryClient();

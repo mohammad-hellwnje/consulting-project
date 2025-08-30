@@ -29,10 +29,6 @@ export async function signUp(data: SignUpData) {
   return res.data as { user: User };
 }
 
-export async function getCurrentUser(): Promise<User> {
-  const res = await api.get("/auth/me");
-  return res.data.user;
-}
 
 export async function logout() {
   const res = await api.post("/auth/logout");
