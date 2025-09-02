@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import toast from 'react-hot-toast';
 import Input from "../components/ui/Input/Input";
 import Label from "../components/ui/Label";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { resetPass } from "../services/rsestAPI";
 import { forgetPasswordSchema } from "../schemas/fields";
-import { useState } from "react";
+import { useForgotPassword } from "../hooks/useAuth";
 
 interface forgitPasswordProps {
   email: string;
@@ -27,23 +27,22 @@ export default function ForgitPassword() {
     },
   });
 
-  const mutation = useMutation({
-    mutationFn: resetPass,
-onSuccess: (response) => {
-  const data = response?.data ?? response; // يتأكد إن كان داخل .data
-  if (data.status === "success") {
-    setSuccessMessage("تم إرسال رمز التحقق إلى بريدك الإلكتروني.");
-    reset();
-  }
-},
-    onError: (error: Error) => {
-      console.error("خطأ:", error.message || "حدث خطأ غير متوقع");
-    },
-  });
+  const { mutate: forgotPassword, isPending } = useForgotPassword();
 
   const onSubmit = (data: forgitPasswordProps) => {
     setSuccessMessage(null); // إخفاء الرسالة السابقة
-    mutation.mutate(data);
+    forgotPassword(data, {
+      onSuccess: (response: any) => {
+        const responseData = response?.data ?? response;
+        if (responseData.status === "success") {
+          setSuccessMessage("تم إرسال رمز التحقق إلى بريدك الإلكتروني.");
+          reset();
+        }
+      },
+      onError: () => {
+        toast.error("حدث خطأ في إرسال البريد الإلكتروني");
+      },
+    });
   };
 
   return (
@@ -73,8 +72,12 @@ onSuccess: (response) => {
           <p className="text-green-600 text-sm mt-4">{successMessage}</p>
         )}
 
-        <button className="mt-8 text-white bg-[#3B2241] rounded-3xl w-[236px] h-[63px] text-xl font-medium text-center">
-          ارسال
+        <button
+          type="submit"
+          disabled={isPending}
+          className="mt-8 text-white bg-[#3B2241] rounded-3xl w-[236px] h-[63px] text-xl font-medium text-center disabled:opacity-50 hover:bg-[#2a1a2f] transition-colors"
+        >
+          {isPending ? "جاري الإرسال..." : "ارسال"}
         </button>
       </form>
     </section>

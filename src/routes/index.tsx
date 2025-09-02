@@ -14,6 +14,8 @@ const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const ForgitPassword = lazy(() => import("../auth/ForgitPassword"))
 const ResetPassword = lazy(() => import("../auth/ResetPassword"));
 const Podacst = lazy(() => import("../pages/Podacst"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const ProtectedRoute = lazy(() => import("../components/ProtectedRoute/ProtectedRoute"));
 /* هي الدالة تغلف المكونات التي  تم تحميلها بشكل كسول */
 const withSuspense = (Component: React.LazyExoticComponent<() => JSX.Element>) => (
     <Suspense fallback={<div className="text-center">جاري التحميل...</div>}>
@@ -81,6 +83,16 @@ const router = createBrowserRouter([
     {
         path : '/courses',
         element : withSuspense(Courses)
+    },
+    {
+        path : '/dashboard',
+        element : (
+            <Suspense fallback={<div className="text-center">جاري التحميل...</div>}>
+                <ProtectedRoute requireAdmin={true}>
+                    <Dashboard />
+                </ProtectedRoute>
+            </Suspense>
+        )
     },
 
 

@@ -9,7 +9,7 @@ import { PhoneInput } from 'react-international-phone';
 import { countries as allCountries } from "../../Data/countryData.ts";
 export default function ContactForm() {
   const [phone, setPhone] = useState('');
-  const filteredCountries = useMemo(() => allCountries, [allCountries]);
+  const filteredCountries = useMemo(() => allCountries, []);
   return (
     <div className="2xl:w-[40%] lg:w-1/2 w-full overflow-hidden bg-white/20 rounded-[40px] md:p-12.5 py-10 px-4 text-right   relative">
       <h2 className="text-5xl font-bold text-white mb-5">نموذج الاتصال</h2>
@@ -54,7 +54,7 @@ export default function ContactForm() {
           <button className="mb-5 w-full text-center bg-[#3D2342] text-white py-[15px] text-base font-bold">ارسال</button>
           {/* زر واتساب */}
           <a
-            href="https://wa.me/971501234567"
+            href="https://wa.me/00963967538324"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center flex-row-reverse gap-4 justify-center w-full "

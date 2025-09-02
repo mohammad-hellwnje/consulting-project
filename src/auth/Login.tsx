@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 import Input from "../components/ui/Input/Input";
 import Label from "../components/ui/Label";
 import { useForm } from "react-hook-form";
@@ -23,16 +24,18 @@ type FormValues = {
 
 export default function Login({ form }: Form) {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-  const { mutate: loginMutate } = useLogin();
-  const navigate = useNavigate()
+  const { mutate: loginMutate, isPending } = useLogin();
+  const navigate = useNavigate();
   const onSubmit = (data: FormValues) => {
     loginMutate(data, {
-      onSuccess: () => {
-        navigate('/')
-        // هنا يمكنك إعادة التوجيه لصفحة أخرى
+      onSuccess: (response) => {
+        if (response.status === "success") {
+          toast.success("تم تسجيل الدخول بنجاح");
+          navigate('/');
+        }
       },
-      onError: (err) => {
-        console.error("خطأ في تسجيل الدخول:", err);
+      onError: () => {
+        toast.error("خطأ في تسجيل الدخول. تحقق من البيانات المدخلة.");
       },
     });
   };
@@ -60,9 +63,10 @@ export default function Login({ form }: Form) {
 
       <button
         type="submit"
-        className="my-5 xl:p-5 p-3.5 bg-[#452949] text-white w-full xl:text-2xl lg:text-lg text-base font-normal rounded-sm"
+        disabled={isPending}
+        className="my-5 xl:p-5 p-3.5 bg-[#452949] text-white w-full xl:text-2xl lg:text-lg text-base font-normal rounded-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#5a3560] transition-colors"
       >
-     تسجيل الدخول
+        {isPending ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
       </button>
     </form>
   );

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 import Input from "../components/ui/Input/Input";
 import Label from "../components/ui/Label";
 import { useForm } from "react-hook-form";
@@ -18,7 +19,7 @@ interface Form {
 }
 
 type FormValues = {
-  name: string;
+  fullName: string;
   email: string;
   phoneNumber: string;
   password: string;
@@ -34,17 +35,20 @@ export default function SignUp({ form }: Form) {
 
   const onSubmit = (data: FormValues) => {
     if (!data.privacy) {
-      alert("يجب الموافقة على السياسة والخصوصية");
+      toast.error("يجب الموافقة على السياسة والخصوصية");
       return;
     }
 
-    const { ...signUpData } = data;
+    const { privacy, ...signUpData } = data;
     signUpMutate(signUpData, {
-      onSuccess: () => {
-        navigate('/');
+      onSuccess: (response) => {
+        if (response.status === "success") {
+          toast.success("تم إنشاء الحساب بنجاح! يرجى تسجيل الدخول.");
+          navigate('/auth/login');
+        }
       },
-      onError: (err: Error) => {
-        console.error("خطأ في إنشاء الحساب:", err);
+      onError: () => {
+        toast.error("حدث خطأ في إنشاء الحساب. يرجى المحاولة مرة أخرى.");
       },
     });
   };
