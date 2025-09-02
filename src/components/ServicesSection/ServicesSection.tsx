@@ -6,7 +6,7 @@ import SectionTitle from "../ui/Titles/SectionTitle";
 import ServicesCard from "../ui/Cards/ServicesCard";
 export default function ServicesSection() {
   return (
-    <section id="services" className=" py-12.5 relative  padding-global w-full">
+    <section id="services" className=" py-12.5 relative  padding-global w-full scroll-mt-[50px]">
       <SectionTitle text="خدماتنا" className=" mb-[56px] text-white"/>
       <div className=" flex lg:flex-row-reverse flex-col gap-[5%] justify-between  w-full">
           <div className="2xl:w-[50%] lg:gap-55 gap-10 items-start justify-start flex flex-col ">

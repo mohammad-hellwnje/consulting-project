@@ -18,6 +18,7 @@ export const NavData = [
   {
     name: "بودكاست",
     path: "/podacst",
+    soon: true,
   },
   {
     name: "تواصل معي",

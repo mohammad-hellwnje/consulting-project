@@ -1,6 +1,17 @@
 import { useState, useRef, useEffect } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
-export default function CustomDropdown() {
+interface CustomDropdownProps {
+  register?: UseFormRegisterReturn;
+  error?: string;
+  onChange?: (value: string) => void;
+}
+
+export default function CustomDropdown({
+  register,
+  error,
+  onChange,
+}: CustomDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("ما هي الخدمة التي تحتاجها؟ . *");
   const options = ["استشارة", "كورس ", "ورشة ", "بودكاست ", "غير ذلك "];
@@ -8,7 +19,10 @@ export default function CustomDropdown() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
@@ -49,6 +63,7 @@ export default function CustomDropdown() {
               onClick={() => {
                 setSelected(option);
                 setIsOpen(false);
+                onChange?.(option);
               }}
               className="px-4 py-2 hover:bg-purple-200 hover:shadow-sm text-[#3B2241] cursor-pointer transition"
             >
@@ -57,6 +72,16 @@ export default function CustomDropdown() {
           ))}
         </ul>
       )}
+
+      {/* Hidden input for react-hook-form */}
+      <input
+        type="hidden"
+        value={selected === "ما هي الخدمة التي تحتاجها؟ . *" ? "" : selected}
+        {...register}
+      />
+
+      {/* Error message */}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 }
