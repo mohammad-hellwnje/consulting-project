@@ -19,7 +19,7 @@ const Banner: React.FC<BannerProps> = ({
         <p className=" xl:text-xl lg:text-base md:text-sm text-xs font-medium">{message}</p>
       </div>
       <div className="flex xl:gap-9 lg:gap-4 gap-2.5">
-        <Button path='/services' text={buttonSecondaryText} className='  bg-white text-[#4B2C53] '/>
+        <Button path='#services' text={buttonSecondaryText} className='  bg-white text-[#4B2C53] '/>
       </div>
     </div>
   );

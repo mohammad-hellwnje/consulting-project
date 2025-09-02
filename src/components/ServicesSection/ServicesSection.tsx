@@ -10,12 +10,12 @@ export default function ServicesSection() {
       <SectionTitle text="خدماتنا" className=" mb-[56px] text-white"/>
       <div className=" flex lg:flex-row-reverse flex-col gap-[5%] justify-between  w-full">
           <div className="2xl:w-[50%] lg:gap-55 gap-10 items-start justify-start flex flex-col ">
-            <ServicesCard path="/services" description={ServiceData[0].desc} title={ServiceData[0].title} icon={ServiceData[0].icon} servImage={ServiceData[0].image} flexDer=" md:flex-row-reverse "/>
-            <ServicesCard path="/services" description={ServiceData[2].desc} title={ServiceData[2].title} icon={ServiceData[2].icon} servImage={ServiceData[2].image} flexDer="md:flex-row-reverse"/>
+            <ServicesCard path="/consulting" description={ServiceData[0].desc} title={ServiceData[0].title} icon={ServiceData[0].icon} servImage={ServiceData[0].image} flexDer=" md:flex-row-reverse "/>
+            <ServicesCard path="/workshops" description={ServiceData[2].desc} title={ServiceData[2].title} icon={ServiceData[2].icon} servImage={ServiceData[2].image} flexDer="md:flex-row-reverse"/>
           </div>
           <div className="2xl:w-[50%] lg:mt-56 mt-10 lg:gap-55 gap-10 items-start justify-start flex flex-col ">
-             <ServicesCard path="/services" description={ServiceData[1].desc} title={ServiceData[1].title} icon={ServiceData[1].icon} servImage={ServiceData[1].image} flexDer="md:flex-row-reverse "/>
-             <ServicesCard path="/services" description={ServiceData[3].desc} title={ServiceData[3].title} icon={ServiceData[3].icon} servImage={ServiceData[3].image} flexDer=" md:flex-row-reverse "/>
+             <ServicesCard path="/courses" description={ServiceData[1].desc} title={ServiceData[1].title} icon={ServiceData[1].icon} servImage={ServiceData[1].image} flexDer="md:flex-row-reverse "/>
+             <ServicesCard path="/fnjan-qhwa" description={ServiceData[3].desc} title={ServiceData[3].title} icon={ServiceData[3].icon} servImage={ServiceData[3].image} flexDer=" md:flex-row-reverse "/>
           </div>
       </div>
       <img

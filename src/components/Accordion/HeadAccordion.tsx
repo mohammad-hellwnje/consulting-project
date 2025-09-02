@@ -4,7 +4,7 @@ export default function HeadAccordion({item , isOpen , onclick } : {item: {title
      <button className="w-full h-25 flex items-center justify-between px-10 py-3 bg-white hover:bg-gray-200 font-medium"
               onClick={onclick}
             >
-              <span className="text-xl font-semibold text-[#3D2342]">{item.title}</span>
+              <span className="2xl:text-xl text-base font-semibold text-[#3D2342]">{item.title}</span>
               <span>
                 {isOpen ? (
                   <svg

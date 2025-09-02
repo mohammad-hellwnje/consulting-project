@@ -60,5 +60,5 @@ body {
   background-position: top center;
   background-repeat: no-repeat;
   font-family: "GE_SS_Two_Light", sans-serif;
-
+  scroll-behavior: smooth;
 }

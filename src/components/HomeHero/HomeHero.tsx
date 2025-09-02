@@ -21,7 +21,7 @@ export default function HomeHero() {
         <HeroSubTitle/>
         <div className=' flex  items-center gap-8'>
           <Button path='/consulting' text={'احجزي استشارة'} className='2xl:min-w-[312px] 2xl:h-[69px] text-white bg-[#4B2C53]'/>
-          <Button path='/services' text={'ابدأ رحلتك معي الآن'} className='2xl:min-w-[312px] 2xl:h-[69px] bg-white text-[#4B2C53]'/>
+          <Button path='/#services' text={'ابدأ رحلتك معي الآن'} className='2xl:min-w-[312px] 2xl:h-[69px] bg-white text-[#4B2C53]'/>
         </div>
         <div className=' w-full flex lg:justify-end justify-center  laptop:gap-6.5 lg:gap-4 gap-5 2xl:gap-8
          lg:my-[7.5%] my-[7.5%] xl:my-[7.5%]]'>

@@ -5,12 +5,10 @@ import ExperienceSection from "../components/ExperienceSection/ExperienceSection
 export default function About() {
   return (
     <>
-      <div>
         <AboutHero />
         <Certificates />
         <DividerLine />
         <ExperienceSection />
-      </div>
     </>
   );
 }
