@@ -22,7 +22,7 @@ export const NavData = [
   },
   {
     name: "تواصل معي",
-    path: "/contact",
+    path: "/#contact",
   },
 ];
 

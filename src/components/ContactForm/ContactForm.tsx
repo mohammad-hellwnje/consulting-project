@@ -2,11 +2,10 @@ import CustomDropdown from "../CustomDropdown/CustomDropdown";
 import whatsup from "../../assets/logos_whatsapp.png";
 import mandellaForm from "../../assets/image/image_10-removebg-preview 4.png";
 import InputForm from "../ui/Input/InputForm";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import "./ContactForm.css";
 import "react-international-phone/style.css";
-import { PhoneInput } from "react-international-phone";
-import { countries as allCountries } from "../../Data/countryData.ts";
+// import { countries as allCountries } from "../../Data/countryData.ts";
 import { useForm } from "react-hook-form";
 import { useContact } from "../../hooks/useContact";
 
@@ -19,9 +18,9 @@ type ContactFormValues = {
 };
 
 export default function ContactForm() {
-  const [phone, setPhone] = useState("");
+  // const [phone, setPhone] = useState("");
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const filteredCountries = useMemo(() => allCountries, []);
+  // const filteredCountries = useMemo(() => allCountries, []);
 
   const {
     register,
@@ -33,21 +32,21 @@ export default function ContactForm() {
   const { mutate: contactMutate, isPending } = useContact();
 
   const onSubmit = (data: ContactFormValues) => {
-  const combinedPhone = `${phone}${data.phone}`.replace(/(?!^\+)[^\d]/g, '');
+  // const combinedPhone = `${phone}${data.phone}`.replace(/(?!^\+)[^\d]/g, '');
 
   const contactData = {
     name: data.name,
     email: data.email,
     subject: data.subject,
     message: data.message,
-    phone: combinedPhone,
+    phone: data.phone,
   };
 
   contactMutate(contactData, {
     onSuccess: () => {
       setSuccessMessage("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.");
       reset();
-      setPhone("");
+      // setPhone("");
     },
     onError: (err) => {
       console.error("خطأ في إرسال الرسالة:", err);
@@ -108,7 +107,7 @@ export default function ContactForm() {
         </div>
         {/* رقم الهاتف */}
         <div className="flex m-0 overflow-hidden items-start gap-2  flex-row-reverse">
-          <PhoneInput
+          {/* <PhoneInput
             defaultCountry="sy"
             countries={filteredCountries}
             value={phone}
@@ -118,7 +117,7 @@ export default function ContactForm() {
             }}
             placeholder="أدخل رقم الاتصال الخاص بك"
             inputClassName=" border-white! rounded-0! radius-0!  w-full! bg-transparent! h-full! px-3 py-2 "
-          />
+          /> */}
           <InputForm
             required
             placeholder="أدخل رقم الاتصال الخاص بك"
@@ -161,7 +160,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isPending}
-            className="mb-5 w-full text-center bg-[#3D2342] text-white py-[15px] text-base font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mb-5 w-full text-center bg-[#3D2342] text-white py-[15px] cursor-pointer text-base font-bold disabled:opacity-50 disabled:cursor-not-allowed outline-0"
           >
             {isPending ? "جاري الإرسال..." : "ارسال"}
           </button>

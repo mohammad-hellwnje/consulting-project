@@ -37,10 +37,10 @@ const router = createBrowserRouter([
                 path : '/about',
                 element: withSuspense(About),
             },
-            {
-                path : '/contact',
-                element: withSuspense(Contact),
-            },
+            // {
+            //     path : '/contact',
+            //     element: withSuspense(Contact),
+            // },
             {
                 path : '/podacst',
                 element: withSuspense(Podacst),
