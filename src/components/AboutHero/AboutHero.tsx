@@ -1,8 +1,8 @@
-import person from "./../../assets/image/RedaMuhtaseb.png";
-import madellaL from "./../../assets/about/image_10-removebg-preview 3.png";
-import madellaR from "./../../assets/about/image_10-removebg-preview 3 (1).png";
+import person from "./../../assets/RedaMuhtaseb.webp";
+import madellaL from "./../../assets/about/image_10-removebg-preview 3 (7).png";
+import madellaR from "./../../assets/about/image_10-removebg-preview 3.png";
 import RedaName from "./../../assets/about/redaName.png";
-import about from '../../assets/about.png'
+import about from '../../assets/about.webp'
 export default function AboutHero() {
   return (
     <div className="relative bg-[#3B2241] flex lg:flex-row flex-col-reverse  padding-global lg:h-screen min-h-screen ">

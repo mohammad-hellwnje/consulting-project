@@ -1,4 +1,4 @@
-import titleImage from '../../assets/LOGO (1).png';
+import titleImage from '../../assets/LOGO (1).webp';
 
 export default function TitleAbout() {
   return (

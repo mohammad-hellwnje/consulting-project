@@ -1,5 +1,5 @@
 import Button from '../ui/Button/Button';
-import bannericon from './../../assets/image/bannericon.png'
+import bannericon from './../../assets/bannericon.webp'
 type BannerProps = {
   message: string;
   buttonPrimaryText: string;

@@ -1,6 +1,6 @@
 import Banner from "../Banner/Banner";
 import About from "./About";
-import image from '../../assets/blurAbout.png'
+import image from '../../assets/blurAbout.webp'
 import TitleAbout from "./TitleAbout";
 
 function HomeAbout() {

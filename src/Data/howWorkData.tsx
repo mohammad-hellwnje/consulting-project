@@ -1,8 +1,8 @@
 import { Step } from '../types/howWork';
-import select from './../assets/image/select.png'
-import message from './../assets/image/send-white-icon.png'
+import select from './../assets/select.webp'
+import message from './../assets/send-white-icon.webp'
 import search from './../assets/image/search.png'
-import payicon from './../assets/image/calendar.png'
+import payicon from './../assets/calendar.webp'
 export const howWorkSteps: Step[] = [
   {
     icon: search,

@@ -7,7 +7,6 @@ const Workshops = lazy( () => import('../pages/ServicesPages/Workshops'))
 const Courses = lazy( () => import('../pages/ServicesPages/Courses'))
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
-const Contact = lazy(() => import("../pages/Contact"));
 const Services = lazy(() => import("../pages/Services"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const AuthLayout = lazy(() => import("../layouts/AuthLayout"));

@@ -1,11 +1,11 @@
-import service1 from "../../src/img/service/service1.webp";
-import service2 from "../../src/img/service/service2.webp";
-import service3 from "../../src/img/service/service3.webp";
-import service4 from "../../src/img/service/service4.webp";
-import icon1 from "../../src/img/service/icon1.png";
-import icon2 from "../../src/img/service/icon2.png";
-import icon3 from "../../src/img/service/icon3.png";
-import icon4 from "../../src/img/service/icon4.png";
+import service1 from "../assets/services/service1.webp";
+import service2 from "../assets/services/service2.webp";
+import service3 from "../assets/services/service3.webp";
+import service4 from "../assets/services/service4.webp";
+import icon1 from "../assets/services/icon1.png";
+import icon2 from "../assets/services/icon2.png";
+import icon3 from "../assets/services/icon3.png";
+import icon4 from "../assets/services/icon4.png";
 
 export const ServiceData = [
   {

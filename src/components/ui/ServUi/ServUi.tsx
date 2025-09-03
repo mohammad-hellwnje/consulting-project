@@ -1,8 +1,8 @@
 import mandela from '../../../assets/authImage/main.svg'
-import frame from '../../../assets/Frame 1686557094.png'
-import frame2 from '../../../assets/Fram2.png'
-import line from '../../../assets/line-7.png'
-import vector from '../../../assets/home.svg'
+import frame from '../../../assets/Frame.webp'
+import frame2 from '../../../assets/Fram2.webp'
+import line from '../../../assets/line-7.webp'
+import vector from '../../../assets/home.webp'
 import { NavLink } from 'react-router-dom';
 interface ServicesPagesProps
 {

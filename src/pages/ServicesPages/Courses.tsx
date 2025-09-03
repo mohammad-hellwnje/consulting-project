@@ -1,5 +1,5 @@
 import ServUi from "../../components/ui/ServUi/ServUi";
-import image from '../../assets/courses.png'
+import image from '../../assets/courses.webp'
 export default function Courses() {
   return (
     <>

@@ -1,5 +1,5 @@
 import ServUi from "../../components/ui/ServUi/ServUi";
-import image from '../../assets/fnjan-qhwa.png'
+import image from '../../assets/fnjan-qhwa.webp'
 export default function Fnjan() {
   return (
     <>

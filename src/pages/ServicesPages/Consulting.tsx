@@ -1,5 +1,5 @@
 import ServUi from "../../components/ui/ServUi/ServUi";
-import ConsultingImage from '../../assets/hero image.png'
+import ConsultingImage from '../../assets/hero.webp'
 export default function Consulting() {
   return (
     <>

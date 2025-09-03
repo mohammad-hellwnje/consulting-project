@@ -1,6 +1,6 @@
 import CustomDropdown from "../CustomDropdown/CustomDropdown";
-import whatsup from "../../assets/logos_whatsapp.png";
-import mandellaForm from "../../assets/image/image_10-removebg-preview 4.png";
+import whatsup from "../../assets/logos_whatsapp.webp";
+import mandellaForm from "../../assets/image/image_10-removebg-preview.webp";
 import InputForm from "../ui/Input/InputForm";
 import { useState } from "react";
 import "./ContactForm.css";

@@ -1,6 +1,6 @@
 import circle from '../../assets/circle-1.svg'
 import HeroButton from "../ui/Button/HeroButton";
-import vector from '../../assets/Vector.svg'
+import vector from '../../assets/Vector.webp'
 import AboutText from '../ui/Text/About/AboutText';
 export default function About() {
   return (
