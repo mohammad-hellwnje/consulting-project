@@ -171,7 +171,7 @@ export default function ContactForm() {
             rel="noopener noreferrer"
             className="flex items-center flex-row-reverse gap-4 justify-center w-full "
           >
-            <img src={whatsup} alt="WhatsApp" className="" />
+            <img src={whatsup} alt="WhatsApp" className="w-9" />
             <p className=" leading-8 text-white text-2xl font-bold">
               تواصل معنا مباشر
             </p>

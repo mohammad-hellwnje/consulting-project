@@ -14,7 +14,7 @@ export default function HomeHero() {
     2xl:gap-10 lg:gap-0 "> 
       <div className=' 
        lg:w-[30%] lg:h-[72%] md:w-[35%] w-[250px] lg:flex lg:static lg:mt-0 mt-28  items-end justify-end'>
-        <img  src={woman} className='  h-full w-full' alt="رضا محتسب" />
+        <img  src={woman} className='h-full w-full object-contain' alt="رضا محتسب" />
       </div>
       <div className=' lg:justify-end justify-center lg:w-[70%] w-full flex flex-col lg:items-start items-center  h-full'>
         <HeroTitle/>
