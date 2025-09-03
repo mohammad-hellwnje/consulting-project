@@ -4,6 +4,7 @@ import { JSX, lazy, Suspense } from "react";
 const Consulting = lazy( () => import('../pages/ServicesPages/Consulting'))
 const Fnjan = lazy( () => import('../pages/ServicesPages/Fnjan'))
 const Workshops = lazy( () => import('../pages/ServicesPages/Workshops'))
+const Spinner = lazy( () => import('../components/Spinner/Spinner'))
 const Courses = lazy( () => import('../pages/ServicesPages/Courses'))
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
@@ -17,7 +18,7 @@ const Dashboard = lazy(() => import("../pages/Dashboard"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute/ProtectedRoute"));
 /* هي الدالة تغلف المكونات التي  تم تحميلها بشكل كسول */
 const withSuspense = (Component: React.LazyExoticComponent<() => JSX.Element>) => (
-    <Suspense fallback={<div className="text-center">جاري التحميل...</div>}>
+    <Suspense fallback={<div className="text-center"><Spinner /></div>}>
       <Component />
     </Suspense>
   );
