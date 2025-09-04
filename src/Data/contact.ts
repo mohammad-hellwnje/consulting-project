@@ -10,9 +10,9 @@ export const contactData = [
     iconSrc: icon1,
   },
   {
-    lable: "+9053671589532",
+    lable: "+963 967 538 324",
     linky:
-      " https://www.instagram.com/redamuhtaseb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      "tel:00963967538324",
     iconSrc: icon2,
   },
   {

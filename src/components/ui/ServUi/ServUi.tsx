@@ -4,11 +4,14 @@ import frame2 from "../../../assets/Fram2.webp";
 import line from "../../../assets/line-7.webp";
 import vector from "../../../assets/home.webp";
 import { NavLink } from "react-router-dom";
+import ServBtnIcon from "../Button/ServBtnIcon";
 interface ServicesPagesProps {
   image: string;
   title: string;
+  paragraph : string;
+  btn : string;
 }
-export default function ServUi({ image, title }: ServicesPagesProps) {
+export default function ServUi({ image, title , paragraph , btn}: ServicesPagesProps) {
   return (
     <section className="flex flex-col md:flex-row justify-between bg-[#3B2241] h-screen w-full">
       <div className="h-1/2 md:h-screen md:w-[45%]">
@@ -23,7 +26,11 @@ export default function ServUi({ image, title }: ServicesPagesProps) {
         <img src={frame2} alt="" className=" absolute right-0 top-0" />
         <div>
           <h1 className=" text-white text-4xl">{title}</h1>
-          <img src={line} alt="" />
+          <img src={line} alt="line" />
+          <p className=" text-white mt-10 w-10/12">
+            {paragraph}
+          </p>
+          <ServBtnIcon text={btn}/>
         </div>
       </div>
     </section>
