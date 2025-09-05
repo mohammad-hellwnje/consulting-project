@@ -10,7 +10,7 @@ export default function HeroButton({text , path , icon}: ButtonProps) {
      lg:font-normal 2xl:font-medium 
     2xl:h-[70px] md:h-[44px] px-3 py-2 
      laptop:min-w-[140px]  w-max  2xl:min-w-[200px] `}>
-     {text}   <img src={icon} className=" laptop:w-[25px] w-5 h-5  laptop:h-[28px]" alt={text}/>
+     {text}   <img src={icon} className=" laptop:w-[25px] laptop:h-[28px]" alt={text}/>
     </NavLink>
   )
 }

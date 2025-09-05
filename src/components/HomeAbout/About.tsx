@@ -1,6 +1,6 @@
 import circle from '../../assets/circle-1.svg'
 import HeroButton from "../ui/Button/HeroButton";
-import vector from '../../assets/Vector.webp'
+import showMore from '../../assets/show-more.webp'
 import AboutText from '../ui/Text/About/AboutText';
 export default function About() {
   return (
@@ -22,7 +22,7 @@ export default function About() {
         <h1 className='mb-4 md:block hidden leading-[220%] text-white/80 2xl:text-[32px] lg:text-base text-sm xl:text-[22px] lg:w-10/12'>متخصصة في العلاج المعرفي السلوكي (CBT) وعلاج الإدمانات، ومعتمدة من فريق واعي في علاج إدمان الإباحية.
           رسالتي هي أن أكون معكِ خطوة بخطوة نحو وعي، تعافٍ، وقوة تنبع من الداخل.</h1>
         <div className=' mt-4 md:justify-start items-center flex justify-center w-f'>
-          <HeroButton path='/about' text="المزيد " icon={vector} />
+          <HeroButton path='/about' text="المزيد " icon={showMore} />
         </div>
       </div>
   )

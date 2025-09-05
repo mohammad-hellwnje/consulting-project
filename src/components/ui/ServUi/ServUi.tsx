@@ -14,18 +14,18 @@ interface ServicesPagesProps {
 export default function ServUi({ image, title , paragraph , btn}: ServicesPagesProps) {
   return (
     <section className="flex flex-col md:flex-row justify-between bg-[#3B2241] h-screen w-full">
-      <div className="h-1/2 md:h-screen md:w-[45%]">
+      <div className="h-1/3 md:h-screen md:w-[45%]">
         <img className=" w-full h-full object-cover" src={image} alt="" />
       </div>
-      <div className=" px-10 flex  items-center relative md:w-[55%] h-full overflow-hidden ">
+      <div className="px-10 flex relative md:items-center md:w-[55%] h-full overflow-hidden ">
         <NavLink to={"/"} className=" absolute top-4.5 w-5  z-40">
           <img src={vector} alt="" />
         </NavLink>
         <img src={mandela} className=" -top-16 -left-16 absolute w-48" alt="" />
         <img src={frame} alt="" className=" absolute left-0 bottom-0" />
         <img src={frame2} alt="" className=" absolute right-0 top-0" />
-        <div>
-          <h1 className=" text-white text-4xl">{title}</h1>
+        <div className="mt-15">
+          <h1 className=" text-white text-2xl mb-2 w-9/10 text-balance">{title}</h1>
           <img src={line} alt="line" />
           <p className=" text-white mt-10 w-10/12">
             {paragraph}
