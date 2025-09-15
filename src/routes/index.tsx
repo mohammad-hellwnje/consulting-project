@@ -8,6 +8,7 @@ const Spinner = lazy( () => import('../components/Spinner/Spinner'))
 const Courses = lazy( () => import('../pages/ServicesPages/Courses'))
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
+const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const ForgitPassword = lazy(() => import("../auth/ForgitPassword"))
@@ -18,9 +19,9 @@ const ProtectedRoute = lazy(() => import("../components/ProtectedRoute/Protected
 /* هي الدالة تغلف المكونات التي  تم تحميلها بشكل كسول */
 const withSuspense = (Component: React.LazyExoticComponent<() => JSX.Element>) => (
     <Suspense fallback={<div className="text-center"><Spinner /></div>}>
-      <Component />
+        <Component />
     </Suspense>
-  );
+    );
 /* جميع المسارات الاساسية و الفرعية في هذا الملف تكون  */
 const router = createBrowserRouter([
     {
@@ -36,10 +37,10 @@ const router = createBrowserRouter([
                 path : '/about',
                 element: withSuspense(About),
             },
-            // {
-            //     path : '/contact',
-            //     element: withSuspense(Contact),
-            // },
+            {
+                path : '/contact',
+                element: withSuspense(Contact),
+            },
             {
                 path : '/podacst',
                 element: withSuspense(Podacst),
