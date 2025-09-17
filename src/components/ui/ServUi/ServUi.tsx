@@ -13,7 +13,7 @@ interface ServicesPagesProps {
 }
 export default function ServUi({ image, title , paragraph , btn}: ServicesPagesProps) {
   return (
-    <section className="flex flex-col md:flex-row justify-between bg-[#3B2241] h-screen w-full">
+    <section className="flex flex-col md:flex-row justify-between bg-[#3B2241] sm:h-screen w-full">
       <div className="h-1/3 md:h-screen md:w-[45%]">
         <img className=" w-full h-full object-cover" src={image} alt="" />
       </div>

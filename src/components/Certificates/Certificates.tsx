@@ -5,6 +5,7 @@ import SmallTitle from "../SmallTitle/SmallTitle";
 import Certi from "./../../assets/about/Certificates.png";
 
 type ContactItem = {
+  dir?: "ltr" | "rtl";
   lable: string; 
   linky: string;
   iconSrc: string; 
@@ -38,6 +39,7 @@ export default function Certificates() {
 
         {contacts.map((item, index) => (
           <ContactLine
+            dir={item.dir}
             key={index}
             label={item.lable}
             link={item.linky}

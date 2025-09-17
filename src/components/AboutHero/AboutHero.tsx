@@ -6,14 +6,14 @@ import about from '../../assets/about.webp'
 export default function AboutHero() {
   return (
     <div className="relative bg-[#3B2241] flex lg:flex-row flex-col-reverse  padding-global lg:h-screen min-h-screen ">
-      <img src={about} alt="about" className=" w-1/2 absolute top-16   right-0" />
+      <img src={about} alt="about" className="w-1/2 absolute top-16   right-0" />
       <div className=" lg:w-[67.125%]">
       <div className=" 2xl:mt-44 xl:mt-36 lg:mt-30 max-[1024px]:flex max-[1024px]:flex-col  max-[1024px]:justify-center max-[1024px]:items-center max-[1024px]:mt-7">
         <div className="flex flex-col items-center lg:w-[70%] max-[1441px]:w-[55%] max-[1024px]:hidden">
           <img
             src={RedaName}
             alt="Reda Muhtaseb"
-            className="w-[31%]  max-[1441px]:w-[50%] "
+            className="w-full sm:w-[31%]  max-[1441px]:w-[50%] "
           />
           <span className="font-normal xl:text-[48px] lg:text-4xl text-[#FFFFFF87] 2xl:mb-[39px] xl:mb-8 lg:mb-5 ">
             مستشارة تربوية
@@ -48,19 +48,19 @@ export default function AboutHero() {
         <img
           src={madellaL}
           alt="dicore"
-          className="absolute left-0 top-0 w-[33.49673%]  "
+          className="absolute left-0 -top-5 w-[33.49673%]  "
         />
         <img
           src={madellaR}
           alt="dicore"
-          className="absolute right-0 bottom-0 max-[376px]:hidden "
+          className="absolute right-0 -bottom-15 rotate-180"
         />
       </div>
       <div className=" w-full flex flex-col items-center justify-center lg:hidden mt-28 ">
             <img
         src={RedaName}
         alt="Reda Muhtaseb"
-        className=" hidden  max-[1024px]:flex  mb-[10px] w-[30%] max-[376px]:w-[47.2%]"
+        className=" hidden  max-[1024px]:flex  mb-[10px] w-[50%]"
       />
       <span className=" hidden max-[1024px]:flex mb-2.5 font-normal xl:text-[48px] lg:text-4xl text-[#FFFFFF87] ">
         مستشارة تربوية

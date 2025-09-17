@@ -5,7 +5,7 @@ export const footerData =
         link: [
             {
                 icon : '',
-                label: 'البريد الالكتروني',
+                label: 'reda200709@gmail.com',
                 href: 'mailto:reda200709@gmail.com'
             },
             {
@@ -16,7 +16,6 @@ export const footerData =
             {
                 icon:'',
                 label: 'دمشق,سوريا',
-                href: ''
             }
         ]
 
@@ -26,15 +25,19 @@ export const footerData =
         link: [
             {
                 label: 'استشارة',
-                href: 'mailto:info@yourdomain.com'
+                href: '/consulting'
             },
             {
                 label: ' فنجان قوة ',
-                href: 'tel:000963964888'
+                href: '/fnjan-qhwa'
             },
             {
                 label: 'كورسات',
-                href: ''
+                href: '/courses'
+            },
+            {
+                label: 'ورشات',
+                href: '/workshops'
             }
         ]
 
@@ -44,15 +47,11 @@ export const footerData =
         link: [
             {
                 label: 'من نحن',
-                href: 'mailto:info@yourdomain.com'
+                href: '/about'
             },
             {
-                label: ' تواصل معي ',
-                href: 'tel:000963964888'
-            },
-            {
-                label: 'كورسات',
-                href: ''
+                label: 'بودكاست',
+                href: '#contact'
             }
         ]
 
