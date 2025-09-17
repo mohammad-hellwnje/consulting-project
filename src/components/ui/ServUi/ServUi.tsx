@@ -21,7 +21,7 @@ export default function ServUi({ image, title , paragraph , btn}: ServicesPagesP
         <NavLink to={"/"} className=" absolute top-4.5 w-5  z-40">
           <img src={vector} alt="" />
         </NavLink>
-        <img src={mandela} className=" -top-16 -left-16 absolute w-48" alt="" />
+        <img src={mandela} className=" -top-20 -left-20 absolute w-48" alt="" />
         <img src={frame} alt="" className=" absolute left-0 bottom-0" />
         <img src={frame2} alt="" className=" absolute right-0 top-0" />
         <div className="mt-15">

@@ -8,7 +8,7 @@ const Spinner = lazy( () => import('../components/Spinner/Spinner'))
 const Courses = lazy( () => import('../pages/ServicesPages/Courses'))
 const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
-const Contact = lazy(() => import("../pages/Contact"));
+// const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const ForgitPassword = lazy(() => import("../auth/ForgitPassword"))
@@ -37,10 +37,10 @@ const router = createBrowserRouter([
                 path : '/about',
                 element: withSuspense(About),
             },
-            {
-                path : '/contact',
-                element: withSuspense(Contact),
-            },
+            // {
+            //     path : '/contact',
+            //     element: withSuspense(Contact),
+            // },
             {
                 path : '/podacst',
                 element: withSuspense(Podacst),

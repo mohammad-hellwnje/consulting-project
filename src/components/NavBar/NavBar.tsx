@@ -20,82 +20,111 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   const handleLogout = () => {
     logout();
   };
 
-
   return (
     <>
-<nav
-  className={`fixed  top-0 left-0 w-full z-[1000] transition-all duration-500 
-    ${scrolling ? "rounded-none" : "lg:mt-6 mt-3"}`}>
-  
-  <div className={`margin-global 
+      <nav
+        className={`fixed  top-0 left-0 w-full z-[1000] transition-all duration-500 
+    ${scrolling ? "rounded-none" : "lg:mt-6 mt-3"}`}
+      >
+        <div
+          className={`margin-global 
     2xl:py-6 2xl:px-9  
     xl:px-8 lg:px-7 
-    px-5 py-3 ${scrolling ? ' bg-[#3B2241]' : ' bg-white/20'} shadow-sm flex items-center justify-between rounded-[21px]`}>
-    {/* الشعار + الروابط */}
-    <div className="flex  laptop:gap-4.5 gap-2.5 items-center">
-      <Logo />
-      <div className=" hidden lg:flex">
-      <LinkUl />
-      </div>
-    </div>
-    {/* أزرار المستخدم */}
-    <div className="hidden lg:flex items-center xl:gap-6 lg:gap-4">
-      {!isLoading && user ? (
-        <div className="flex items-center gap-4">
-          {/* زر الداش بورد للأدمن */}
-          {user.role === 'admin' && (
-            <NavLink
-              to="/dashboard"
-              className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-              title="لوحة التحكم"
-            >
-              <FaCog className="w-4 h-4" />
-              <span className="hidden xl:inline">لوحة التحكم</span>
-            </NavLink>
-          )}
+    px-5 py-3 ${
+      scrolling ? " bg-[#3B2241]" : " bg-white/20"
+    } shadow-sm flex items-center justify-between rounded-[21px]`}
+        >
+          {/* الشعار + الروابط */}
+          <div className="flex  laptop:gap-4.5 gap-2.5 items-center">
+            <Logo />
+            <div className=" hidden lg:flex">
+              <LinkUl />
+            </div>
+          </div>
+          {/* أزرار المستخدم */}
+          <div className="hidden lg:flex items-center xl:gap-6 lg:gap-4">
+            {!isLoading && user ? (
+              <div className="flex items-center gap-4">
+                {/* زر الداش بورد للأدمن */}
+                {user.role === "admin" && (
+                  <NavLink
+                    to="/dashboard"
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-white transition-colors"
+                    title="لوحة التحكم"
+                    style={{
+                      backgroundColor: "var(--color-btnColor)",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.backgroundColor =
+                        "var(--color-primary)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.backgroundColor =
+                        "var(--color-btnColor)")
+                    }
+                  >
+                    <FaCog className="w-4 h-4" />
+                    <span className="hidden xl:inline">لوحة التحكم</span>
+                  </NavLink>
+                )}
 
-          {/* اسم المستخدم */}
-          <span className="text-white font-medium">{user.fullName}</span>
+                {/* اسم المستخدم */}
+                <span className="text-white font-medium">{user.fullName}</span>
 
-          {/* زر تسجيل الخروج */}
-          <button
-            onClick={handleLogout}
-            disabled={isLoggingOut}
-            className="flex items-center gap-2 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            title="تسجيل الخروج"
-          >
-            <FaSignOutAlt className="w-4 h-4" />
-            <span className="hidden xl:inline">
-              {isLoggingOut ? "جاري الخروج..." : "خروج"}
-            </span>
-          </button>
+                {/* زر تسجيل الخروج */}
+                <button
+                  onClick={handleLogout}
+                  disabled={isLoggingOut}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{
+                    backgroundColor: "var(--color-textbtnColor)",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor =
+                      "var(--color-primary)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor =
+                      "var(--color-textbtnColor)")
+                  }
+                  title="تسجيل الخروج"
+                >
+                  <FaSignOutAlt className="w-4 h-4" />
+                  <span className="hidden xl:inline">
+                    {isLoggingOut ? "جاري الخروج..." : "خروج"}
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <>
+                <AuthBtn
+                  text="تسجيل الدخول"
+                  path="/auth/login"
+                  forceActive={true}
+                />
+                <AuthBtn text="إنشاء حساب" path="/auth/signup" />
+              </>
+            )}
+          </div>
+          {/* أيقونة الموبايل */}
+          <div className="lg:hidden">
+            <FaBars
+              className="text-xl text-white cursor-pointer"
+              onClick={() => setMenuOpen(true)}
+            />
+          </div>
         </div>
-      ) : (
-        <>
-          <AuthBtn text="تسجيل الدخول" path="/auth/login" forceActive={true} />
-          <AuthBtn text="إنشاء حساب" path="/auth/signup" />
-        </>
-      )}
-    </div>
-    {/* أيقونة الموبايل */}
-    <div className="lg:hidden">
-      <FaBars
-        className="text-xl text-white cursor-pointer"
-        onClick={() => setMenuOpen(true)}
-      />
-    </div>
-  </div>
-</nav>
+      </nav>
 
-<SideBar menuOpen={menuOpen} closeMenu={closeMenu} />
-
-
+      <SideBar menuOpen={menuOpen} closeMenu={closeMenu} />
     </>
   );
 }

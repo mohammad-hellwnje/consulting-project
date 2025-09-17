@@ -4,7 +4,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-export default function LinkUl() {
+export default function LinkUl({ closeMenu } : {closeMenu?: () => void;}) {
   const location = useLocation();
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function LinkUl() {
             <NavHashLink
               smooth
               to={item.path}
+              onClick={closeMenu}
               className={`flex h-[42px] items-center justify-center rounded-sm transition relative ${
                 isActive
                   ? "bg-[#F5F5F5] px-3.5 text-[#7E3994]"
