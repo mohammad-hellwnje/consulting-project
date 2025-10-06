@@ -42,8 +42,8 @@ export const formDataSignup = [
         placeholder: "ادخل تأكيد كلمة المرور",
         required: true,
         value: "confirmPassword",
-      }],
-    link: `لديك حساب بالفعل ؟ <span class='font-bold'> قم بتسجيل الدخول </span>`,
+      },
+    ],
   },
 ];
 
@@ -69,6 +69,5 @@ export const formDataLogin = [
         value: "password",
       },
     ],
-    link: `ليس لديك حساب ؟ <span class="font-bold"> انشئ حساب </span>`,
   },
 ];

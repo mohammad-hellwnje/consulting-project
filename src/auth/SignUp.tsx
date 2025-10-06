@@ -68,14 +68,14 @@ export default function SignUp({ form }: Form) {
         </div>
       ))}
 
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-4 cursor-pointer">
         <input
           type="checkbox"
           id="privacy"
           {...register("privacy", { required: "يجب الموافقة على السياسة والخصوصية" })}
-          className="w-4 h-4"
+          className="w-4 h-4 accent-[#4E2E56] cursor-pointer"
         />
-        <label htmlFor="privacy" className="text-sm text-[#4E2E56]">
+        <label htmlFor="privacy" className="text-sm text-[#4E2E56] cursor-pointer">
           أوافق على السياسة والخصوصية
         </label>
       </div>
@@ -86,7 +86,7 @@ export default function SignUp({ form }: Form) {
       <button
         type="submit"
         disabled={isPending}
-        className="my-5 xl:p-5 p-3.5 bg-[#452949] text-white w-full xl:text-2xl lg:text-lg text-base font-normal rounded-sm disabled:opacity-50"
+        className="my-5 xl:p-5 p-3.5 bg-[#452949] text-white w-full xl:text-2xl lg:text-lg text-base font-normal rounded-sm disabled:opacity-50 cursor-pointer"
       >
         {isPending ? "جاري إنشاء الحساب..." : "إنشاء حساب"}
       </button>

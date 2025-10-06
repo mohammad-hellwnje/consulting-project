@@ -24,7 +24,6 @@ export default function AuthLayout() {
             title={item.title}
             paragraph={item.paragraph}
             form={item.form}
-            link={item.link}
           />
         ))}
       </div>

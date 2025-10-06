@@ -56,7 +56,7 @@ export default function Login({ form }: Form) {
 
       <NavLink
         to={"/resetPassword"}
-        className="block xl:text-xl lg:text-base text-xs text-[#4E2E56] font-normal text-left"
+        className="block xl:text-xl w-fit justify-self-end lg:text-base text-xs text-[#4E2E56] font-normal text-left"
       >
         نسيت كلمة المرور ؟
       </NavLink>
