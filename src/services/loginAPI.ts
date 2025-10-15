@@ -1,5 +1,4 @@
 import { api } from "./axios";
-import { config } from "../config/environment";
 
 interface User {
   _id: string;
@@ -13,7 +12,6 @@ interface LoginResponse {
   message: string;
   data: {
     user: User;
-    accessToken?: string; // قد يكون موجود أو لا
   };
 }
 
@@ -22,22 +20,23 @@ interface LoginData {
   password: string;
 }
 
-interface SignUpData
-{
-    fullName : string;
-    email : string;
-    password : string;
-    confirmPassword : string;
-    phoneNumber : string;
+interface SignUpData {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phoneNumber: string;
 }
-interface resetParams
-{
-    email : string;
-}
-export async function login(data: LoginData): Promise<LoginResponse> {
-  const res = await api.post("/auth/login", data);
 
-  // حفظ بيانات المستخدم في localStorage
+interface ResetParams {
+  email: string;
+}
+
+// تسجيل الدخول
+export async function login(data: LoginData): Promise<LoginResponse> {
+  const res = await api.post("/auth/login", data, { withCredentials: true });
+
+  // حفظ بيانات المستخدم فقط (لا توكن)
   if (res.data.status === "success" && res.data.data?.user) {
     localStorage.setItem('currentUser', JSON.stringify(res.data.data.user));
   }
@@ -45,32 +44,26 @@ export async function login(data: LoginData): Promise<LoginResponse> {
   return res.data;
 }
 
+// التسجيل
 export async function signUp(data: SignUpData) {
-  const res = await api.post("/auth/register", data);
+  const res = await api.post("/auth/register", data, { withCredentials: true });
   return res.data;
 }
 
+// جلب بيانات المستخدم الحالية
 export async function getCurrentUser(): Promise<User> {
-  // أولاً، نحاول قراءة بيانات المستخدم من localStorage
   const savedUser = localStorage.getItem('currentUser');
   if (savedUser) {
     try {
-      const user = JSON.parse(savedUser);
-      return user;
+      return JSON.parse(savedUser);
     } catch {
       localStorage.removeItem('currentUser');
     }
   }
 
-  // إذا لم تكن هناك بيانات محفوظة، نحاول جلبها من الخادم
-  const token = localStorage.getItem(config.token.storageKey);
-  if (!token) {
-    throw new Error('No access token found');
-  }
+  // جلب المستخدم من السيرفر عبر الكوكيز
+  const res = await api.get("/auth/me", { withCredentials: true });
 
-  const res = await api.get("/auth/me");
-
-  // التعامل مع بنية البيانات المختلفة
   let user: User;
   if (res.data.user) {
     user = res.data.user;
@@ -82,32 +75,24 @@ export async function getCurrentUser(): Promise<User> {
     throw new Error('User data not found in response');
   }
 
-  // حفظ بيانات المستخدم في localStorage
   localStorage.setItem('currentUser', JSON.stringify(user));
   return user;
 }
 
+// تسجيل الخروج
 export async function logout() {
-  const token = localStorage.getItem(config.token.storageKey);
-
   try {
-    if (token) {
-      await api.post("/auth/logout", {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    }
+    await api.post("/auth/logout", {}, { withCredentials: true });
   } catch {
-    // تجاهل أخطاء الخادم عند تسجيل الخروج
+    // تجاهل الأخطاء
   } finally {
-    // مسح جميع البيانات من localStorage
-    localStorage.removeItem(config.token.storageKey);
     localStorage.removeItem('currentUser');
   }
 }
-export async function resetPass(userData: resetParams) {
-  const res = await api.post("/auth/forgot-password", userData);
+
+// إعادة تعيين كلمة المرور
+export async function resetPass(userData: ResetParams) {
+  const res = await api.post("/auth/forgot-password", userData, { withCredentials: true });
   return res.data;
 }
 
@@ -117,6 +102,6 @@ export async function resetPassword(data: {
   password: string;
   confirmPassword: string;
 }) {
-  const res = await api.post("/auth/reset-password", data);
+  const res = await api.post("/auth/reset-password", data, { withCredentials: true });
   return res.data;
 }

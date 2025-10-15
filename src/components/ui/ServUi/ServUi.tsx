@@ -4,18 +4,19 @@ import frame2 from "../../../assets/Fram2.webp";
 import line from "../../../assets/line-7.webp";
 import vector from "../../../assets/home.webp";
 import { NavLink } from "react-router-dom";
-import ServBtnIcon from "../Button/ServBtnIcon";
+import StateBtn from "../Button/StateBtn";
+import { FaArrowAltCircleDown } from "react-icons/fa";
 interface ServicesPagesProps {
   image: string;
   title: string;
   paragraph : string;
   btn : string;
 }
-export default function ServUi({ image, title , paragraph , btn}: ServicesPagesProps) {
+export default function ServUi({ image, title , paragraph }: ServicesPagesProps) {
   return (
     <section className="flex flex-col md:flex-row justify-between bg-[#3B2241] sm:h-screen w-full">
-      <div className="h-1/3 md:h-screen md:w-[45%]">
-        <img className=" w-full h-full object-cover" src={image} alt="" />
+      <div className="h-1/3 overflow-hidden md:h-screen md:w-[45%]">
+        <img className=" w-full h-full  object-cover" src={image} alt="" />
       </div>
       <div className="px-10 flex relative md:items-center md:w-[55%] h-full overflow-hidden ">
         <NavLink to={"/"} className=" absolute top-4.5 w-5  z-40">
@@ -30,7 +31,8 @@ export default function ServUi({ image, title , paragraph , btn}: ServicesPagesP
           <p className=" text-white mt-10 w-10/12">
             {paragraph}
           </p>
-          <ServBtnIcon text={btn}/>
+          <StateBtn className="bg-[#69596C] rounded-full mt-6 flex-row-reverse items-center text-white" icon={<FaArrowAltCircleDown size={20}/>} text="تصفح الورشات المتاحة"/>
+
         </div>
       </div>
     </section>

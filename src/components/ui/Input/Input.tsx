@@ -13,7 +13,11 @@ export interface InputProps {
   required?: boolean;
   icon?: React.ReactNode;
   className?: string;
-  register?: UseFormRegisterReturn; // 👈 هذا بدل any// من react-hook-form
+  register?: UseFormRegisterReturn; // من react-hook-form
+  value?: string | number; // ✅ مضاف لدعم القيم المتحكم بها
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // ✅ مضاف
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void; // ✅ مضاف
+  defaultValue?: string | number; // ✅ مضاف
 }
 
 export default function Input({
@@ -25,7 +29,11 @@ export default function Input({
   showCount = false,
   icon,
   className = "",
-  register, // نأخذه هنا
+  register,
+  value, // ✅ جديد
+  onChange, // ✅ جديد
+  onBlur, // ✅ جديد
+  defaultValue, // ✅ جديد
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [charCount, setCharCount] = useState(0);
@@ -45,6 +53,10 @@ export default function Input({
           type={inputType}
           placeholder={placeholder}
           maxLength={maxLength}
+          value={value} // ✅ مضاف
+          onChange={onChange} // ✅ مضاف
+          onBlur={onBlur} // ✅ مضاف
+          defaultValue={defaultValue} // ✅ مضاف
           className={`
             w-full xl:px-4 xl:py-[23px] lg:p-4 p-3
             border ${error ? "border-red-500" : "border-[#4E2E56]"} 
@@ -56,7 +68,7 @@ export default function Input({
             placeholder:text-gray-400 placeholder:text-sm
             ${className}
           `}
-          {...register} // أهم سطر، هو اللي يربط الحقل بـ react-hook-form
+          {...register} // ✅ يبقى كما هو لدعم react-hook-form
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
             if (maxLength) {
               setCharCount(e.target.value.length);

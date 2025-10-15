@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { JSX, lazy, Suspense } from "react";
+import OverView from "../pages/DashPages/OverView";
+import CoursesAdmin from "../pages/DashPages/CoursesAdmin";
+import WorkshopAdmin from "../pages/DashPages/WorkshopAdmin";
+import AddWorkshop from "../pages/DashPages/AddWorkshop";
+import EditWorkshop from "../pages/DashPages/EditWorkshop";
 const Consulting = lazy( () => import('../pages/ServicesPages/Consulting'))
 const Fnjan = lazy( () => import('../pages/ServicesPages/Fnjan'))
 const Workshops = lazy( () => import('../pages/ServicesPages/Workshops'))
@@ -87,7 +92,35 @@ const router = createBrowserRouter([
                     <Dashboard />
                 </ProtectedRoute>
             </Suspense>
-        )
+        ),
+        children : 
+        [
+            {
+                path : '',
+                element : <OverView/>,
+                index : true
+            },
+            {
+                path : 'coursesAdmin',
+                element : <CoursesAdmin/>
+            },
+            {
+                path : 'workshopAdmin',
+                element : <WorkshopAdmin/>
+            },
+            {
+                path : 'coursesAdmin',
+                element : <CoursesAdmin/>
+            },
+            {
+                path : 'addworkshop',
+                element : <AddWorkshop/>
+            },
+            {
+                path : 'editworkshop/:id',
+                element : <EditWorkshop/>
+            },
+        ]
     },
 
 

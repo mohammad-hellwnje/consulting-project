@@ -1,0 +1,10 @@
+.ps-menu-button {
+  padding: 0 !important;
+}
+
+.ps-menu-button:hover,
+.ps-menuitem-root:hover,
+.pro-menu-item:hover {
+  background-color: rgba(78, 46, 86, 0.8) !important; /* اللون أرجواني مع شفافية */
+  color: white !important;
+}

@@ -6,14 +6,6 @@ export const config = {
   // البيئة الحالية
   environment: import.meta.env.MODE || "development",
 
-  // إعدادات التوكن
-  token: {
-    // مدة انتهاء صلاحية التوكن (بالدقائق)
-    expirationTime: 15,
-    // مفتاح التخزين في localStorage
-    storageKey: "accessToken",
-  },
-
   // إعدادات الأمان
   security: {
     // تفعيل HTTPS في الإنتاج
@@ -39,21 +31,6 @@ export const isProduction = () => config.environment === "production";
 
 // دالة للحصول على رابط API
 export const getApiUrl = () => config.apiUrl;
-
-// دالة للتحقق من صحة التوكن
-export const isTokenValid = (token: string | null): boolean => {
-  if (!token) return false;
-  
-  try {
-    // فك تشفير JWT للتحقق من انتهاء الصلاحية
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const currentTime = Date.now() / 1000;
-    
-    return payload.exp > currentTime;
-  } catch {
-    return false;
-  }
-};
 
 // دالة للتسجيل الآمن (فقط في التطوير)
 export const secureLog = (message: string, data?: any) => {
