@@ -44,7 +44,7 @@ export default function SideBar() {
           </MenuItem>
           <MenuItem
             icon={<FaCoffee />}
-            onClick={() => navgate('/dashboard/coursesAdmin')}
+            onClick={() => navgate('/dashboard/fnjanAdmin')}
           >
             فنجان
           </MenuItem>

@@ -6,6 +6,7 @@ import CoursesAdmin from "../pages/DashPages/CoursesAdmin";
 import WorkshopAdmin from "../pages/DashPages/WorkshopAdmin";
 import AddWorkshop from "../pages/DashPages/AddWorkshop";
 import EditWorkshop from "../pages/DashPages/EditWorkshop";
+import FnjanAdmin from "../pages/DashPages/FnjanAdmin";
 const Consulting = lazy( () => import('../pages/ServicesPages/Consulting'))
 const Fnjan = lazy( () => import('../pages/ServicesPages/Fnjan'))
 const Workshops = lazy( () => import('../pages/ServicesPages/Workshops'))
@@ -115,8 +116,8 @@ const router = createBrowserRouter([
                 element : <WorkshopAdmin/>
             },
             {
-                path : 'coursesAdmin',
-                element : <CoursesAdmin/>
+                path : 'fnjanAdmin',
+                element : <FnjanAdmin/>
             },
             {
                 path : 'addworkshop',
