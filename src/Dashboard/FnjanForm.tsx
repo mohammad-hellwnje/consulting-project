@@ -8,9 +8,11 @@ interface FnjanEventData {
   title: string;
   price: number;
   seats: number;
-  date: string;      // تاريخ الحدث
+  date: string; // تاريخ الحدث
   startTime: string; // وقت بدء الحدث
-  endTime: string;   // وقت انتهاء الحدث
+  endTime: string; // وقت انتهاء الحدث
+  location: string; // موقع الحدث
+  duration: string; // مدة الحدث
   description: string;
   image?: string;
 }
@@ -21,7 +23,11 @@ interface FnjanFormProps {
   onSubmit?: () => void; // اختياري لتنفيذ شيء بعد الإضافة
 }
 
-export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProps) {
+export default function FnjanForm({
+  mode,
+  initialData,
+  onSubmit,
+}: FnjanFormProps) {
   const [formData, setFormData] = useState<FnjanEventData>({
     title: "",
     price: 0,
@@ -29,6 +35,8 @@ export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProp
     date: "",
     startTime: "",
     endTime: "",
+    location: "",
+    duration: "",
     description: "",
     image: "",
   });
@@ -44,9 +52,11 @@ export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProp
     }
   }, [initialData]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,6 +80,8 @@ export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProp
       formPayload.append("date", formData.date);
       formPayload.append("startTime", formData.startTime);
       formPayload.append("endTime", formData.endTime);
+      formPayload.append("location", formData.location);
+      formPayload.append("duration", formData.duration);
       if (imageFile) formPayload.append("image", imageFile);
 
       await addFnjanEvent(formPayload);
@@ -111,6 +123,30 @@ export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProp
               value={formData.price}
               onChange={handleChange}
               placeholder="اضف سعر الحدث"
+              required
+            />
+          </div>
+        </div>
+
+        {/* الموقع والمدة */}
+        <div className="flex items-center gap-2">
+          <div className="w-1/2">
+            <Label label="الموقع" />
+            <Input
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="اضف موقع الفنجان"
+              required
+            />
+          </div>
+          <div className="w-1/2">
+            <Label label="المدة" />
+            <Input
+              name="duration"
+              value={formData.duration}
+              onChange={handleChange}
+              placeholder="مثال: 1 أو 2 أو 3"
               required
             />
           </div>
@@ -188,7 +224,10 @@ export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProp
                   />
                   <button
                     type="button"
-                    onClick={() => { setImageFile(null); setPreview(null); }}
+                    onClick={() => {
+                      setImageFile(null);
+                      setPreview(null);
+                    }}
                     className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-2 py-1 text-xs"
                   >
                     إزالة
@@ -216,11 +255,14 @@ export default function FnjanForm({ mode, initialData, onSubmit }: FnjanFormProp
             disabled={loading}
             className="px-6 py-2 bg-primary hover:bg-[#a58ae8] text-white font-medium rounded-lg transition-colors"
           >
-            {loading ? "جاري الإضافة..." : mode === "add" ? "تأكيد الإضافة" : "تأكيد التعديل"}
+            {loading
+              ? "جاري الإضافة..."
+              : mode === "add"
+              ? "تأكيد الإضافة"
+              : "تأكيد التعديل"}
           </button>
         </div>
       </form>
     </div>
   );
 }
-
