@@ -15,6 +15,7 @@ const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
 // const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const Servdetails = lazy(() => import("../pages/DetailsPage/DetailsPage"));
 const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const ForgitPassword = lazy(() => import("../auth/ForgitPassword"))
 const ResetPassword = lazy(() => import("../auth/ResetPassword"));
@@ -49,7 +50,11 @@ const router = createBrowserRouter([
             {
                 path : '/podacst',
                 element: withSuspense(Podacst),
-            }
+            },
+            {
+                path : '/servdetails/:id',
+                element : withSuspense(Servdetails)
+            },
         ]
     },
     {
@@ -84,6 +89,7 @@ const router = createBrowserRouter([
         path : '/courses',
         element : withSuspense(Courses)
     },
+
     {
         path : '/dashboard',
         element : (

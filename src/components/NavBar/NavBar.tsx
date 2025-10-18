@@ -1,7 +1,6 @@
-// Navbar.jsx
 import { useState, useEffect } from "react";
 import { FaBars, FaSignOutAlt, FaCog } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 import Logo from "../ui/Logo/Logo";
 import LinkUl from "./LabScreen/LinkUl";
@@ -13,6 +12,7 @@ export default function Navbar() {
   const [scrolling, setScrolling] = useState(false);
   const { data: user, isLoading } = useCurrentUser();
   const { mutate: logout, isPending: isLoggingOut } = useLogout();
+  const location = useLocation(); // 🔹 لمعرفة الصفحة الحالية
 
   useEffect(() => {
     const handleScroll = () => setScrolling(window.scrollY > 50);
@@ -20,45 +20,48 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const closeMenu = () => setMenuOpen(false);
+  const handleLogout = () => logout();
 
-  const handleLogout = () => {
-    logout();
-  };
+  // 🔹 نحدد ما إذا كانت الصفحة الحالية "صفحة خاصة" نريد فيها لون مختلف
+  const isDashboard = location.pathname.startsWith("/dashboard");
+  const isAuthPage = location.pathname.startsWith("/servdetails");
+
+  // 🔹 نتحكم في لون الخلفية حسب الصفحة الحالية أو حالة التمرير
+  const navBg = isDashboard
+    ? "bg-[#3B2241]" // لون غامق للداشبورد
+    : isAuthPage
+    ? " bg-primary" // لون فاتح لصفحات الدخول
+    : scrolling
+    ? "bg-[#3B2241]" // عند التمرير
+    : "bg-white/20"; // في الصفحة الرئيسية بدون تمرير
 
   return (
     <>
       <nav
-        className={`fixed  top-0 left-0 w-full z-[1000] transition-all duration-500 
-    ${scrolling ? "rounded-none" : "lg:mt-6 mt-3"}`}
+        className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 
+        ${scrolling ? "rounded-none" : "lg:mt-6 mt-3"}`}
       >
         <div
-          className={`margin-global 
-    2xl:py-6 2xl:px-9  
-    xl:px-8 lg:px-7 
-    px-5 py-3 ${
-      scrolling ? " bg-[#3B2241]" : " bg-white/20"
-    } shadow-sm flex items-center justify-between rounded-[21px]`}
+          className={`margin-global 2xl:py-6 2xl:px-9 xl:px-8 lg:px-7 px-5 py-3 
+          ${navBg} shadow-sm flex items-center justify-between rounded-[21px]`}
         >
           {/* الشعار + الروابط */}
-          <div className="flex  laptop:gap-4.5 gap-2.5 items-center">
+          <div className="flex laptop:gap-4.5 gap-2.5 items-center">
             <Logo />
-            <div className=" hidden lg:flex">
+            <div className="hidden lg:flex">
               <LinkUl />
             </div>
           </div>
+
           {/* أزرار المستخدم */}
           <div className="hidden lg:flex items-center xl:gap-6 lg:gap-4">
             {!isLoading && user ? (
               <div className="flex items-center gap-4">
-                {/* زر الداش بورد للأدمن */}
                 {user.role === "admin" && (
                   <NavLink
                     to="/dashboard"
                     className="flex items-center gap-2 px-3 py-2 rounded-lg text-white transition-colors"
-                    title="لوحة التحكم"
                     style={{
                       backgroundColor: "var(--color-btnColor)",
                     }}
@@ -76,10 +79,8 @@ export default function Navbar() {
                   </NavLink>
                 )}
 
-                {/* اسم المستخدم */}
                 <span className="text-white font-medium">{user.fullName}</span>
 
-                {/* زر تسجيل الخروج */}
                 <button
                   onClick={handleLogout}
                   disabled={isLoggingOut}
@@ -95,7 +96,6 @@ export default function Navbar() {
                     (e.currentTarget.style.backgroundColor =
                       "var(--color-textbtnColor)")
                   }
-                  title="تسجيل الخروج"
                 >
                   <FaSignOutAlt className="w-4 h-4" />
                   <span className="hidden xl:inline">
@@ -114,10 +114,13 @@ export default function Navbar() {
               </>
             )}
           </div>
+
           {/* أيقونة الموبايل */}
           <div className="lg:hidden">
             <FaBars
-              className="text-xl text-white cursor-pointer"
+              className={`text-xl cursor-pointer ${
+                isDashboard || scrolling ? "text-white" : "text-black"
+              }`}
               onClick={() => setMenuOpen(true)}
             />
           </div>

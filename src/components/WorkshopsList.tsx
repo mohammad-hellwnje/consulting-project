@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { gitWorkShop } from "../services/workshopsApi";
-
 interface Workshop {
   _id: string;
   title: string;
@@ -20,7 +19,7 @@ export default function WorkshopsList() {
     const fetchWorkshops = async () => {
       try {
         const data = await gitWorkShop(); // استدعاء الدالة من الـ API
-        setWorkshops(data.workshops);
+        setWorkshops(data);
       } catch (error) {
         console.error("حدث خطأ أثناء جلب الورش:", error);
       } finally {
@@ -40,20 +39,22 @@ export default function WorkshopsList() {
   }
 
   return (
-    <section className="bg-white py-20 min-h-screen">
-      <div className="container mx-auto px-6">
+    <section className="bg-white relative py-20 overflow-hidden min-h-screen">
+      <img src="./assets/hero-image.svg" className="z-0 absolute w-3xs -bottom-28 -right-24" alt="" />
+      <img src="./assets/hero-image.svg" className="z-0 absolute w-3xs -top-28 -left-24" alt="" />
+      <div className="z-30 mx-auto px-6">
         {workshops?.length === 0 ? (
           <p className="text-center text-gray-500">لا توجد ورش حالياً.</p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {workshops.map((workshop, index) => (
+            {workshops?.map((workshop, index) => (
               <div
                 key={`${workshop._id}-${index}`} // لتفادي تكرار المفاتيح
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-400"
               >
                 <div className="h-52 overflow-hidden">
                   <img
-                    src={workshop.image}
+                    src={`https://api.nafs-baserah.com/${workshop.image}`}
                     alt={workshop.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -64,14 +65,14 @@ export default function WorkshopsList() {
                     {workshop.title}
                   </h3>
 
-                  <div className="flex items-center text-gray-400 text-sm mb-4">
+                  <div className="flex items-center text-gray-500 text-sm mb-4">
                     <FaCalendarAlt className="ml-2" />
                     {new Date(workshop.createdAt).toLocaleDateString("ar-EG")}
                   </div>
 
                   <button
-                    onClick={() => navigate(`/workshops/${workshop._id}`)}
-                    className="w-full py-2 rounded-full bg-[#69596C] hover:bg-[#7a6a80] transition text-white font-medium"
+                    onClick={() => navigate(`/servdetails/${workshop._id}`)}
+                    className="w-full py-2 rounded-full bg-primary transition text-white font-medium"
                   >
                     عرض التفاصيل
                   </button>
