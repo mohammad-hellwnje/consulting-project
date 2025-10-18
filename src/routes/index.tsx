@@ -9,6 +9,8 @@ import EditWorkshop from "../pages/DashPages/EditWorkshop";
 import FnjanAdmin from "../pages/DashPages/FnjanAdmin";
 import AddFnjan from "../pages/DashPages/AddFnjan";
 import EditFnjan from "../pages/DashPages/EditFnjan";
+import AddInPersonCourse from "../pages/DashPages/AddInPersonCourse";
+import EditInPersonCourse from "../pages/DashPages/EditInPersonCourse";
 const Consulting = lazy(() => import("../pages/ServicesPages/Consulting"));
 const Fnjan = lazy(() => import("../pages/ServicesPages/Fnjan"));
 const Workshops = lazy(() => import("../pages/ServicesPages/Workshops"));
@@ -145,6 +147,14 @@ const router = createBrowserRouter([
       {
         path: "editfnjan/:id",
         element: <EditFnjan />,
+      },
+      {
+        path: "addinpersoncourse",
+        element: <AddInPersonCourse />,
+      },
+      {
+        path: "editinpersoncourse/:id",
+        element: <EditInPersonCourse />,
       },
     ],
   },

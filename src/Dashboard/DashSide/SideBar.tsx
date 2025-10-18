@@ -28,7 +28,7 @@ export default function SideBar() {
             icon={<FiGrid />}
             onClick={() => navgate('/dashboard/coursesAdmin')}
           >
-            الكورسات
+            الكورسات الحضورية
           </MenuItem>
           <MenuItem
             icon={<FiHeart />}
