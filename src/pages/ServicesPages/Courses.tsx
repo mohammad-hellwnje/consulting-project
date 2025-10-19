@@ -1,5 +1,7 @@
 import ServUi from "../../components/ui/ServUi/ServUi";
 import image from "../../assets/courses.webp";
+import InPersonCoursesList from "../../components/InPersonCoursesList";
+
 export default function Courses() {
   return (
     <>
@@ -9,6 +11,7 @@ export default function Courses() {
         paragraph="دورات متكاملة  مصممة لتزويدك بالمعرفة التربوية والنفسية العميقة، تقدّم المعرفة بخطوات واضحة،من خلال برامج تدريبية منهجية تمنحك محتوى علمي متدرّج، وأدوات عملية لتبني أساسًا متينًا من الفهم والمهارة."
         btn="سجّلي الآن"
       />
+      <InPersonCoursesList />
     </>
   );
 }
