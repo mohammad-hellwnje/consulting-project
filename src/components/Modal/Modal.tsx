@@ -13,7 +13,7 @@ const Modal: React.FC<ModalProps> = ({ title, children, isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-h-[95%] overflow-y-auto max-w-lg p-6 relative">
         <h3 className="text-xl font-semibold mb-4 text-gray-800">{title}</h3>
         <div>{children}</div>
         <button

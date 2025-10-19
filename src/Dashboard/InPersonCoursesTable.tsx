@@ -219,9 +219,9 @@ const InPersonCoursesTable: React.FC = () => {
             )}
             {selectedCourse.image && (
               <img
-                src={`https://your-domain.com/${selectedCourse.image}`}
+                src={`https://api.nafs-baserah.com/${selectedCourse.image}`}
                 alt={selectedCourse.title}
-                className="w-32 h-20 object-cover mt-2 rounded-md"
+                className="w-full object-cover mt-2 rounded-md"
               />
             )}
           </div>

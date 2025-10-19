@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaTrash, FaEdit, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal/Modal";
-import { getFnjanEvents } from "../services/fnjanApi"; // استدعاء الدالة الجاهزة
+import { getFnjanEvents, deleteFnjanEvent } from "../services/fnjanApi"; // استدعاء الدالة الجاهزة
 
 interface FnjanEvent {
   _id: string;
@@ -62,9 +62,19 @@ const FnjanTable: React.FC = () => {
     setModalType("delete");
   };
 
-  const confirmDelete = () => {
-    alert(`تم حذف حدث الفنجان: ${selectedEvent?._id}`);
-    setModalType(null);
+  const confirmDelete = async () => {
+    if (!selectedEvent?._id) return;
+
+    try {
+      await deleteFnjanEvent(selectedEvent._id);
+      alert("✅ تم حذف حدث الفنجان بنجاح!");
+      setModalType(null);
+      // Refresh the events list
+      fetchEvents();
+    } catch (err) {
+      console.error("❌ خطأ عند حذف حدث الفنجان:", err);
+      alert("❌ حدث خطأ أثناء حذف حدث الفنجان");
+    }
   };
 
   if (loading)
@@ -200,9 +210,9 @@ const FnjanTable: React.FC = () => {
             </p>
             {selectedEvent.image && (
               <img
-                src={`https://your-domain.com/${selectedEvent.image}`}
+                src={`https://api.nafs-baserah.com/${selectedEvent.image}`}
                 alt={selectedEvent.title}
-                className="w-32 h-20 object-cover mt-2 rounded-md"
+                className="w-full object-cover mt-2 rounded-md"
               />
             )}
           </div>

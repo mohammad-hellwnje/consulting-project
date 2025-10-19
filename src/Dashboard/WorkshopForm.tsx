@@ -2,15 +2,16 @@
 import { useState, useEffect } from "react";
 import Label from "../components/ui/Label";
 import Input from "../components/ui/Input/Input";
-import { addWorkshop } from "../services/workshopsApi";
+import { addWorkshop, updateWorkshop } from "../services/workshopsApi";
 
 interface WorkshopData {
+  _id?: string;
   title: string;
   price: number;
   seats: number;
-  date: string;      // تاريخ الورشة
+  date: string; // تاريخ الورشة
   startTime: string; // وقت بدء الورشة
-  endTime: string;   // وقت انتهاء الورشة
+  endTime: string; // وقت انتهاء الورشة
   description: string;
   image?: string;
 }
@@ -21,7 +22,11 @@ interface WorkshopFormProps {
   onSubmit?: () => void; // اختياري لتنفيذ شيء بعد الإضافة
 }
 
-export default function WorkshopForm({ mode, initialData, onSubmit }: WorkshopFormProps) {
+export default function WorkshopForm({
+  mode,
+  initialData,
+  onSubmit,
+}: WorkshopFormProps) {
   const [formData, setFormData] = useState<WorkshopData>({
     title: "",
     price: 0,
@@ -44,9 +49,11 @@ export default function WorkshopForm({ mode, initialData, onSubmit }: WorkshopFo
     }
   }, [initialData]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,12 +79,16 @@ export default function WorkshopForm({ mode, initialData, onSubmit }: WorkshopFo
       formPayload.append("endTime", formData.endTime);
       if (imageFile) formPayload.append("image", imageFile);
 
-      await addWorkshop(formPayload);
-
-      alert("✅ تمت إضافة الورشة بنجاح!");
+      if (mode === "edit" && formData._id) {
+        await updateWorkshop(formData._id, formPayload);
+        alert("✅ تم تعديل الورشة بنجاح!");
+      } else {
+        await addWorkshop(formPayload);
+        alert("✅ تمت إضافة الورشة بنجاح!");
+      }
       if (onSubmit) onSubmit();
     } catch (err: any) {
-      console.error("❌ حدث خطأ أثناء الإضافة:", err);
+      console.error("❌ حدث خطأ:", err);
       alert(err?.response?.data?.message || err.message || "حدث خطأ غير متوقع");
     } finally {
       setLoading(false);
@@ -188,7 +199,10 @@ export default function WorkshopForm({ mode, initialData, onSubmit }: WorkshopFo
                   />
                   <button
                     type="button"
-                    onClick={() => { setImageFile(null); setPreview(null); }}
+                    onClick={() => {
+                      setImageFile(null);
+                      setPreview(null);
+                    }}
                     className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-2 py-1 text-xs"
                   >
                     إزالة
@@ -216,7 +230,11 @@ export default function WorkshopForm({ mode, initialData, onSubmit }: WorkshopFo
             disabled={loading}
             className="px-6 py-2 bg-primary hover:bg-[#a58ae8] text-white font-medium rounded-lg transition-colors"
           >
-            {loading ? "جاري الإضافة..." : mode === "add" ? "تأكيد الإضافة" : "تأكيد التعديل"}
+            {loading
+              ? "جاري الإضافة..."
+              : mode === "add"
+              ? "تأكيد الإضافة"
+              : "تأكيد التعديل"}
           </button>
         </div>
       </form>

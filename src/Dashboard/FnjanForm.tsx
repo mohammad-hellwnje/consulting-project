@@ -2,9 +2,10 @@
 import { useState, useEffect } from "react";
 import Label from "../components/ui/Label";
 import Input from "../components/ui/Input/Input";
-import { addFnjanEvent } from "../services/fnjanApi";
+import { addFnjanEvent, updateFnjanEvent } from "../services/fnjanApi";
 
 interface FnjanEventData {
+  _id?: string;
   title: string;
   price: number;
   seats: number;
@@ -84,12 +85,16 @@ export default function FnjanForm({
       formPayload.append("duration", formData.duration);
       if (imageFile) formPayload.append("image", imageFile);
 
-      await addFnjanEvent(formPayload);
-
-      alert("✅ تمت إضافة حدث الفنجان بنجاح!");
+      if (mode === "edit" && formData._id) {
+        await updateFnjanEvent(formData._id, formPayload);
+        alert("✅ تم تعديل حدث الفنجان بنجاح!");
+      } else {
+        await addFnjanEvent(formPayload);
+        alert("✅ تمت إضافة حدث الفنجان بنجاح!");
+      }
       if (onSubmit) onSubmit();
     } catch (err: any) {
-      console.error("❌ حدث خطأ أثناء الإضافة:", err);
+      console.error("❌ حدث خطأ:", err);
       alert(err?.response?.data?.message || err.message || "حدث خطأ غير متوقع");
     } finally {
       setLoading(false);
