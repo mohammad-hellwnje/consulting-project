@@ -16,7 +16,6 @@
   --breakpoint-4xl: 2560px !important;  /* 1440px */
   --breakpoint-3xl: 1920px !important;  /* 1440px */
   --breakpoint-laptop: 80rem;   /* 1280px */
-
 }
 
 .btn-primary {
@@ -55,6 +54,11 @@
     box-sizing: border-box;
     direction: rtl;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-main-color);
   background-image: var(--bg-hero-image);
@@ -62,4 +66,31 @@ body {
   background-repeat: no-repeat;
   font-family: "GE_SS_Two_Light", sans-serif;
   scroll-behavior: smooth;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px; /* عرض الشريط */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bgHomeHeroImage); /* الخلفية */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-btnColor); /* اللون الأساسي للتمرير */
+  border-radius: 10px;
+  border: 2px solid var(--color-bgHomeHeroImage); /* يعطي شكل جميل حوله */
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-textbtnColor); /* يتغير عند المرور عليه */
+}
+
+/* اختياري: تحسين للـ Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-btnColor) var(--color-bgHomeHeroImage);
 }

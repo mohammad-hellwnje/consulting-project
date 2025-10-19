@@ -39,7 +39,7 @@ export default function WorkshopsList() {
   }
 
   return (
-    <section className="bg-white relative py-20 overflow-hidden min-h-screen">
+    <section id="list" className="bg-white relative py-20 overflow-hidden min-h-screen">
       <img src="./assets/hero-image.svg" className="z-0 absolute w-3xs -bottom-28 -right-24" alt="" />
       <img src="./assets/hero-image.svg" className="z-0 absolute w-3xs -top-28 -left-24" alt="" />
       <div className="z-30 mx-auto px-6">
@@ -50,7 +50,7 @@ export default function WorkshopsList() {
             {workshops?.map((workshop, index) => (
               <div
                 key={`${workshop._id}-${index}`} // لتفادي تكرار المفاتيح
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-400"
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-400 z-1"
               >
                 <div className="h-52 overflow-hidden">
                   <img
