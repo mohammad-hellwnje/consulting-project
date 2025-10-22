@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaEdit, FaEye } from "react-icons/fa";
+import { FaTrash, FaEdit, FaEye, FaClipboardList } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal/Modal";
 import {
@@ -75,6 +75,10 @@ const InPersonCoursesTable: React.FC = () => {
     setModalType("delete");
   };
 
+  const handleViewBookings = (id: string) => {
+    navigate(`/dashboard/coursebookings/${id}`);
+  };
+
   const confirmDelete = async () => {
     if (!selectedCourse) return;
     setDeleting(true);
@@ -132,7 +136,7 @@ const InPersonCoursesTable: React.FC = () => {
                 {course.title}
               </td>
               <td className="py-3 px-6 text-gray-800 font-medium">
-                {course.price}{" "}ل.س
+                {course.price} ل.س
               </td>
               <td className="py-3 px-6 text-gray-600">{course.duration} شهر</td>
               <td className="py-3 px-6 text-gray-600">{course.location}</td>
@@ -151,6 +155,13 @@ const InPersonCoursesTable: React.FC = () => {
                   title="عرض"
                 >
                   <FaEye />
+                </button>
+                <button
+                  onClick={() => handleViewBookings(course._id)}
+                  className="text-green-500 hover:text-green-700"
+                  title="عرض الحجوزات"
+                >
+                  <FaClipboardList />
                 </button>
                 <button
                   onClick={() => handleEdit(course._id)}

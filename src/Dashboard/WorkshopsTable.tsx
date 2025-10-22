@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaEdit, FaEye } from "react-icons/fa";
+import { FaTrash, FaEdit, FaEye, FaClipboardList } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal/Modal";
 import { gitWorkShop, deleteWorkshop } from "../services/workshopsApi"; // استدعاء الدالة الجاهزة
@@ -58,6 +58,9 @@ const WorkshopsTable: React.FC = () => {
   const handleDelete = (workshop: Workshop) => {
     setSelectedWorkshop(workshop);
     setModalType("delete");
+  };
+  const handleViewBookings = (id: string) => {
+    navigate(`/dashboard/workshopbookings/${id}`);
   };
 
   const confirmDelete = async () => {
@@ -141,6 +144,13 @@ const WorkshopsTable: React.FC = () => {
                   title="عرض"
                 >
                   <FaEye />
+                </button>
+                <button
+                  onClick={() => handleViewBookings(workshop._id)}
+                  className="text-green-500 hover:text-green-700"
+                  title="عرض الحجوزات"
+                >
+                  <FaClipboardList />
                 </button>
                 <button
                   onClick={() => handleEdit(workshop._id)}

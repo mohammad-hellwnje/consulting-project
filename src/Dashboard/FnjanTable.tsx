@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTrash, FaEdit, FaEye } from "react-icons/fa";
+import { FaTrash, FaEdit, FaEye, FaClipboardList } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal/Modal";
 import { getFnjanEvents, deleteFnjanEvent } from "../services/fnjanApi"; // استدعاء الدالة الجاهزة
@@ -60,6 +60,9 @@ const FnjanTable: React.FC = () => {
   const handleDelete = (event: FnjanEvent) => {
     setSelectedEvent(event);
     setModalType("delete");
+  };
+  const handleViewBookings = (id: string) => {
+    navigate(`/dashboard/fnjanbookings/${id}`);
   };
 
   const confirmDelete = async () => {
@@ -149,6 +152,13 @@ const FnjanTable: React.FC = () => {
                   title="عرض"
                 >
                   <FaEye />
+                </button>
+                <button
+                  onClick={() => handleViewBookings(event._id)}
+                  className="text-green-500 hover:text-green-700"
+                  title="عرض الحجوزات"
+                >
+                  <FaClipboardList />
                 </button>
                 <button
                   onClick={() => handleEdit(event._id)}

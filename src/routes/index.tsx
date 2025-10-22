@@ -11,6 +11,12 @@ import AddFnjan from "../pages/DashPages/AddFnjan";
 import EditFnjan from "../pages/DashPages/EditFnjan";
 import AddInPersonCourse from "../pages/DashPages/AddInPersonCourse";
 import EditInPersonCourse from "../pages/DashPages/EditInPersonCourse";
+import WorkshopBookingsAdmin from "../pages/DashPages/WorkshopBookingsAdmin";
+import WorkshopSpecificBookings from "../pages/DashPages/WorkshopSpecificBookings";
+import FnjanEventBookingsAdmin from "../pages/DashPages/FnjanEventBookingsAdmin";
+import FnjanEventSpecificBookings from "../pages/DashPages/FnjanEventSpecificBookings";
+import InPersonCourseBookingsAdmin from "../pages/DashPages/InPersonCourseBookingsAdmin";
+import InPersonCourseSpecificBookings from "../pages/DashPages/InPersonCourseSpecificBookings";
 const Consulting = lazy(() => import("../pages/ServicesPages/Consulting"));
 const Fnjan = lazy(() => import("../pages/ServicesPages/Fnjan"));
 const Workshops = lazy(() => import("../pages/ServicesPages/Workshops"));
@@ -155,6 +161,30 @@ const router = createBrowserRouter([
       {
         path: "editinpersoncourse/:id",
         element: <EditInPersonCourse />,
+      },
+      {
+        path: "workshopbookings",
+        element: <WorkshopBookingsAdmin />,
+      },
+      {
+        path: "workshopbookings/:workshopId",
+        element: <WorkshopSpecificBookings />,
+      },
+      {
+        path: "fnjanbookings",
+        element: <FnjanEventBookingsAdmin />,
+      },
+      {
+        path: "fnjanbookings/:eventId",
+        element: <FnjanEventSpecificBookings />,
+      },
+      {
+        path: "coursebookings",
+        element: <InPersonCourseBookingsAdmin />,
+      },
+      {
+        path: "coursebookings/:courseId",
+        element: <InPersonCourseSpecificBookings />,
       },
     ],
   },

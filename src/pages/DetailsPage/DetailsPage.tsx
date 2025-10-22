@@ -4,6 +4,13 @@ import { BiCalendar, BiCurrentLocation, BiTime, BiUser } from "react-icons/bi";
 import { FaArrowRight } from "react-icons/fa";
 import StateBtn from "../../components/ui/Button/StateBtn";
 import { getInPersonCourseById } from "../../services/inPersonCoursesApi";
+import { getWorkshopById } from "../../services/workshopsApi";
+import {
+  bookWorkshop,
+  uploadReceipt,
+  cancelBooking,
+  WorkshopBooking,
+} from "../../services/workshopBookingsApi";
 
 interface Session {
   dayOfWeek: string;
@@ -25,6 +32,19 @@ interface InPersonCourse {
   createdAt: string;
 }
 
+interface Workshop {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  seats: number;
+  image: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  createdAt: string;
+}
+
 const dayOfWeekArabic: { [key: string]: string } = {
   Monday: "الاثنين",
   Tuesday: "الثلاثاء",
@@ -39,30 +59,105 @@ export default function DetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [course, setCourse] = useState<InPersonCourse | null>(null);
+  const [workshop, setWorkshop] = useState<Workshop | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [itemType, setItemType] = useState<"course" | "workshop" | null>(null);
+  const [booking, setBooking] = useState<WorkshopBooking | null>(null);
+  const [bookingLoading, setBookingLoading] = useState(false);
+  const [receiptFile, setReceiptFile] = useState<File | null>(null);
+  const [uploadingReceipt, setUploadingReceipt] = useState(false);
 
   useEffect(() => {
-    const fetchCourse = async () => {
+    const fetchData = async () => {
       if (!id) {
-        setError("معرف الكورس غير موجود");
+        setError("معرف العنصر غير موجود");
         setLoading(false);
         return;
       }
 
       try {
-        const data = await getInPersonCourseById(id);
-        setCourse(data);
+        // Try to fetch as course first
+        try {
+          const courseData = await getInPersonCourseById(id);
+          setCourse(courseData);
+          setItemType("course");
+          setLoading(false);
+          return;
+        } catch (courseErr) {
+          // If course fails, try workshop
+          try {
+            const workshopData = await getWorkshopById(id);
+            setWorkshop(workshopData);
+            setItemType("workshop");
+            setLoading(false);
+            return;
+          } catch (workshopErr) {
+            throw new Error("فشل تحميل البيانات");
+          }
+        }
       } catch (err) {
-        console.error("❌ خطأ عند جلب الكورس:", err);
-        setError("فشل تحميل بيانات الكورس");
-      } finally {
+        console.error("❌ خطأ عند جلب البيانات:", err);
+        setError("فشل تحميل البيانات");
         setLoading(false);
       }
     };
 
-    fetchCourse();
+    fetchData();
   }, [id]);
+
+  const handleBookWorkshop = async () => {
+    if (!workshop?._id) return;
+    setBookingLoading(true);
+    try {
+      const newBooking = await bookWorkshop(workshop._id);
+      setBooking(newBooking);
+      alert("✅ تم الحجز بنجاح! يرجى تحميل إيصال الدفع.");
+    } catch (err: any) {
+      console.error("❌ خطأ عند الحجز:", err);
+      alert(err?.response?.data?.message || "فشل الحجز. يرجى المحاولة لاحقاً.");
+    } finally {
+      setBookingLoading(false);
+    }
+  };
+
+  const handleUploadReceipt = async () => {
+    if (!booking?._id || !receiptFile) {
+      alert("يرجى اختيار ملف الإيصال");
+      return;
+    }
+    setUploadingReceipt(true);
+    try {
+      const updatedBooking = await uploadReceipt(booking._id, receiptFile);
+      setBooking(updatedBooking);
+      setReceiptFile(null);
+      alert("✅ تم تحميل الإيصال بنجاح!");
+    } catch (err: any) {
+      console.error("❌ خطأ عند تحميل الإيصال:", err);
+      alert(
+        err?.response?.data?.message ||
+          "فشل تحميل الإيصال. يرجى المحاولة لاحقاً."
+      );
+    } finally {
+      setUploadingReceipt(false);
+    }
+  };
+
+  const handleCancelBooking = async () => {
+    if (!booking?._id) return;
+    if (!window.confirm("هل أنت متأكد من إلغاء الحجز؟")) return;
+
+    try {
+      await cancelBooking(booking._id);
+      setBooking(null);
+      alert("✅ تم إلغاء الحجز بنجاح!");
+    } catch (err: any) {
+      console.error("❌ خطأ عند إلغاء الحجز:", err);
+      alert(
+        err?.response?.data?.message || "فشل إلغاء الحجز. يرجى المحاولة لاحقاً."
+      );
+    }
+  };
 
   if (loading) {
     return (
@@ -72,22 +167,27 @@ export default function DetailsPage() {
     );
   }
 
-  if (error || !course) {
+  if (error || (!course && !workshop)) {
     return (
       <section className="pt-32 pb-10 padding-global bg-white min-h-screen flex flex-col items-center justify-center">
         <p className="text-lg text-red-600 mb-4">
-          {error || "فشل تحميل الكورس"}
+          {error || "فشل تحميل البيانات"}
         </p>
         <button
-          onClick={() => navigate("/courses")}
+          onClick={() => navigate(-1)}
           className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-[#a58ae8] flex items-center gap-2"
         >
           <FaArrowRight />
-          العودة للدورات
+          العودة
         </button>
       </section>
     );
   }
+
+  // Determine which item to display
+  const item = course || workshop;
+  const isWorkshop = !!workshop;
+  const isCourse = !!course;
 
   return (
     <section className="pt-32 pb-10 relative overflow-hidden padding-global bg-white">
@@ -99,11 +199,11 @@ export default function DetailsPage() {
 
       {/* Back Button */}
       <button
-        onClick={() => navigate("/courses")}
+        onClick={() => navigate(isWorkshop ? "/workshops" : "/courses")}
         className="mb-6 flex items-center gap-2 text-primary hover:text-[#a58ae8] transition"
       >
         <FaArrowRight size={18} />
-        <span>العودة للدورات</span>
+        <span>العودة {isWorkshop ? "للورش" : "للدورات"}</span>
       </button>
 
       {/* Main Content */}
@@ -111,8 +211,8 @@ export default function DetailsPage() {
         {/* Image Section */}
         <div className="h-[450px] w-full lg:w-2/3">
           <img
-            src={`https://api.nafs-baserah.com/${course.image}`}
-            alt={course.title}
+            src={`https://api.nafs-baserah.com/${item?.image}`}
+            alt={item?.title}
             className="object-cover w-full h-full rounded-4xl"
           />
         </div>
@@ -121,12 +221,84 @@ export default function DetailsPage() {
         <div className="flex bg-primary/10 rounded-3xl flex-col gap-5 items-center p-6 w-full lg:w-1/3 justify-center">
           <h2 className="text-2xl lg:text-4xl font-semibold">سعر الاشتراك</h2>
           <span className="text-4xl lg:text-6xl text-green-600 font-semibold">
-            {course.price.toLocaleString("ar-EG")} ل.س
+            {item?.price.toLocaleString("ar-EG")} ل.س
           </span>
-          <StateBtn
-            className="w-full lg:w-[200px] !text-lg lg:!text-2xl bg-primary text-white"
-            text="احجزي الآن"
-          />
+
+          {/* Booking Status and Actions */}
+          {isWorkshop && (
+            <div className="w-full space-y-2">
+              {!booking ? (
+                <button
+                  onClick={handleBookWorkshop}
+                  disabled={bookingLoading}
+                  className="w-full py-3 px-4 bg-primary text-white rounded-lg hover:bg-[#a58ae8] disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold"
+                >
+                  {bookingLoading ? "جاري الحجز..." : "احجزي الآن"}
+                </button>
+              ) : (
+                <>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
+                    <p className="text-green-700 font-semibold">
+                      ✅ تم الحجز بنجاح!
+                    </p>
+                    <p className="text-sm text-green-600 mt-1">
+                      الحالة:{" "}
+                      {booking.status === "pending"
+                        ? "قيد الانتظار"
+                        : booking.status === "confirmed"
+                        ? "مؤكد"
+                        : booking.status}
+                    </p>
+                  </div>
+
+                  {booking.status === "pending" && !booking.receipt && (
+                    <div className="border-2 border-dashed border-primary rounded-lg p-4">
+                      <label className="block text-sm font-semibold mb-2">
+                        تحميل إيصال الدفع:
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/*,.pdf"
+                        onChange={(e) =>
+                          setReceiptFile(e.target.files?.[0] || null)
+                        }
+                        className="w-full mb-2"
+                      />
+                      <button
+                        onClick={handleUploadReceipt}
+                        disabled={!receiptFile || uploadingReceipt}
+                        className="w-full py-2 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition text-sm"
+                      >
+                        {uploadingReceipt ? "جاري التحميل..." : "تحميل الإيصال"}
+                      </button>
+                    </div>
+                  )}
+
+                  {booking.receipt && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
+                      <p className="text-blue-700 text-sm">
+                        ✅ تم تحميل الإيصال بنجاح
+                      </p>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={handleCancelBooking}
+                    className="w-full py-2 px-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
+                  >
+                    إلغاء الحجز
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+
+          {isCourse && (
+            <StateBtn
+              className="w-full lg:w-[200px] !text-lg lg:!text-2xl bg-primary text-white"
+              text="احجزي الآن"
+            />
+          )}
         </div>
       </div>
 
@@ -135,10 +307,10 @@ export default function DetailsPage() {
         {/* Left Content */}
         <div className="w-full lg:w-2/3">
           <h2 className="my-5 text-2xl lg:text-4xl text-primary font-semibold">
-            {course.title}
+            {item?.title}
           </h2>
 
-          {/* Course Info */}
+          {/* Info */}
           <div className="my-8 space-y-4">
             {/* Date */}
             <div className="mt-2.5 items-center flex gap-2.5">
@@ -147,7 +319,7 @@ export default function DetailsPage() {
               </div>
               <p className="text-gray-700">
                 <strong>التاريخ:</strong>{" "}
-                {new Date(course.date).toLocaleDateString("ar-EG")}
+                {new Date(item?.date || "").toLocaleDateString("ar-EG")}
               </p>
             </div>
 
@@ -157,78 +329,95 @@ export default function DetailsPage() {
                 <BiUser size={20} />
               </div>
               <p className="text-gray-700">
-                <strong>المقاعد المتاحة:</strong> {course.seats} مقعد
+                <strong>المقاعد المتاحة:</strong> {item?.seats} مقعد
               </p>
             </div>
 
-            {/* Duration */}
+            {/* Duration or Time */}
             <div className="mt-2.5 items-center flex gap-2.5">
               <div className="rounded-xl bg-primary/15 w-10 h-10 flex justify-center items-center flex-shrink-0">
                 <BiTime size={20} />
               </div>
               <p className="text-gray-700">
-                <strong>المدة:</strong> {course.duration} أشهر
+                {isCourse ? (
+                  <>
+                    <strong>المدة:</strong> {(course as any)?.duration} أشهر
+                  </>
+                ) : (
+                  <>
+                    <strong>الوقت:</strong> {(workshop as any)?.startTime} -{" "}
+                    {(workshop as any)?.endTime}
+                  </>
+                )}
               </p>
             </div>
 
-            {/* Location */}
-            <div className="mt-2.5 items-center flex gap-2.5">
-              <div className="rounded-xl bg-primary/15 w-10 h-10 flex justify-center items-center flex-shrink-0">
-                <BiCurrentLocation size={20} />
+            {/* Location (only for courses) */}
+            {isCourse && (
+              <div className="mt-2.5 items-center flex gap-2.5">
+                <div className="rounded-xl bg-primary/15 w-10 h-10 flex justify-center items-center flex-shrink-0">
+                  <BiCurrentLocation size={20} />
+                </div>
+                <p className="text-gray-700">
+                  <strong>الموقع:</strong> {(course as any)?.location}
+                </p>
               </div>
-              <p className="text-gray-700">
-                <strong>الموقع:</strong> {course.location}
-              </p>
-            </div>
+            )}
           </div>
 
           {/* Description */}
           <h2 className="mt-8 text-xl font-semibold text-gray-800">
-            وصف الكورس
+            {isCourse ? "وصف الكورس" : "وصف الورشة"}
           </h2>
           <p className="mt-2.5 text-gray-700 leading-relaxed whitespace-pre-wrap">
-            {course.description}
+            {item?.description}
           </p>
         </div>
 
-        {/* Right Sidebar - Sessions */}
-        <div className="w-full lg:w-1/3">
-          <div className="bg-primary/10 rounded-2xl p-6 sticky top-32">
-            <h3 className="text-xl font-semibold text-primary mb-4">
-              جدول الجلسات
-            </h3>
+        {/* Right Sidebar - Sessions (only for courses) */}
+        {isCourse && (
+          <div className="w-full lg:w-1/3">
+            <div className="bg-primary/10 rounded-2xl p-6 sticky top-32">
+              <h3 className="text-xl font-semibold text-primary mb-4">
+                جدول الجلسات
+              </h3>
 
-            {course.sessions && course.sessions.length > 0 ? (
-              <div className="space-y-3">
-                {course.sessions.map((session, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-lg p-4 border border-gray-200"
-                  >
-                    <p className="font-semibold text-gray-800 mb-2">
-                      {dayOfWeekArabic[session.dayOfWeek] || session.dayOfWeek}
-                    </p>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <BiTime size={16} />
-                      <span>
-                        {session.startTime} - {session.endTime}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500 text-center py-4">
-                لا توجد جلسات محددة
-              </p>
-            )}
+              {(course as any)?.sessions &&
+              (course as any)?.sessions.length > 0 ? (
+                <div className="space-y-3">
+                  {(course as any)?.sessions.map(
+                    (session: Session, index: number) => (
+                      <div
+                        key={index}
+                        className="bg-white rounded-lg p-4 border border-gray-200"
+                      >
+                        <p className="font-semibold text-gray-800 mb-2">
+                          {dayOfWeekArabic[session.dayOfWeek] ||
+                            session.dayOfWeek}
+                        </p>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <BiTime size={16} />
+                          <span>
+                            {session.startTime} - {session.endTime}
+                          </span>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              ) : (
+                <p className="text-gray-500 text-center py-4">
+                  لا توجد جلسات محددة
+                </p>
+              )}
 
-            <StateBtn
-              className="w-full mt-6 !text-lg bg-primary text-white"
-              text="احجزي مقعدك الآن"
-            />
+              <StateBtn
+                className="w-full mt-6 !text-lg bg-primary text-white"
+                text="احجزي مقعدك الآن"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
