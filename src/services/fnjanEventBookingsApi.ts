@@ -36,6 +36,78 @@ export interface FnjanEventBookingResponse {
 }
 
 // ============================================
+// USER-FACING APIs
+// ============================================
+
+/**
+ * Book a Fnjan event as Project Owner
+ * POST /api/services/fnjan-qwa-event-bookings
+ */
+export async function bookFnjanEventAsProjectOwner(
+  eventId: string,
+  projectLink: string
+) {
+  const res = await api.post(
+    "/services/fnjan-qwa-event-bookings",
+    {
+      eventId,
+      userType: "project_owner",
+      projectLink,
+    },
+    { withCredentials: true }
+  );
+  return res.data.data.booking;
+}
+
+/**
+ * Book a Fnjan event as Regular User
+ * POST /api/services/fnjan-qwa-event-bookings
+ */
+export async function bookFnjanEventAsRegularUser(eventId: string) {
+  const res = await api.post(
+    "/services/fnjan-qwa-event-bookings",
+    {
+      eventId,
+      userType: "regular",
+    },
+    { withCredentials: true }
+  );
+  return res.data.data.booking;
+}
+
+/**
+ * Upload receipt for a Fnjan event booking
+ * PATCH /api/services/fnjan-qwa-event-bookings/{bookingId}/upload-receipt
+ */
+export async function uploadFnjanReceipt(bookingId: string, receiptFile: File) {
+  const formData = new FormData();
+  formData.append("receipt", receiptFile);
+
+  const res = await api.patch(
+    `/services/fnjan-qwa-event-bookings/${bookingId}/upload-receipt`,
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
+    }
+  );
+  return res.data.data.booking;
+}
+
+/**
+ * Cancel a Fnjan event booking
+ * PATCH /api/services/fnjan-qwa-event-bookings/{bookingId}/cancel
+ */
+export async function cancelFnjanBooking(bookingId: string) {
+  const res = await api.patch(
+    `/services/fnjan-qwa-event-bookings/${bookingId}/cancel`,
+    {},
+    { withCredentials: true }
+  );
+  return res.data.data.booking;
+}
+
+// ============================================
 // ADMIN-FACING APIs
 // ============================================
 
@@ -88,4 +160,3 @@ export async function rejectFnjanEventBooking(bookingId: string) {
   );
   return res.data.data.booking;
 }
-

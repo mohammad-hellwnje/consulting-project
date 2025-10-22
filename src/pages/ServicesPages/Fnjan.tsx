@@ -1,5 +1,7 @@
 import ServUi from "../../components/ui/ServUi/ServUi";
 import image from "../../assets/fnjan-qhwa.webp";
+import FnjanEventsList from "../../components/FnjanEventsList";
+
 export default function Fnjan() {
   return (
     <>
@@ -10,6 +12,7 @@ export default function Fnjan() {
         تجمع بين التعلّم، الإلهام، وبناء شبكة دعم إنسانية دافئة."
         btn="سجّلي الآن"
       />
+      <FnjanEventsList />
     </>
   );
 }

@@ -5,12 +5,20 @@ import { FaArrowRight } from "react-icons/fa";
 import StateBtn from "../../components/ui/Button/StateBtn";
 import { getInPersonCourseById } from "../../services/inPersonCoursesApi";
 import { getWorkshopById } from "../../services/workshopsApi";
+import { getFnjanEventById } from "../../services/fnjanApi";
 import {
   bookWorkshop,
   uploadReceipt,
   cancelBooking,
   WorkshopBooking,
 } from "../../services/workshopBookingsApi";
+import {
+  bookFnjanEventAsProjectOwner,
+  bookFnjanEventAsRegularUser,
+  uploadFnjanReceipt,
+  cancelFnjanBooking,
+  FnjanEventBooking,
+} from "../../services/fnjanEventBookingsApi";
 
 interface Session {
   dayOfWeek: string;
@@ -45,6 +53,20 @@ interface Workshop {
   createdAt: string;
 }
 
+interface FnjanEvent {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  seats: number;
+  image: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  location: string;
+  createdAt: string;
+}
+
 const dayOfWeekArabic: { [key: string]: string } = {
   Monday: "الاثنين",
   Tuesday: "الثلاثاء",
@@ -60,13 +82,22 @@ export default function DetailsPage() {
   const navigate = useNavigate();
   const [course, setCourse] = useState<InPersonCourse | null>(null);
   const [workshop, setWorkshop] = useState<Workshop | null>(null);
+  const [fnjanEvent, setFnjanEvent] = useState<FnjanEvent | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [itemType, setItemType] = useState<"course" | "workshop" | null>(null);
-  const [booking, setBooking] = useState<WorkshopBooking | null>(null);
+  const [itemType, setItemType] = useState<
+    "course" | "workshop" | "fnjan" | null
+  >(null);
+  const [booking, setBooking] = useState<
+    WorkshopBooking | FnjanEventBooking | null
+  >(null);
   const [bookingLoading, setBookingLoading] = useState(false);
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
   const [uploadingReceipt, setUploadingReceipt] = useState(false);
+  const [userType, setUserType] = useState<"regular" | "project_owner">(
+    "regular"
+  );
+  const [projectLink, setProjectLink] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,7 +124,16 @@ export default function DetailsPage() {
             setLoading(false);
             return;
           } catch (workshopErr) {
-            throw new Error("فشل تحميل البيانات");
+            // If workshop fails, try Fnjan event
+            try {
+              const fnjanData = await getFnjanEventById(id);
+              setFnjanEvent(fnjanData);
+              setItemType("fnjan");
+              setLoading(false);
+              return;
+            } catch (fnjanErr) {
+              throw new Error("فشل تحميل البيانات");
+            }
           }
         }
       } catch (err) {
@@ -148,7 +188,11 @@ export default function DetailsPage() {
     if (!window.confirm("هل أنت متأكد من إلغاء الحجز؟")) return;
 
     try {
-      await cancelBooking(booking._id);
+      if (itemType === "fnjan") {
+        await cancelFnjanBooking(booking._id);
+      } else {
+        await cancelBooking(booking._id);
+      }
       setBooking(null);
       alert("✅ تم إلغاء الحجز بنجاح!");
     } catch (err: any) {
@@ -156,6 +200,56 @@ export default function DetailsPage() {
       alert(
         err?.response?.data?.message || "فشل إلغاء الحجز. يرجى المحاولة لاحقاً."
       );
+    }
+  };
+
+  const handleBookFnjanEvent = async () => {
+    if (!fnjanEvent?._id) return;
+    setBookingLoading(true);
+    try {
+      let newBooking;
+      if (userType === "project_owner") {
+        if (!projectLink.trim()) {
+          alert("يرجى إدخال رابط المشروع");
+          setBookingLoading(false);
+          return;
+        }
+        newBooking = await bookFnjanEventAsProjectOwner(
+          fnjanEvent._id,
+          projectLink
+        );
+      } else {
+        newBooking = await bookFnjanEventAsRegularUser(fnjanEvent._id);
+      }
+      setBooking(newBooking);
+      alert("✅ تم الحجز بنجاح! يرجى تحميل إيصال الدفع.");
+    } catch (err: any) {
+      console.error("❌ خطأ عند الحجز:", err);
+      alert(err?.response?.data?.message || "فشل الحجز. يرجى المحاولة لاحقاً.");
+    } finally {
+      setBookingLoading(false);
+    }
+  };
+
+  const handleUploadFnjanReceipt = async () => {
+    if (!booking?._id || !receiptFile) {
+      alert("يرجى اختيار ملف الإيصال");
+      return;
+    }
+    setUploadingReceipt(true);
+    try {
+      const updatedBooking = await uploadFnjanReceipt(booking._id, receiptFile);
+      setBooking(updatedBooking);
+      setReceiptFile(null);
+      alert("✅ تم تحميل الإيصال بنجاح!");
+    } catch (err: any) {
+      console.error("❌ خطأ عند تحميل الإيصال:", err);
+      alert(
+        err?.response?.data?.message ||
+          "فشل تحميل الإيصال. يرجى المحاولة لاحقاً."
+      );
+    } finally {
+      setUploadingReceipt(false);
     }
   };
 
@@ -167,7 +261,7 @@ export default function DetailsPage() {
     );
   }
 
-  if (error || (!course && !workshop)) {
+  if (error || (!course && !workshop && !fnjanEvent)) {
     return (
       <section className="pt-32 pb-10 padding-global bg-white min-h-screen flex flex-col items-center justify-center">
         <p className="text-lg text-red-600 mb-4">
@@ -185,9 +279,10 @@ export default function DetailsPage() {
   }
 
   // Determine which item to display
-  const item = course || workshop;
+  const item = course || workshop || fnjanEvent;
   const isWorkshop = !!workshop;
   const isCourse = !!course;
+  const isFnjan = !!fnjanEvent;
 
   return (
     <section className="pt-32 pb-10 relative overflow-hidden padding-global bg-white">
@@ -266,6 +361,125 @@ export default function DetailsPage() {
                       />
                       <button
                         onClick={handleUploadReceipt}
+                        disabled={!receiptFile || uploadingReceipt}
+                        className="w-full py-2 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition text-sm"
+                      >
+                        {uploadingReceipt ? "جاري التحميل..." : "تحميل الإيصال"}
+                      </button>
+                    </div>
+                  )}
+
+                  {booking.receipt && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
+                      <p className="text-blue-700 text-sm">
+                        ✅ تم تحميل الإيصال بنجاح
+                      </p>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={handleCancelBooking}
+                    className="w-full py-2 px-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
+                  >
+                    إلغاء الحجز
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+
+          {isFnjan && (
+            <div className="w-full space-y-3">
+              {!booking ? (
+                <>
+                  {/* User Type Selection */}
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold">
+                      نوع المستخدم:
+                    </label>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => {
+                          setUserType("regular");
+                          setProjectLink("");
+                        }}
+                        className={`flex-1 py-2 px-3 rounded-lg font-semibold transition ${
+                          userType === "regular"
+                            ? "bg-primary text-white"
+                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                        }`}
+                      >
+                        مستخدم عادي
+                      </button>
+                      <button
+                        onClick={() => setUserType("project_owner")}
+                        className={`flex-1 py-2 px-3 rounded-lg font-semibold transition ${
+                          userType === "project_owner"
+                            ? "bg-primary text-white"
+                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                        }`}
+                      >
+                        صاحب مشروع
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Project Link Input (for project owners) */}
+                  {userType === "project_owner" && (
+                    <div>
+                      <label className="block text-sm font-semibold mb-2">
+                        رابط المشروع:
+                      </label>
+                      <input
+                        type="url"
+                        placeholder="https://example.com"
+                        value={projectLink}
+                        onChange={(e) => setProjectLink(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+                      />
+                    </div>
+                  )}
+
+                  {/* Book Button */}
+                  <button
+                    onClick={handleBookFnjanEvent}
+                    disabled={bookingLoading}
+                    className="w-full py-3 px-4 bg-primary text-white rounded-lg hover:bg-[#a58ae8] disabled:opacity-50 disabled:cursor-not-allowed transition font-semibold"
+                  >
+                    {bookingLoading ? "جاري الحجز..." : "احجزي الآن"}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
+                    <p className="text-green-700 font-semibold">
+                      ✅ تم الحجز بنجاح!
+                    </p>
+                    <p className="text-sm text-green-600 mt-1">
+                      الحالة:{" "}
+                      {booking.status === "pending"
+                        ? "قيد الانتظار"
+                        : booking.status === "confirmed"
+                        ? "مؤكد"
+                        : booking.status}
+                    </p>
+                  </div>
+
+                  {booking.status === "pending" && !booking.receipt && (
+                    <div className="border-2 border-dashed border-primary rounded-lg p-4">
+                      <label className="block text-sm font-semibold mb-2">
+                        تحميل إيصال الدفع:
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/*,.pdf"
+                        onChange={(e) =>
+                          setReceiptFile(e.target.files?.[0] || null)
+                        }
+                        className="w-full mb-2"
+                      />
+                      <button
+                        onClick={handleUploadFnjanReceipt}
                         disabled={!receiptFile || uploadingReceipt}
                         className="w-full py-2 px-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition text-sm"
                       >
