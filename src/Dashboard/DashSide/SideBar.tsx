@@ -13,7 +13,7 @@ export default function SideBar() {
     <Sidebar
       collapsed={collapsed}
       className={`min-h-screen transition-all duration-300 !border-l !border-l-gray-200 ${
-        collapsed ? "w-[40px]" : "w-[250px]"
+        collapsed ? "w-[40px]" : "w-[200px]"
       }`}
       collapsedWidth="55px"
     >

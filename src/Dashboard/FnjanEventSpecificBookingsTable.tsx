@@ -24,9 +24,8 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
   const [bookings, setBookings] = useState<FnjanEventBooking[]>([]);
   const [event, setEvent] = useState<FnjanEvent | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedBooking, setSelectedBooking] = useState<FnjanEventBooking | null>(
-    null
-  );
+  const [selectedBooking, setSelectedBooking] =
+    useState<FnjanEventBooking | null>(null);
   const [modalType, setModalType] = useState<
     "view" | "confirm" | "reject" | null
   >(null);
@@ -102,14 +101,20 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
     const statusMap: {
       [key: string]: { bg: string; text: string; label: string };
     } = {
-      pending: { bg: "bg-yellow-100", text: "text-yellow-800", label: "قيد الانتظار" },
+      pending: {
+        bg: "bg-yellow-100",
+        text: "text-yellow-800",
+        label: "قيد الانتظار",
+      },
       confirmed: { bg: "bg-green-100", text: "text-green-800", label: "مؤكد" },
       rejected: { bg: "bg-red-100", text: "text-red-800", label: "مرفوض" },
       cancelled: { bg: "bg-gray-100", text: "text-gray-800", label: "ملغى" },
     };
     const s = statusMap[status] || statusMap.pending;
     return (
-      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${s.bg} ${s.text}`}>
+      <span
+        className={`px-3 py-1 rounded-full text-sm font-semibold ${s.bg} ${s.text}`}
+      >
         {s.label}
       </span>
     );
@@ -139,29 +144,29 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
 
       {/* Filter */}
       <div className="mb-6 flex gap-2 flex-wrap">
-        {(["all", "pending", "confirmed", "rejected", "cancelled"] as const).map(
-          (status) => (
-            <button
-              key={status}
-              onClick={() => setFilterStatus(status)}
-              className={`px-4 py-2 rounded-lg font-semibold transition ${
-                filterStatus === status
-                  ? "bg-primary text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              {status === "all"
-                ? "الكل"
-                : status === "pending"
-                ? "قيد الانتظار"
-                : status === "confirmed"
-                ? "مؤكد"
-                : status === "rejected"
-                ? "مرفوض"
-                : "ملغى"}
-            </button>
-          )
-        )}
+        {(
+          ["all", "pending", "confirmed", "rejected", "cancelled"] as const
+        ).map((status) => (
+          <button
+            key={status}
+            onClick={() => setFilterStatus(status)}
+            className={`px-4 py-2 rounded-lg font-semibold transition ${
+              filterStatus === status
+                ? "bg-primary text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            {status === "all"
+              ? "الكل"
+              : status === "pending"
+              ? "قيد الانتظار"
+              : status === "confirmed"
+              ? "مؤكد"
+              : status === "rejected"
+              ? "مرفوض"
+              : "ملغى"}
+          </button>
+        ))}
       </div>
 
       {/* Table */}
@@ -179,6 +184,9 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
                 الهاتف
               </th>
               <th className="py-3 px-6 text-right font-semibold text-gray-800">
+                نوع المستخدم
+              </th>
+              <th className="py-3 px-6 text-right font-semibold text-gray-800">
                 الحالة
               </th>
               <th className="py-3 px-6 text-right font-semibold text-gray-800">
@@ -192,7 +200,7 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
           <tbody>
             {filteredBookings.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-6 text-center text-gray-500">
+                <td colSpan={7} className="py-6 text-center text-gray-500">
                   لا توجد حجوزات
                 </td>
               </tr>
@@ -211,7 +219,22 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
                   <td className="py-3 px-6 text-gray-600 text-sm">
                     {booking.user?.phoneNumber || "-"}
                   </td>
-                  <td className="py-3 px-6">{getStatusBadge(booking.status)}</td>
+                  <td className="py-3 px-6">
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                        booking.userType === "project_owner"
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-purple-100 text-purple-800"
+                      }`}
+                    >
+                      {booking.userType === "project_owner"
+                        ? "صاحب مشروع"
+                        : "مستخدم عادي"}
+                    </span>
+                  </td>
+                  <td className="py-3 px-6">
+                    {getStatusBadge(booking.status)}
+                  </td>
                   <td className="py-3 px-6 text-center">
                     {booking.receipt ? (
                       <a
@@ -276,8 +299,37 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
               <strong>البريد:</strong> {selectedBooking.user?.email}
             </p>
             <p>
-              <strong>الهاتف:</strong> {selectedBooking.user?.phoneNumber || "-"}
+              <strong>الهاتف:</strong>{" "}
+              {selectedBooking.user?.phoneNumber || "-"}
             </p>
+            <p>
+              <strong>نوع المستخدم:</strong>{" "}
+              <span
+                className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                  selectedBooking.userType === "project_owner"
+                    ? "bg-blue-100 text-blue-800"
+                    : "bg-purple-100 text-purple-800"
+                }`}
+              >
+                {selectedBooking.userType === "project_owner"
+                  ? "صاحب مشروع"
+                  : "مستخدم عادي"}
+              </span>
+            </p>
+            {selectedBooking.userType === "project_owner" &&
+              selectedBooking.projectLink && (
+                <p>
+                  <strong>رابط المشروع:</strong>{" "}
+                  <a
+                    href={selectedBooking.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline break-all"
+                  >
+                    {selectedBooking.projectLink}
+                  </a>
+                </p>
+              )}
             <p>
               <strong>الحالة:</strong> {getStatusBadge(selectedBooking.status)}
             </p>
@@ -309,8 +361,8 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
         onClose={() => setModalType(null)}
       >
         <p className="text-gray-700 mb-4">
-          هل أنت متأكد من تأكيد حجز <strong>{selectedBooking?.user?.fullName}</strong>
-          ؟
+          هل أنت متأكد من تأكيد حجز{" "}
+          <strong>{selectedBooking?.user?.fullName}</strong>؟
         </p>
         <div className="flex justify-end gap-3">
           <button
@@ -336,8 +388,8 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
         onClose={() => setModalType(null)}
       >
         <p className="text-gray-700 mb-4">
-          هل أنت متأكد من رفض حجز <strong>{selectedBooking?.user?.fullName}</strong>
-          ؟
+          هل أنت متأكد من رفض حجز{" "}
+          <strong>{selectedBooking?.user?.fullName}</strong>؟
         </p>
         <div className="flex justify-end gap-3">
           <button
@@ -360,4 +412,3 @@ const FnjanEventSpecificBookingsTable: React.FC = () => {
 };
 
 export default FnjanEventSpecificBookingsTable;
-

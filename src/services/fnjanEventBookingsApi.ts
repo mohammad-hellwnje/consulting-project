@@ -7,6 +7,8 @@ export interface FnjanEventBooking {
   eventId: string;
   userId: string;
   status: "pending" | "confirmed" | "rejected" | "cancelled";
+  userType: "regular" | "project_owner";
+  projectLink?: string;
   receipt?: string;
   createdAt: string;
   updatedAt: string;
